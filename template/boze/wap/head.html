@@ -1,0 +1,15 @@
+		<div class="f_iheader">
+					<a class="f_ilogo" href="default.htm"><img src="{PUBLIC}wap/images/w_logo.png"/></a>
+					<a class="f_imenu" href="javascript:void(0)"><img src="{PUBLIC}wap/images/f_imenu.png"/></a>
+				</div>
+				<div class="f_inav">
+					<table align="center">
+				      <th width="19.2%"><a href="<?php echo site_url('wap')?>">home</a></th>
+						{pc:content action="_cate"   cid="0" order="asc" wap="true"}
+						{loop $data $v}
+						<th><a href="{$v['url']}">{$v['name']}</a></th>
+	 
+						{/loop}
+		                 {/pc}
+					</table>
+				</div>

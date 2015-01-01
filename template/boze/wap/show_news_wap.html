@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$title}-{$catename}-{$webname}</title>
+<meta name="keywords" content="{$keywords}" />
+<meta name="description" content="{$description}" />
+<meta content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<link rel="stylesheet" type="text/css" href="{PUBLIC}wap/css/indexchannel.css?2014051504"/>
+<script type="text/javascript" src="{PUBLIC}wap/js/min.js"></script>
+<script type="text/javascript" src="{PUBLIC}wap/js/index.js?2014051504"></script>
+<script type="text/javascript" src="{PUBLIC}wap/js/cookie_fixed.js?2014051504"></script>
+<script type="text/javascript" src="{PUBLIC}wap/js/channel.js?2014051504"></script>
+<script type="text/javascript" src="{PUBLIC}wap/js/rMenu.js?2014051504"></script>
+<script language="javascript" type="text/javascript" src="{PUBLIC}wap/js/login.js?2014051504"></script>
+<script type="text/javascript">
+/**
+ * 全局变量
+ */
+var _global_var={
+	_curpage:2, //当前页码+1	
+	_picdomain:"../../img10.fblife.com/", //图片域名
+	_wapdomain:"./", //wap域名
+	_staticdomain:"../../static.fblife.com/", //静态资源域名
+	_channelid:"2", //频道id
+	_channelename:"news", //频道英文
+	_default_headpic:function(){return _global_var._staticdomain+'/static/wapnews/images/tag.png';}
+};
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body>
+<!-----最外层---->
+<div class="outter">
+	<div class="wrap">
+		<!-- 主体内容 -->
+		<div class="lay-left">
+			<div class="pos">
+				{wapload head.html}
+				<div class="f_enav">
+					{catepos($cid,$wap='true')} 
+				</div>
+				<div class="f_pinnav" id="f_pinnav_div">
+					<a id='page_prev' class="f_pinbtnlef" href="javascript:void(0)"><</a>
+					<div id="f_pinnav" style="height:35px; overflow:hidden; position:relative;">
+						<ul id="f_pinnav_lis" style="display:none;">
+						    {pc:content action="_cate" cid="$tcid" wap="true"}
+							{loop $data $v}
+							<li><a href="{$v['url']}" class="f_pinnav_cur">{$v['name']}</a></li>
+							{/loop}
+							{/pc}
+			
+			
+						</ul>
+					</div>
+					<a id='page_next' class="f_pinbtnrig" href="javascript:void(0)">></a>
+				</div>
+				 
+				 <div class="w_h">
+						    <h1>{$title}</h1>
+    <span>作者: &nbsp;{$author} &nbsp;&nbsp;&nbsp; 发布时间: &nbsp;{date('Y-m-d h:i:s',$publishtime)} &nbsp;&nbsp;&nbsp; 点击： &nbsp;{click}  &nbsp;&nbsp;&nbsp;分类： &nbsp;<a href="{$cateurl}">{$catename}</a></span>
+							</div>
+				 
+				 <div class="w_con clearfix">
+				 
+				     <div class="content">{$content} </div>
+				 </div>
+				 
+				 
+				 
+				<div class="f_loadimg" id="f_loadimg">
+					<img src="{PUBLIC}wap/images/loading.gif"/>
+				</div>
+
+
+
+
+
+				<div class="f_enav">
+					<a href="../default.htm">资讯</a>>
+					<span>新闻</span>
+				</div>
+{wapload foot.html}
+</body>
+</html>

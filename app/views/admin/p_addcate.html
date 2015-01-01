@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>分类管理</title>
+<link href="<?php echo base_url('public/admin');?>/css/style.css" rel="stylesheet" type="text/css" />
+ 
+</head>
+<body>
+   
+ 	<div class="place" >
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="<?php echo site_url(APP_ADMIN.'/home/main')?>">后台首页</a></li>
+     <li><a href="#">批量添加分类</a></li>
+    </ul>
+    </div>
+    
+    <div class="rightinfo">
+    
+    <div class="tools">
+    
+    	<ul class="toolbar">
+        <li><a href="<?php echo site_url(APP_ADMIN.'/cate/cate_add');?>"><span><img src="<?php echo base_url('public/admin');?>/images/t01.png" /></span>添加分类</a></li>
+        
+ 
+		
+		
+		
+      
+        </ul>
+        
+		
+ 
+		
+        
+        <ul class="toolbar1">
+   
+		
+		 <li><span><img src="<?php echo base_url('public/admin');?>/images/t04.png" /></span><a href="<?php echo site_url(APP_ADMIN.'/cate/p_addcate');?>">批量添加 </a></li>
+        </ul>
+    
+    </div>
+
+    
+    <table class="tablelist" id="app">
+    	<thead>
+    	<tr>
+      
+        <th width="10%"  >栏目模型<i class="sort"><img src="<?php echo base_url('public/admin');?>/images/px.gif" /></i></th>
+        <th width="20%"  >一级分类</th>
+ 
+        <th width="60%"  >二级分类</th>
+ 
+        <th width="10%"  >操作</th>
+ 
+        </tr>
+        </thead>
+        <tbody>
+		
+		<form id="form_do" action="<?php echo site_url(APP_ADMIN.'/cate/p_add');?>" method="post">
+		 <tr class="trz">
+        <td> <select name="modelid" class="inputauto" style="width:80px; height:20px;">
+					
+					<?php foreach($md as $v):?> 
+					<option value="<?php echo $v['id']?>"><?php echo $v['name'];?></option>
+					 <?php  endforeach?>
+						</select>
+					  </td>
+        
+       <td><input type="text" name="name"  style="width:120px;" class="inputsort"  />  </td>
+ 
+       <td><input type="text" name="name_e"  style="width:600px;" class="inputsort"  />  </td> 
+   
+       <td style="line-height:32px; height:35px;">  <input  type="submit" name="submit1"   style="width:60px; height:20px; " value="添加"  > </td> 
+   
+       </tr> 
+       </form>
+ 
+	     
+		 
+		 
+		
+		     
+        </tbody>
+    </table>
+    
+ 
+    
+    </div>
+    </form> 
+ 
+</body>
+</html>

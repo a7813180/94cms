@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title>{$webname}</title>
+<meta name="description" content="{$webdes}" />
+<meta name="keywords" content="{$webkey}" />
+<link href="{PUBLIC}style/home/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{PUBLIC}style/home/js/html5.js?v=3.6"></script>
+<script type="text/javascript" src="{PUBLIC}style/js/jquery.min.js?v=1.10.2"></script>
+<script type="text/javascript" src="{PUBLIC}style/home/js/jquery.SuperSlide.js?v=1.2"></script>
+<script type="text/javascript" src="{PUBLIC}style/home/js/jquery.easing.min.js?v=1.3"></script>
+<script type="text/javascript" src="{PUBLIC}style/home/js/main.js?v=1.1"></script>
+<script type="text/javascript" src="{PUBLIC}style/js/zbox.js"></script>
+</head>
+<body>
+{load head.html}
+<section id="home" class="index">
+  <div class="hgrap">&nbsp;</div>
+  <!-- 代码 开始 -->
+  <!--div id="yc-mod-slider">
+    <div class="bannerV"></div>
+    <div class="index_prev prev"><img src="{PUBLIC}style/home/images/prev.png"></div>
+    <div class="index_next next"><img src="{PUBLIC}style/home/images/next.png"></div>
+    <div id="slideshow" class="box_skitter fn-clear">
+      <ul id="banner">
+        <li> <img alt="1009" class="cubeRandom" src="{PUBLIC}style/image/20140905/20140905150728_6703.jpg" /> </li>
+        <li> <img alt="banner07" class="cubeRandom" src="{PUBLIC}style/image/20140725/20140725105343_0426.jpg" /> </li>
+        <li> <img alt="10006" class="cubeRandom" src="{PUBLIC}style/image/20140725/20140725105430_0589.jpg" /> </li>
+        <li> <img alt="1005" class="cubeRandom" src="{PUBLIC}style/image/20140725/20140725105525_3252.jpg" /> </li>
+        <li> <img alt="10004" class="cubeRandom" src="{PUBLIC}style/image/20140725/20140725105610_4039.jpg" /> </li>
+        <li> <img alt="10003" class="cubeRandom" src="{PUBLIC}style/image/20140428/20140428013707_5290.jpg" /> </li>
+        <li> <img alt="banner2" class="cubeRandom" src="{PUBLIC}style/image/20140311/20140311231237_7939.jpg" /> </li>
+        <li> <img alt="banner1" class="cubeRandom" src="{PUBLIC}style/image/20140311/20140311231202_2314.jpg" /> </li>
+      </ul>
+    </div>
+  </div-->
+  <link href="{PUBLIC}css/lanrenzhijia.css" rel="stylesheet" type="text/css" />
+  <div class="wrap">
+    <div class="banner-show" id="js_ban_content">
+      <div class="cell bns-01">
+        <div class="con"> </div>
+      </div>
+      <div class="cell bns-02" style="display:none;">
+        <div class="con"> <a href="http://www.lanrenzhijia.com" target="_blank" class="banner-link"> <i>圈子</i></a> </div>
+      </div>
+      <div class="cell bns-03" style="display:none;">
+        <div class="con"> <a href="http://www.lanrenzhijia.com" target="_blank" class="banner-link"> <i>企业云</i></a> </div>
+      </div>
+    </div>
+    <div class="banner-control" id="js_ban_button_box"> <a href="javascript:;" class="left">左</a> <a href="javascript:;" class="right">右</a> </div>
+    <div class="container">
+      <div class="register-box">
+        <div class="reg-slogan"> 客户登陆</div>
+        <div class="reg-form" id="js-form-mobile"> <br>
+          <br>
+          <div class="cell">
+            <label for="js-mobile_ipt">填写手机号</label>
+            <input type="text" name="mobile" id="js-mobile_ipt" class="text" maxlength="11" />
+          </div>
+          <div class="cell">
+            <label for="js-mobile_pwd_ipt">设置密码</label>
+            <input type="password" name="passwd" id="js-mobile_pwd_ipt" class="text" />
+            <input type="text" name="passwd" id="js-mobile_pwd_ipt_txt" class="text" maxlength="20" style="display:none;" />
+            <b class="icon-form ifm-view js-view-pwd" title="查看密码" style="display: none"> 查看密码</b> </div>
+
+          <div class="cell vcode">
+            <label for="js-mail_vcode_ipt">输入验证码</label>
+            <input type="text" name="code" id="js-mail_vcode_ipt" class="text" maxlength="4" />
+            <img id="js-mail_vcode_img" src="http://passport.115.com/?ct=securimage&ac=email" alt="code" /> <span> <a id="js-mail_vcode_a" href="javascript:;" code_src="http://www.lanrenzhijia.com"> 换一张</a></span> </div>
+
+
+          <div class="bottom"> <a id="js-mail_btn" href="javascript:;" class="button btn-green"> 立刻登陆</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+                ;(function(){
+                    
+                    var defaultInd = 0;
+                    var list = $('#js_ban_content').children();
+                    var count = 0;
+                    var change = function(newInd, callback){
+                        if(count) return;
+                        count = 2;
+                        $(list[defaultInd]).fadeOut(400, function(){
+                            count--;
+                            if(count <= 0){
+                                if(start.timer) window.clearTimeout(start.timer);
+                                callback && callback();
+                            }
+                        });
+                        $(list[newInd]).fadeIn(400, function(){
+                            defaultInd = newInd;
+                            count--;
+                            if(count <= 0){
+                                if(start.timer) window.clearTimeout(start.timer);
+                                callback && callback();
+                            }
+                        });
+                    }
+                    
+                    var next = function(callback){
+                        var newInd = defaultInd + 1;
+                        if(newInd >= list.length){
+                            newInd = 0;
+                        }
+                        change(newInd, callback);
+                    }
+                    
+                    var start = function(){
+                        if(start.timer) window.clearTimeout(start.timer);
+                        start.timer = window.setTimeout(function(){
+                            next(function(){
+                                start();
+                            });
+                        }, 8000);
+                    }
+                    
+                    start();
+                    
+                    $('#js_ban_button_box').on('click', 'a', function(){
+                        var btn = $(this);
+                        if(btn.hasClass('right')){
+                            //next
+                            next(function(){
+                                start();
+                            });
+                        }
+                        else{
+                            //prev
+                            var newInd = defaultInd - 1;
+                            if(newInd < 0){
+                                newInd = list.length - 1;
+                            }
+                            change(newInd, function(){
+                                start();
+                            });
+                        }
+                        return false;
+                    });
+                    
+                })();
+</script>
+</section>
+<section id="servies" class="index">
+  <h1><span>OUR SERVICES</span><b>.</b>我们的服务</h1>
+  <div class="servies_index">
+    <div class="servies_index_item design" id="design">
+      <div class="servies_index_itemb">
+        <div class="servies_pic"> <a href="/home/product">
+          <div class="servies_pic_bottom"></div>
+          <img src="{PUBLIC}style/home/images/index_icon1_.jpg" width="217" height="217"></a> </div>
+      </div>
+      <div class="ffonts">
+        <div class="servies_font_cn"> <a href="/home/product">WEB.网站建设</a> </div>
+        <div class="servies_font_en en"> 营销型网站<b>.</b>PC网站<b>.</b>手机网站</div>
+      </div>
+    </div>
+    <div class="servies_index_item web" id="web">
+      <div class="servies_index_itemb">
+        <div class="servies_pic"> <a href="/home/scheme">
+          <div class="servies_pic_bottom"></div>
+          <img src="{PUBLIC}style/home/images/index_icon2_.jpg" width="217" height="217"></a> </div>
+      </div>
+      <div class="ffonts">
+        <div class="servies_font_cn"> <a href="/home/scheme">SEM . 竞价开户</a> </div>
+        <div class="servies_font_en en"> <b>.</b>百度竞价开户<b>.</b>360竞价开户</div>
+      </div>
+    </div>
+    <div class="servies_index_item mobile" id="mobile">
+      <div class="servies_index_itemb">
+        <div class="servies_pic"> <a href="/home/scheme">
+          <div class="servies_pic_bottom"></div>
+          <img src="{PUBLIC}style/home/images/index_icon3_.jpg" width="217" height="217"></a> </div>
+      </div>
+      <div class="ffonts">
+        <div class="servies_font_cn"> <a href="/home/scheme">SEO.搜索引擎优化</a> </div>
+        <div class="servies_font_en en"> 百度<b>.</b>360<b>.</b>搜狗</div>
+      </div>
+    </div>
+    <div class="servies_index_item" >
+      <div class="servies_index_itemb">
+        <div class="servies_pic"> <a href="/home/product">
+          <div class="servies_pic_bottom"></div>
+          <img src="{PUBLIC}style/home/images/index_icon1_.jpg" width="217" height="217"></a> </div>
+      </div>
+      <div class="ffonts">
+        <div class="servies_font_cn"> <a href="/home/product">WEB.网站建设</a> </div>
+        <div class="servies_font_en en"> 营销型网站<b>.</b>PC网站<b>.</b>手机网站</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="client">
+  <h1><span>CLIENT LIST</span><b>.</b>为客户创造价值、传递价值是我们的最终使命<br/>
+    Creating value for customers, delivering value is our ultimate mission</h1>
+  <div class="clientscroll" id="clients">
+    <div class="clientsprev prev"> <img src="{PUBLIC}style/home/images/prev.png"> </div>
+    <div class="clientsnext next"> <img src="{PUBLIC}style/home/images/next.png"> </div>
+    <ul id="bd">
+      <li> {pc:content action="_arclist" num="20" order="desc" cid="9"}
+        {loop $data $v}
+        <div class="clientitem"> <a href="{$v['url']}"><img src="{$v['litpic']}" alt="{$v['title']}" width="178" height="178"></a> </div>
+        {/loop}
+        {/pc} </li>
+    </ul>
+  </div>
+</section>
+<section id="news">
+  <h1><span>NEWS</span><b>.</b>营销知识</h1>
+  <div class="index_news_list clearfix"> {pc:content action="_arclist" num="10" cid="6" order="desc"}
+    {loop $data $v}
+    <div class="index_news">
+      <div class="index_news_addtime en"> {date('Y-m-d H:i:s',$v['publishtime'])} <b>.</b> </div>
+      <div class="index_news_tit"> <a target="_blank" href="{$v['url']}">{$v['title']}</a> </div>
+      <div class="index_news_info  "> {get_str($v['description'],99)}... </div>
+    </div>
+    {/loop}
+    {/pc} </div>
+  <div class="news_seeall"> <a href="{cate('6','url')}" id="seeall">see all</a> </div>
+</section>
+<section id="contact">
+  <h1><span>CONNECT WITH US</span><b>.</b>
+    <label>与我们联系</label>
+  </h1>
+  <div class="contact_cont">
+    <div class="contact_cont_info">
+      <div class="contact_cont_info_l">
+        <p style="font-family:微软雅黑;font-size:18px;"> 四海网络科技有限公司-Carvso Technology lns. </p>
+        <p style="font-family:微软雅黑;font-size:18px;"> <br />
+        </p>
+        <p> 电话：(0515) 8062 0336 <span>/</span>&nbsp;<span></span><br />
+          传真：(0515) <span>8062 0336</span><br />
+          网站：www.3045.com.cn &nbsp;<br />
+          邮箱：info@carvso.com<br />
+          <span class="ondizhi">地址：盐城市建湖<span>同沪商贸城3#309<span></span><span>&nbsp;</span> </p>
+        <p style="margin:20px 0">
+        <div id="wb"><a href="javascript:;" rel="sinaweibo" >新浪微博</a></div>
+        <!--<div id="wx"><a href="javascript:;" rel="conpanyweixin">微信</a></div>-->
+        <div id="wx"><a href="javascript:;" rel="conpanycode">微信</a></div>
+        </p>
+      </div>
+      <div class="contact_cont_info_r">
+        <div class="QQ" style="background:url({PUBLIC}style/home/images/QQ_02.png) no-repeat"> <a href="tencent://message/?uin=80085391" class="QQa"></a><a href="tencent://message/?uin=80085391" class="QQinfo">
+          <p style="margin-top:6px">胡经理</p>
+          <p class="en">QQ：80085391</p>
+          </a> </a></div>
+        <div class="QQ" style="background:url({PUBLIC}style/home/images/QQ_02.png) no-repeat"> <a href="tencent://message/?uin=80085391" class="QQa"></a><a href="tencent://message/?uin=80085391" class="QQinfo">
+          <p style="margin-top:6px">胡经理</p>
+          <p class="en">QQ：80085391</p>
+          </a> </div>
+        <div class="QQ" style="background:url({PUBLIC}style/home/images/QQ_02.png) no-repeat"> <a href="tencent://message/?uin=80085391" class="QQa"></a><a href="tencent://message/?uin=80085391" class="QQinfo">
+          <p style="margin-top:6px">胡经理</p>
+          <p class="en">QQ：80085391</p>
+          </a> </div>
+        <div class="QQ" style="background:url({PUBLIC}style/home/images/QQ_02.png) no-repeat"> <a href="tencent://message/?uin=80085391" class="QQa"></a><a href="tencent://message/?uin=80085391" class="QQinfo">
+          <p style="margin-top:6px">胡经理</p>
+          <p class="en">QQ：80085391</p>
+          </a> </div>
+      </div>
+    </div>
+    <form id="form1" >
+      <div class="contact_cont_message">
+        <p style="font-family:微软雅黑;font-size:18px">提交咨询</p>
+        <div class="message_left">
+          <p>
+            <input type="text" class="txt" name="title" id="mescompany" value="输入咨询主题">
+          </p>
+          <p>
+            <input type="text" class="txt" name="name" id="mesname" value="您的称呼">
+          </p>
+          <p>
+            <input type="text" class="txt" name="tel" value="您的联系电话，多个用，分隔">
+          </p>
+        </div>
+        <div class="message_right">
+          <p>
+            <textarea name="content" id="mesmessage">请输入您的详细需求描述，我们将在24小时内给出答复</textarea>
+          </p>
+        </div>
+        <div class="clear"></div>
+        <div class="mesbtn"> <a href="javascript:;" id="mesbtna">提交</a> </div>
+      </div>
+    </form>
+  </div>
+</section>
+	<div id="daiyanbao_com_content" style="position: fixed;_position: absolute;text-align: left;overflow: visible;bottom :0;right:0;display:block; z-index:999;">
+		<script src="//res.daiyanbao.com/freevideojs/306/1/400-0515-082.js"></script>
+	</div>
+
+{load foot.html}
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加自定义字段</title>
+<link href="<?php echo base_url('public/admin');?>/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/jquery-1.7.2.min.js"></script>
+<script>
+
+function loadformtype(type) {
+    $("#content").html('loading...');
+	
+	$.get("<?php echo site_url().APP_ADMIN.'/model/ajaxformtype/?type=';?>"+type, function(data) {
+		$("#content").html(data);
+	});
+	
+	$('#hidetbody').show();
+	$('#select-ed').show();
+	if (type=='editor') {
+		$('#hidetbody').hide();
+	}
+	if (type=='merge') {
+		$('#hidetbody').hide();
+	}
+	if (type=='fields') {
+		$('#hidetbody').hide();
+	    $('#select-ed').hide();
+	}
+	if (type=='checkbox') {
+		$('#hidetbody').hide();
+	}
+	if (type=='files') {
+		$('#hidetbody').hide();
+	}
+	if (type=='date') {
+		$('#hidetbody').hide();
+	}
+}
+</script>
+</head>
+<body>
+<form name="" action="<?php echo site_url(APP_ADMIN.'/model/model_field_updata_s');?>" method="post">
+  <input  type="hidden" name="id" value="<?php echo $id;?>"  />
+  <ul class="forminfo" style="padding-top:25px;">
+    <li>
+      <label>字段别名</label>
+      <input name="label"   value="<?php echo $label;?>" type="text" class="dfinput"  style="width:150px"/>
+      <i style=" color: #FF0000;">必填</i><i>标题不能超过30个字符 </i></li>
+    <li>
+      <label>字 段 名</label>
+      <input name="field"  value="<?php echo $field;?>"  type="text" class="dfinput" style="width:150px" />
+      <i style=" color: #FF0000;">必填</i><i>(小写英文作为字段名) </i></li>
+    <li>
+      <label>字段类型</label>
+      <select  name="fieldtype"  class="inputauto"  onChange="loadformtype(this.value)"   >
+        <option value=""> -- </option>
+        <option value="input"  <?php if($fieldtype == "input"){echo "selected";}?>>单行文本</option>
+        <option value="textarea"  <?php if($fieldtype == "textarea"){echo "selected";}?>>多行文本</option>
+        <option value="editor"   <?php if($fieldtype == "editor"){echo "selected";}?> >编辑器</option>
+        <option value="select"   <?php if($fieldtype == "select"){echo "selected";}?>>下拉选择框</option>
+        <option value="radio"   <?php if($fieldtype == "radio"){echo "selected";}?> >单选按钮</option>
+        <option value="checkbox"   <?php if($fieldtype == "checkbox"){echo "selected";}?>>复选框</option>
+        <option value="image"   <?php if($fieldtype == "image"){echo "selected";}?>>单图上传</option>
+        <option value="file"   <?php if($fieldtype == "file"){echo "selected";}?>>文件上传</option>
+        <option value="images"   <?php if($fieldtype == "images"){echo "selected";}?>>多图上传</option>
+      </select>
+      </select>
+      <i style=" color: #FF0000;">必填</i ></li>
+    <div id="content">
+    <?php  $this->load->helper('fields'); ?>
+    <?php echo get_diy_updata($fieldtype,$setting); ?>
+  
+  
+	</div>
+    <li>
+      <label>输 入 提 示</label>
+      <input name="tips"  type="text"  value="<?php echo $tips;?>"  class="dfinput"  style=" width:150px;"/>
+    </li>
+    <li>
+      <label>索引</label>
+      <select name="indexkey" class="inputauto">
+        <option value="">---</option>
+        <!--option value="UNIQUE">唯一索引</option-->
+        <option value="INDEX">普通索引</option>
+      </select>
+      <i> 慎重选择！必须理解索引感念</i> </li>
+    <li>
+      <label>状     态： </label>
+      <select name="status" class="inputauto">
+        <option value="1"  <?php if($status == '1') {echo "selected = 'selected'";}?> > 开启</option>
+        <option value="0"  <?php if($status == '0') {echo "selected = 'selected'";}?> > 关闭</option>
+      </select>
+    </li>
+    <li>
+      <label>所属模型： </label>
+      <select name="modelid" class="inputauto" disabled>
+        <?php foreach($model as $v):?>
+        <?php
+$qk=NULL;
+if($v['id'] != '1'){
+if($modelid ==$v['id']){$qk="selected = 'selected'";}
+$str="<option ". "value= '".$v['id']."'".$qk. ">" .$v['name']."</option>";
+echo $str;
+}
+?>
+        <?php endforeach?>
+      </select>
+    </li>
+    <li>
+      <label>顺     序： </label>
+      <input name="sort"   value="<?php echo $sort;?>" class="dfinput" style="width:150px; padding:0px; margin:0px;"  />
+    </li>
+    <li>
+      <label>验证规则</label>
+      <p class="wenzi">必填 </p>
+      <INPUT  type="checkbox"   class="checkboxauto"   name="rules"   value="required"   <?php if($rules == 'required') {echo "checked";}?> />
+    </li>
+    <li>
+      <label>&nbsp;</label>
+      <input name=""  type="submit" class="btn" value="确认保存"/>
+    </li>
+  </ul>
+</form>
+</body>
+</html>

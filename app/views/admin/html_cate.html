@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>列表生成HTML</title>
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+ <link href="<?php echo base_url('public/admin');?>/css/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+td {
+	line-height: 38px;
+	height: 38px;
+}
+-->
+</style>
+</head>
+
+<body>
+<ol class="breadcrumb" style="margin-bottom:0px;">
+  <li><a href="#">后台首页</a></li>
+  <li><a href="#">生成静态</a></li>
+  <li >列表静态</li>
+  
+ 
+
+</ol>
+
+
+<form name="form1" action="<?php echo site_url(APP_ADMIN.'/html/cate_s');?>" method="get" target='stafrm'>
+ <table class="table table-condensed table-bordered" >
+  <tr> 
+    <td   class="col-md-2" valign="top" bgcolor="#FFFFFF">选择栏目：</td>
+    <td    class="col-md-7"   valign="top" bgcolor="#FFFFFF">
+    <select  class="form-control" name='cid' style='width:150px'>
+<option value='0' selected>更新所有文档...</option>
+
+
+
+
+<?php foreach($cate as $v):?>
+
+<option value='<?php echo $v['id']?>'><?php echo $v['name']?></option>
+
+<?php endforeach;?>
+
+</select>   </td>
+  </tr>
+<tr>
+    <td valign="top" bgcolor="#FFFFFF">起始ID：</td>
+    <td  valign="top" bgcolor="#FFFFFF"><input  class="form-control"   style="width:150px;" name="qid" type="text" id="q-id" size="10">
+
+</td>
+  </tr>
+  <tr> 
+    <td  valign="top" bgcolor="#FFFFFF">结束ID：</td>
+    <td valign="top" bgcolor="#FFFFFF">
+	<input name="e-id"  class="form-control"   style="width:150px;"  type="text" id="e-id" size="10">
+   </td>
+  </tr>
+    <tr> 
+      <td  bgcolor="#FFFFFF">每页生成：</td>
+      <td  bgcolor="#FFFFFF"> <input name="page" type="text" class="form-control"   style="width:150px;"   id="page" value="20" size="8" /></td>
+    </tr>
+    <tr> 
+	
+	<td> </td>
+      <td >
+      	<input name="b112" class="btn" type="button"  value="开始生成HTML" onClick="document.form1.submit();" style="width:150px">    
+      
+	  </td>
+    </tr>
+  </form>
+  <tr bgcolor="#F9FCEF"> 
+    <td  colspan="2"> <table width="100%">
+        <tr> 
+          <td width="74%">进行状态： </td>
+          <td width="26%" align="right">
+          	<script language='javascript'>
+            	function ResizeDiv(obj,ty)
+            	{
+            		if(ty=="+") document.all[obj].style.pixelHeight += 50;
+            		else if(document.all[obj].style.pixelHeight>80) document.all[obj].style.pixelHeight = document.all[obj].style.pixelHeight - 50;
+            	}
+            	</script>
+            [<a href='#' onClick="ResizeDiv('mdv','+');">增大</a>] [<a href='#' onClick="ResizeDiv('mdv','-');">缩小</a>] 
+          </td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr bgcolor="#FFFFFF"> 
+    <td colspan="2" id="mtd">
+    	<div id='mdv' style='width:100%;height:350px;'> 
+        <iframe name="stafrm" frameborder="0" id="stafrm" width="100%" height="100%"></iframe>
+      </div>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

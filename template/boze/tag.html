@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}-TAG-{$webname}</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://v57.demo.dedecms.com/templets/default/style/dedecms.css" rel="stylesheet" media="screen" type="text/css" />
+</head>
+<body class="articlelist" style="min-width:1000px">
+<div class="header_top">
+  <div class="center"> <span id="time" class="time">{$webname}</span>
+    <div class="toplinks"> <a href="{site_url()}" target="_blank">首页</a> 
+	  {pc:content action="_cate" num="10" cateid="0" order="asc"}
+      {loop $data $v} 
+	  <a href="{$v['url']}" target="_blank">{$v['name']}</a> 
+	  {/loop}
+      {/pc} </div>
+  </div>
+</div>
+<div class="search_header">
+ 
+</div>
+<!-- //top -->
+<!-- /header -->
+<div class="resultbar">TAG: <strong class="fc_03c">{$title}</strong> 匹配文章 </div>
+<div class="result_content">
+  <div class="sidebar">
+    <h2>点击最多标签</h2>
+    <ul>
+      {pc:content action="_tag" sort="num" num="10" order="desc"}
+      {loop $data $key $v}
+      <li>　 <a href="{$v['url']}" target="_blank" ><u>{$v['title']}</u></a></li>
+      {/loop}
+      {/pc}
+    </ul>
+  </div>
+  <div class="resultlist">
+    <ul>
+      <?php foreach($taglist as $v):?>
+      <li>
+        <h3><a href="<?php echo $v['url']?>" target="_blank"> <?php echo $v['title']?> </a></h3>
+        <p> <?php echo $v['description']?> </p>
+        <span> <a href="<?php echo $v['url']?>"><?php echo $v['url']?></a> <small>分类：</small><a href="<?php echo $v['curl']?>" target="_blank"><?php echo $v['cname']?></a> <small>点击：</small><?php echo $v['click']?> <small>日期：</small><?php echo date('Y-m-d H:i:s',$v['publishtime'])?> </span> </li>
+      <?php endforeach;?>
+    </ul>
+    <div class="fl dede_pages">
+      <ul class="pagelist">
+         
+		 <?php echo $page; ?>
+		 
+      </ul>
+    </div>
+    <!-- /pages -->
+  </div>
+  <!-- /listbox -->
+</div>
+<div class="footer center mt1 clear">
+ 
+  <div class="footer_left"></div>
+  <div class="footer_body">
+ 
+  
+  </div>
+  <div class="footer_right"></div>
+</div>
+<!-- /footer -->
+</body>
+</html>

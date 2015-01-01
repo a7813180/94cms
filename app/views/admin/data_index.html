@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数据库管理</title>
+<link href="<?php echo base_url('public/admin');?>/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/jquery-1.7.2.min.js"></script>
+<style type="text/css">
+<!--
+.waibu {
+	color: #FF0000;
+}
+.wu {
+	background-image: url(<?php echo base_url('public/admin/');?>/images/toolbg.gif);
+	font-family: "微软雅黑";
+ 
+}
+-->
+</style>
+<script language="javascript">
+  $(function ($) { 
+	  //点击主菜单下面的子菜单全部选中
+	   $('#selectAll').click(function (){
+	       var inputs = $(this).parents('#app').find('input');
+		   $(this).attr('checked') ? inputs.attr('checked','checked'):
+		   inputs.removeAttr('checked');
+	      });
+       });
+ </script>
+<script language="javascript">
+ function tosubmit3() { document.submitform1.action="<?php echo site_url(APP_ADMIN.'/mydata/database');?>"; document.submitform1.submit(); } 
+ function tosubmit4() { document.submitform1.action="<?php echo site_url(APP_ADMIN.'/mydata/xiufu_s');?>"; document.submitform1.submit(); } 
+ function tosubmit5() { document.submitform1.action="<?php echo site_url(APP_ADMIN.'/mydata/youhua_s');?>"; document.submitform1.submit(); } 
+</script>
+</head>
+<body>
+<form name="submitform1" action="" method="post"  >
+  <div class="place" > <span>位置：</span>
+    <ul class="placeul">
+      <li><a href="<?php echo site_url(APP_ADMIN.'/home/main')?>">后台首页</a></li>
+      <li><a href="#">数据库备份</a></li>
+    </ul>
+  </div>
+  <div class="rightinfo">
+    <div class="tools">
+      <ul class="toolbar">
+	    <li> <span> </span>
+          <input type="button" name="submit1" class="wu" value="数据库备份" onclick="tosubmit3()" >
+        </li>
+	    <li> <span> </span>
+          <input type="button" name="submit1" class="wu" value="数据库修复" onclick="tosubmit4()" >
+        </li>
+		    <li> <span> </span>
+          <input type="button" name="submit1" class="wu" value="数据库优化" onclick="tosubmit5()" >
+        </li>
+		
+        <li> <span> </span>
+         <a href="<?php echo site_url(APP_ADMIN.'/mydata/yijian/');?>">一键备份</a>
+        </li>
+		
+		
+		
+	    <li> <span> </span>
+         <a href="<?php echo site_url(APP_ADMIN.'/mydata/datalist/');?>">备份列表</a>
+        </li>
+		
+		
+      </ul>
+    </div>
+    <table class="tablelist" id="app">
+      <thead>
+        <tr>
+          <th width="6%"> <input type="checkbox" id="selectAll" class='xzk' level='1'></th>
+          <th width="22%">表名<i class="sort"><img src="<?php echo base_url('public/admin');?>/images/px.gif" /></i></th>
+          <th width="15%">表用途</th>
+          <th width="15%">记录行数</th>
+          <th width="15%">引擎</th>
+          <th width="12%">字符集</th>
+          <th width="15%">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($data as $v):?>
+        <tr class="trz">
+          <td><input name="del[]"  type="checkbox" value="<?php echo $v['Name'];?>"   class='xzk'/>
+          </td>
+          <td><?php echo $v['Name'];?></td>
+          <td><?php echo $v['Comment'];?></td>
+          <td><?php echo $v['Rows'];?></td>
+          <td><?php echo $v['Engine'];?> </td>
+          <td><?php echo $v['Collation']?> </td>
+          <td>&nbsp;<a href="<?php echo site_url(APP_ADMIN.'/mydata/xiufu/'.$v['Name']);?>" class="edit">修复</a> &nbsp; <a href="<?php echo site_url(APP_ADMIN.'/mydata/youhua/'.$v['Name']);?>" class="edit">优化</a> &nbsp; </td>
+        </tr>
+        <?php endforeach ?>
+      </tbody>
+    </table>
+  </div>
+</form>
+</body>
+</html>

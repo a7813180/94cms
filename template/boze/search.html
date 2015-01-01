@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}-{$webname}</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://v57.demo.dedecms.com/templets/default/style/dedecms.css" rel="stylesheet" media="screen" type="text/css" />
+</head>
+<body class="articlelist" style="min-width:1000px">
+<div class="header_top">
+  <div class="center"> <span id="time" class="time">{$webname}</span>
+    <div class="toplinks"> <a href="{site_url()}" target="_blank">首页</a> {pc:content action="_cate" num="10" cateid="0" order="asc"}
+      {loop $data $v} <a href="{$v['url']}" target="_blank">{$v['name']}</a> {/loop}
+      {/pc} </div>
+  </div>
+</div>
+<div class="search_header">
+ 
+  <div class="search_box">
+    <form action="<?php echo site_url().'/search';?>" method="get">
+      <input name="q" type="text" id="search-keyword" value="<?php echo $q;?>" onfocus="if(this.value=='在这里搜索...'){this.value='';}"  onblur="if(this.value==''){this.value='在这里搜索...';}" />
+      <select name="type" id="search-option">
+        <?php foreach($model as $v):?>
+        <option value="<?php echo $v['id']?>" <?php if(isset($_GET['type']) and $_GET['type'] == $v['id']){echo "selected='1'";}?>><?php echo $v['name']?></option>
+        <?php endforeach; unset($model);?>
+      </select>
+      <button type="submit" class="search-submit">搜索</button>
+ 
+    </form>
+  </div>
+ 
+</div>
+<!-- //top -->
+<!-- /header -->
+<div class="resultbar">搜索 <strong class="fc_03c">{$q}</strong> 的结果 </div>
+<div class="result_content">
+  <div class="sidebar">
+    <h2>相关搜索</h2>
+    <ul>
+      <li>　<a href='search.php?keyword=%E6%A0%87%E7%AD%BE%E5%8A%9F&searchtype=titlekeyword'><u>标签功</u></a> </li>
+    </ul>
+  </div>
+  <div class="resultlist">
+    <ul>
+      <?php foreach($searchlist as $v):?>
+      <li>
+        <h3><a href="<?php echo $v['url']?>" target="_blank"> <?php echo $v['title']?> </a></h3>
+        <p> <?php echo $v['description']?> </p>
+        <span> <a href="<?php echo $v['url']?>"><?php echo $v['url']?></a> <small>分类：</small><a href="<?php echo $v['curl']?>" target="_blank"><?php echo $v['cname']?></a> <small>点击：</small><?php echo $v['click']?> <small>日期：</small><?php echo date('y-m-d H:i:s',$v['publishtime'])?> </span> </li>
+      <?php endforeach;?>
+    </ul>
+    <div class="fl dede_pages">
+      <ul class="pagelist">
+        <?php echo $page;?>
+      </ul>
+    </div>
+    <!-- /pages -->
+  </div>
+  <!-- /listbox -->
+</div>
+<div class="footer center mt1 clear">
+ 
+  <div class="footer_left"></div>
+  <div class="footer_body">
+ 
+  
+  </div>
+  <div class="footer_right"></div>
+</div>
+<!-- /footer -->
+</body>
+</html>

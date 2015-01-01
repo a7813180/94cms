@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="<?php echo base_url('public/admin');?>/css/style.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url('public/admin');?>/css/select.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/jquery.idTabs.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/select-ui.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+    $(".select1").uedSelect({
+		width : 180		  
+	});
+	$(".select2").uedSelect({
+		width : 167  
+	});
+	$(".select3").uedSelect({
+		width : 100
+	});
+});
+</script>
+<style type="text/css">
+<!--
+
+.formbody #usual1 #tab1 .forminfo i {
+	color: #009999;
+}
+.inp_one {
+	padding: 3px;
+	height:50px; width:450px;border: 1px solid #a7b5bc;
+}
+-->
+</style>
+</head>
+<body>
+<div class="place"> <span>位置：</span>
+  <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">系统设置</a></li>
+  </ul>
+</div>
+<div class="formbody">
+  <div id="usual1" class="usual">
+    <div class="itab">
+      <ul>
+        <li><a href="#tab1" class="selected">系统设置</a></li>
+        <li><a href="#tab2">核心设置</a></li>
+        <li><a href="#tab3">自定义变量</a></li>
+      </ul>
+    </div>
+    <div id="tab1" class="tabson">
+      <form action="<?php echo site_url(APP_ADMIN.'/site/index_s');?>" method="post">
+        <ul class="forminfo">
+        <li>
+          <label>网站名称</label>
+          <input name="webname" type="text" class="dfinput" value="<?php echo C('webname');?>"  />
+          <i style="color:#009999; padding-left:350px;">{C('webname')}</i> </li>
+        <li>
+          <label>网站副标题</label>
+          <input name="webtitle" type="text" class="dfinput" value="<?php echo C('webtitle');?>"  />
+          <i style="color:#009999; padding-left:350px;">{C('webtitle')}</i> </li>
+        <li>
+          <label>网站LOGO</label>
+          <input name="weblogo" type="text" class="dfinput" value=""  />
+          <i style="color:#009999; padding-left:350px;">{C('weblogo')}</i> </li>
+        <li>
+          <label>网站关键词</label>
+          <input name="webkey" type="text" class="dfinput" value="<?php echo C('webkey');?>"  />
+          <i style="color:#009999; padding-left:350px;">{C('webkey')}</i> </li>
+        <li>
+          <label>公司地址</label>
+          <input type="text" name="webaddress" class="dfinput"  value="<?php echo C('webaddress');?>"  />
+          <i style="color:#009999; padding-left:350px;">{C('webaddress')}</i> </li>
+        <li>
+          <label>联系电话</label>
+          <input type="text" name="webtel" class="dfinput"   value="<?php echo C('webtel');?>"   />
+          <i style="color:#009999; padding-left:350px;">{C('webtel')}</i> </li>
+        <li>
+          <label>联系传真</label>
+          <input type="text" name="webfax"    class="dfinput"   value="<?php echo C('webfax');?>"  >
+          <i style="color:#009999; padding-left:350px;">{C('webfax')}</i> </li>
+        <li>
+          <label>联系手机</label>
+          <input type="text" name="webphone" class="dfinput"  value="<?php echo C('webphone');?>" />
+          <i style="color:#009999; padding-left:350px;">{C('webphone')}</i> </li>
+        <li>
+          <label>备案号</label>
+          <input type="text" name="webbeian" class="dfinput"  value="<?php echo C('webbeian');?>" />
+          <i style="color:#009999; padding-left:350px;">{C('webbeian')}</i> </li>
+        <li>
+          <label>统计代码</label>
+          <input type="text" name="webcnzz" class="dfinput"  value="<?php echo C('webcnzz');?>"  />
+          <i style="color:#009999; padding-left:350px;">{C('webcnzz')}</i> </li>
+        <?php foreach ($diyconf as $v):?>
+        <li>
+          <label><?php echo $v['name']?></label>
+          <input type="text" name="<?php echo $v['field']?>" class="dfinput"  value="<?php echo C($v['field'])?>"  />
+          <i style="color:#009999; padding-left:350px;"> {C('<?php echo $v['field']?>')} <?php echo $v['info']?></i> </li>
+        <?php endforeach;?>
+        <li>
+          <label> 网站描述</label>
+          <textarea  name="webdes" row="4" cols="350" class="inp_one " ><?php echo C('webdes')?></textarea>
+          <i style="color:#009999; padding-left:250px;">{C('webdes')}</i> </li>
+        <li>
+          <label>版权信息</label>
+          <textarea   name="webcop" cols="350" class="inp_one "row="4"><?php echo C('webcop');?></textarea>
+          <i style="color:#009999; padding-left:250px;">{C('webcop')}</i> </li>
+        <li>
+          <label>模板</label>
+          <div class="vocation">
+            <select class="select1" name="template">
+              <?php foreach($template as $v):?>
+              <option  value="<?php echo $v;?>" <?php if(C('template') == $v){?> selected="selected" <?php }?> ><?php echo $v;?></option>
+              <?php endforeach; unset($template);?>
+            </select>
+          </div>
+          <label>网站状态</label>
+          <div class="vocation">
+            <select class="select1" name="weblook">
+              <option  value="0" <?php if(C('weblook') == '0'){?>selected="selected" <?php }?>>打开</option>
+              <option  value="1" <?php if(C('weblook') == '1'){?>selected="selected" <?php }?>>关闭</option>
+            </select>
+          </div>
+        </li>
+        <li>
+          <label>关站提醒</label>
+          <textarea  name="lookdes" row="4" cols="350" class="inp_one" ><?php echo C('lookdes');?></textarea>
+        </li>
+        <li>
+          <label>&nbsp;</label>
+          <input name=""   type="submit" class="btn" value="确定修改"/>
+        </li>
+      </form>
+      </ul>
+    </div>
+    <div id="tab2" class="tabson">
+      <form action="<?php echo site_url(APP_ADMIN.'/site/site_s');?>" method="post" >
+        <ul class="forminfo">
+          <li>
+            <label>网站网址</label>
+            <input name="base_url" type="text" class="dfinput" value="<?php echo config_item('base_url');?>"   style=" width:350px;"  />
+          </li>
+          <li>
+            <label>安装目录</label>
+            <input name="cmspath" type="text" class="dfinput" value="<?php echo config_item('cmspath');?>"    style=" width:350px;"   />
+          </li>
+          <li>
+            <label>URL后最</label>
+            <input name="url_suffix" type="text" class="dfinput"  value="<?php echo config_item('url_suffix');?>"   style=" width:350px" />
+          </li>
+		  
+		  
+		  
+          <li>
+            <label>URL模式</label>
+            <div class="vocation">
+ 
+              <select class="select1"  name="url">
+                <option value="1"  <?php if(config_item('url')=='1'){?>selected="selected" <?php }?> >单入口</option>
+                 <option value="2" <?php if(config_item('url')=='2'){?>selected="selected" <?php }?>  >伪静态</option>
+				 <!--option value="3"  <?php if(config_item('url')=='3'){?>selected="selected" <?php }?>  >静态</option-->
+              </select>
+			  
+		  </div>
+          </li>
+		  
+          <!--li>
+            <label>静态目录</label-->
+            <input name="html_path"  type="hidden" class="dfinput"  value="<?php echo config_item('html_path');?>"   style=" width:350px" />
+          <!--/li-->
+		  
+	      <li>
+            <label>远程图片</label>
+            <div class="vocation">
+              <select class="select1"  name="get_img">
+                <option value="true"  <?php if(config_item('get_img') == 'true'  ){?>selected="selected" <?php }?>>保存本地</option>
+                <option value=""   <?php if(!config_item('get_img')){?>selected="selected" <?php }?>>不保存</option>
+              </select>
+            </div>
+          </li>
+          <li>
+            <label>留言审核</label>
+            <div class="vocation">
+              <select class="select1"  name="gbook">
+                <option value="true"  <?php if(config_item('gbook') == 'true'  ){?>selected="selected" <?php }?>>审核</option>
+                <option value=""  <?php if(!config_item('gbook')){?>selected="selected" <?php }?>>不审核</option>
+              </select>
+            </div>
+          </li>
+          <li>
+            <label>分词功能</label>
+            <div class="vocation">
+              <select class="select1"  name="fenci">
+                <option value="true"  <?php if(config_item('fenci') == 'true' ){?>selected="selected" <?php }?>>调用远程分词</option>
+                <option value=""  <?php if(!config_item('fenci')){?>selected="selected" <?php }?>>调用本地分词</option>
+              </select>
+            </div>
+          </li>
+          <li>
+            <label>手机网站</label>
+            <div class="vocation">
+              <select class="select1"  name="mobil">
+                <option value="true" <?php if(config_item('mobil') == 'true'  ){?>selected="selected" <?php }?>>开启</option>
+                <option value="" <?php if(!config_item('mobil')  ){?>selected="selected" <?php }?> >关闭</option>
+              </select>
+            </div>
+          </li>
+          <li>
+            <label>PC+WAP互跳</label>
+            <div class="vocation">
+              <select class="select1"  name="mobil_tz">
+                <option value="true" <?php if(config_item('mobil_tz') == 'true'  ){?>selected="selected" <?php }?>>开启</option>
+                <option value="" <?php if(!config_item('mobil_tz')){?>selected="selected" <?php }?>>关闭</option>
+              </select>
+            </div>
+          </li>
+		  
+		  
+          <li >
+            <label>前台缓存</label>
+ 
+            <div class="vocation" >
+              <select class="select1"  name="index_cache">
+                <option value="true" <?php if(config_item('index_cache') == 'true'){?>selected="selected" <?php }?>>开启</option>
+                <option value="" <?php if(!config_item('index_cache')){?>selected="selected" <?php }?>>关闭</option>
+              </select>
+            </div>
+          </li>
+		  
+		  <?php if(config_item('index_cache')){ ?>
+		  
+		
+		  <li>
+            <label>前台缓存时间</label>
+           
+            <div class="vocation">
+             <input type="text" name="index_cache_time" class="dfinput" value="<?php if(config_item('index_cache_time')){echo config_item('index_cache_time'); }else{ echo '60';};?>"   style=" width:180px;"  />
+            </div>
+          </li>
+		  
+		  
+		   <?php  } ?>
+		  
+		  
+		  
+		  
+          <li>
+            <label>后台缓存</label>
+            <div class="vocation">
+              <select class="select1"  name="admin_cache">
+                <option value="true"  <?php if(config_item('admin_cache')== 'true' ){?>selected="selected" <?php }?>>开启</option>
+                <option value=""  <?php if(!config_item('admin_cache') ){?>selected="selected" <?php }?>>关闭</option>
+              </select>
+                </div>
+          </li>
+		  
+		  
+          <li>
+            <label>数据库缓存</label>
+            <div class="vocation">
+              <select class="select1"  name="mysql_cache">
+                <option value="true"  <?php if(config_item('mysql_cache') == 'true' ){?>selected="selected" <?php }?>>开启</option>
+                <option value=""  <?php if(!config_item('mysql_cache') ){?>selected="selected" <?php }?>>关闭</option>
+              </select>
+            </div>
+          </li>
+		  
+		  
+          <li>
+            <label>&nbsp;</label>
+            <input name=""   type="submit" class="btn" value="确定修改"/>
+          </li>
+        </ul>
+      </form>
+    </div>
+    <div id="tab3" class="tabson">
+      <form action="<?php echo site_url(APP_ADMIN.'/site/diyconf_s');?>" method="post" >
+        <ul class="forminfo">
+        <li>
+          <label>名称</label>
+          <input name="name" type="text" class="dfinput" value=""   />
+        </li>
+        <li>
+          <label>字段</label>
+          <input name="field" type="text" class="dfinput" value=""    />
+        </li>
+        <li>
+          <label>提示</label>
+          <input name="info" type="text" class="dfinput" value=""  />
+        </li>
+        <li>
+          <label>&nbsp;</label>
+          <input name=""   type="submit" class="btn" value="确定添加"/>
+        </li>
+      </form>
+      </ul>
+      <table class="tablelist" id="app">
+        <thead>
+          <tr>
+            <th width="7%">编号<i class="sort"><img src="<?php echo base_url('public/admin');?>/images/px.gif" /></i></th>
+            <th width="24%">名称</th>
+            <th width="20%">字段</th>
+            <th width="20%">提示</th>
+            <th width="15%">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($diyconf as $v):?>
+          <tr class="trz">
+            <td><?php echo $v['id']?></td>
+            <td><?php echo $v['name']?> </td>
+            <td><?php echo $v['field']?></td>
+            <td><?php echo $v['info']?></td>
+            <td> <a href="<?php echo base_url(APP_ADMIN.'/site/diyconf_sc/'.$v['id']) ?>">删除</a></td>
+          </tr>
+          <?php endforeach ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript"> 
+      $("#usual1 ul").idTabs(); 
+    </script>
+  <script type="text/javascript">
+	$('.tablelist tbody tr:odd').addClass('odd');
+	</script>
+</div>
+</body>
+</html>

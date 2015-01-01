@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo $title; ;?>-会员中心-<?php echo C('webname');?></title>
+<link href="<?php echo base_url('public/modules/member/index')?>/css/css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<?php $this->load->view('index_top.html')?>
+<div id="content">
+  <div class="wp">
+    <div class="left">
+      <ul>
+        <li><a href="<?php echo site_url('member/home');?>" >个人中心</a> </li>
+        <li><a href="<?php echo site_url('member/home/pay');?>">在线充值</a> </li>
+        <li><a href="<?php echo site_url('member/home/pay_data');?>">充值记录</a> </li>
+        <li><a href="<?php echo site_url('member/home/setprofile');?>" >个人资料 </a> </li>
+        <li><a href="<?php echo site_url('member/home/pwd');?>"  >修改密码 </a> </li>
+        <li><a href="<?php echo site_url('member/home/yaoqing');?>"  class="hot" >邀请好友</a> </li>
+        <li><a href="<?php echo site_url('member/login/logut');?>">安全退出</a> </li>
+      </ul>
+    </div>
+    <div class="right">
+      <div class="zl"  style="padding-left:80px; padding-top:30px;">
+        <div style="width:350px; height:180px;" >
+          <script type="text/javascript">
+function copyUrl2()
+{
+var Url2=document.getElementById("biao1");
+Url2.select(); // 选择对象
+document.execCommand("Copy"); // 执行浏览器复制命令
+alert("已复制好,快点发给你的小伙伴吧!");
+}
+</script>
+          <textarea class="in"  style="width:350px; height:150px;" id="biao1">朋友们快点来注册吧！免积分下载！注册地址：<?php echo site_url("member/login/reg?pid=".$mid);?></textarea>
+        </div>
+        <div class="inputs">
+          <input value="复制"  type="button" onClick="copyUrl2()"  style="width:190px; margin-left:0px;"class="sub" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<?php $this->load->view('index_foot.html')?>
+</body>
+</html>

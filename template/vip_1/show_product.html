@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title>{$title}|{$catename}-{$webname}</title>
+<meta name="keywords" content="{$keywords}" />
+<meta name="description" content="{$description}" />
+<link href="{PUBLIC}style/home/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{PUBLIC}style/home/js/html5.js?v=3.6"></script>
+<script type="text/javascript" src="{PUBLIC}style/js/jquery.min.js?v=1.10.2"></script>
+<script type="text/javascript" src="{PUBLIC}style/home/js/jquery.SuperSlide.js?v=1.2"></script>
+<script type="text/javascript" src="{PUBLIC}style/home/js/jquery.easing.min.js?v=1.3"></script>
+<script type="text/javascript" src="{PUBLIC}style/home/js/main.js?v=1.1"></script>
+<style type="text/css">
+<!--
+#page{margin-top:10px;width:100%;text-align:center;margin-bottom:15px}
+#page a{height:20px;margin-right:5px;margin-left:5px;background-color:#000000;color:#FFFFFF;line-height:20px;font-size:12px;padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px}
+#page span{height:20px;margin-right:5px;margin-left:5px;background-color:#000000;color:#FFFFFF;line-height:20px;font-size:12px;padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px}
+#page .hot{height:20px;margin-right:5px;margin-left:5px;background-color:#b80a0a;color:#FFFFFF;line-height:20px;font-size:12px;padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px}
+-->
+</style>
+</head>
+<body>
+{load head.html}
+<div class="hgrap">&nbsp;</div>
+<section class="case_tit"> <span class="en">OUR WORK</span><b>.</b>我们的案例 </section>
+<section  style=" margin:0 auto;width:1100px;">
+  <div id="case_detail">
+    <div class="case_detail_tit">
+      <div class="case_detail_tit_ul hd"> <font>
+        <div class="case_detail_llwz"></div>
+        <a target="_blank" href="{$url}" id="llwz"></a> </font> <span>
+        <div class="case_detail_prev"></div>
+        <a href="#" id="prev">22</a>
+        <div class="case_detail_next"></div>
+        <a href="#" id="next"></a>
+        <div class="close"></div>
+        <a href="javascript:window.opener=null;window.open('','_self');window.close();" id="close"></a> </span> </div>
+    </div>
+    <div class="case_detail_bpic">
+      <div class="case_content"> <img style="width:100%" align="" title="{$title}" alt="{$title}" src="{$litpic}"> <br />
+        <br />
+        {loop string2array($listimg) $v} <img style="width:100%" align="" title="{$title}" alt="{$title}"   src="{base_url($v)}"><br />
+        {/loop}
+  <br /> <br />
+   上一个案例:&nbsp;{$prev}  <br /> <br />
+ 下一个案例:&nbsp;{$next} 
+ 
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+$(function(){
+	var height=($(window).height())-338+'px';
+	$('.case_detail_bpic').css('min-height',height);
+});
+
+$(function(){
+	var pw = 0;
+	var i = 0;
+	var pl = $(".hd li").length;
+
+	pw = (pl)*($(".hd li").width())*2;
+
+	$(".hd ul").width(pw).css("margin","0 auto");
+	});
+</script>
+{load foot.html}
+</body>
+</html>

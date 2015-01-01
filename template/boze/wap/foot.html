@@ -1,0 +1,93 @@
+
+<div class="f_isearch f_isearch_nopad">
+  <table width="100%">
+    <tr>
+      <form action='#' method='get' id="form_search">
+        <td width="76.9%"><div  class="f_inptxt_bor">
+            <input class="f_inptxt" type="text" value="请输入搜索关键词" name="query" id="query"/>
+          </div></td>
+        <td width="21.0%"><button class="f_inpsub" type="submit" value="">搜索</button></td>
+      </form>
+    </tr>
+  </table>
+</div>
+<p class="f_icomputer"> <a class="f_ichuping">触屏版</a>|<a href="http://www.ke01.com">电脑版</a> </p>
+<p class="f_ifooter">Copyright &copy 2014 科蚁网.All Rights Reserved.</p>
+<div class="f_footheight"></div>
+<div class="f_ifixed clears" id="app_pop" style="display:none;"> <a class="f_iclose" href="javascript:void(0)" id="app_close"></a>
+  <dl>
+    <dt><img src="{PUBLIC}wap/images/footlogo_two.png"/></dt>
+    <dd>
+      <h3>越野e族 App</h3>
+      <p>最新资讯  随手掌握</p>
+    </dd>
+  </dl>
+  <a class="f_idownload" href="http://www.ke01.com">免费下载</a> </div>
+</div>
+</div>
+<div class="lay-right">
+  <div class="asideMenu">
+    <div class="aCont">
+      <div class="aHead"> <span> <img id="userpic" src="{PUBLIC}wap/images/tag.png" /> <cite id="loginno"><a href="#">登录</a><em>|</em><a href="#">注册</a></cite> <cite style="display:none;" id="logined"><font id="username"></font><i id="logout" class="f_tuichubg"></i></cite> </span> </div>
+      <div class="aMenu">
+        <ul>
+          <li class="first"><a href="index.html">首页</a></li>
+          <li class="third"><a href="#">资讯</a></li>
+          <li class="second"><a href="/">论坛</a></li>
+          <li class="fourth"><a href="#">车库</a></li>
+          <li class="fifth"><a href="#">商城</a></li>
+          <li class="six"><a href="#">自留地</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="version"> <a class="f_version_cur" href="default.htm">触屏版</a><em>|</em><a href="http://www.ke01.com">电脑版</a> </div>
+  </div>
+</div>
+<!-- 右侧下拉菜单 end -->
+</div>
+</div>
+<!-----最外层 end ---->
+<!-- 返回顶部 -->
+<div id="gotop" class="gotop"> <a href="javascript:this.blur();" class="w_top"><img src="{PUBLIC}wap/images/top.png"></a> </div>
+<!-- 统计 -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48372285-1', 'fblife.com');
+  ga('send', 'pageview');
+</script>
+<!---js控制打开app---->
+<script>
+(function() {
+	function GetQueryString(name){
+		 var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		 var r = window.location.search.substr(1).match(reg);
+		 if(r!=null) return unescape(r[2]); return null;
+	}
+	
+	var myurl=GetQueryString("isopenapp");
+	var isIos=navigator.userAgent.match(/iphone|ipod/ig);
+	if(isIos){
+		if(myurl=="1"){
+			window.location = "m.fblife.com_3A//m.fblife.com?type=cmsindex";
+			setTimeout( 
+			function(){ 
+				window.location="../https?itunes.apple.com/cn/app/yue-ye-yi-zu/id605673005?mt=8";
+			}, 500);
+		}else{
+			$(".f_idownload").click(function(e){
+				e.preventDefault();
+				window.location = "m.fblife.com_3A//m.fblife.com?type=cmsindex";
+				setTimeout( 
+				function(){ 
+					window.location="../https?itunes.apple.com/cn/app/yue-ye-yi-zu/id605673005?mt=8";
+				}, 500);
+			});
+		}
+	}
+})(); 
+</script>
+<!---js控制打开app end---->

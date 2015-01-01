@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在线留言管理</title>
+<link href="<?php echo base_url('public/admin');?>/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/jquery-1.7.2.min.js"></script>
+<script src="<?php echo base_url('public');?>/layer/layer.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/admin_public.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/jquery.idTabs.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/select-ui.min.js"></script>
+<style type="text/css">
+<!--
+.waibu {
+	color: #FF0000;
+}
+.wu {
+	background-image: url(<?php echo base_url('public/admin/');?>/images/toolbg.gif);
+	font-family: "微软雅黑";
+	line-height: 33px;
+}
+.f {
+	line-height: 32px;
+	height: 32px;
+	display: block;
+	padding-right:5px;
+	float: left;
+}
+-->
+</style>
+ 
+</head>
+<body>
+
+
+  <div class="place" > <span>位置：</span>
+    <ul class="placeul">
+      <li><a href="<?php echo site_url(APP_ADMIN.'/home/main')?>">后台首页</a></li>
+      <li><a href="#">SQL内容替换</a></li>
+    </ul>
+  </div>
+
+<div class="formbody">
+  <div id="usual1" class="usual">
+    <div class="itab">
+      <ul>
+        <li><a href="#tab1" class="selected">批量替换</a></li>
+        <li><a href="#tab2">SQ语句</a></li>
+ 
+      </ul>
+    </div>
+    <div id="tab1" class="tabson">
+		<form action="<?php echo site_url('module/sql/admin_home/th_s');?>" method="post">
+       <ul class="forminfo">
+        <li> 
+		 <label>操作模型:</label>
+		 <?php foreach($model as $v):?>
+	    <input name="tablename[]" type="checkbox" value="<?php echo $v['tablename']?>" class="f" /> <font class="f"  style=" padding-right:10px;"> <?php echo $v['name']?></font> 
+		 <?php endforeach; unset($model);?>
+		  </li>
+		
+		
+		   <li> <label>操作表:</label>
+	<input name="table" type="radio"   class="f" value="1" checked="checked"  /> 
+	<font class="f"  style=" padding-right:10px;">  主表</font>
+	
+		<input name="table" type="radio" value="0"  class="f"  /><font class="f"  style=" padding-right:10px;">  附表</font>
+		  </li>
+		  
+		     <li> <label>替换字段:</label>
+	<input name="field"   type="text" value="" class="dfinput"   />
+		  </li>
+		  
+		  
+		    <li> <label>被替换内容:</label>
+	<input name="content"   type="text" value=""  class="dfinput"  />
+		  </li>
+		  
+		  
+		    <li> <label>被替后内容:</label>
+	<input name="content_ok"   type="text" value="" class="dfinput"   />
+		  </li>
+		  
+		        <li>
+          <label>&nbsp;</label>
+          <input name=""   type="submit" class="btn" value="确定替换"/>
+		          </li>
+
+		  </form>
+		</ul>
+   
+    </div>
+    <div id="tab2" class="tabson"> 
+	
+	
+	
+		<form action="<?php echo site_url('module/sql/admin_home/sql_s');?>" method="post">
+      <ul class="forminfo">
+        <li>
+          <label>sql语句</label>
+		  <textarea name="sql"  style="width:793px; height:320px;" class="dfinput2" ></textarea>
+		  
+		  <i style="color:#009999; padding-left:350px;">UPDATE 94_product  SET content = REPLACE(content,"/sihai2/","/"); </i>
+		  
+		  
+		  
+        </li>
+		
+        <li>
+          <label>&nbsp;</label>
+          <input name=""   type="submit" class="btn" value="确定修改"/>
+		          </li>
+
+		  </form>
+      </ul>
+	
+	
+	
+	
+	
+  </div>
+  <script type="text/javascript"> 
+      $("#usual1 ul").idTabs(); 
+    </script>
+  <script type="text/javascript">
+	$('.tablelist tbody tr:odd').addClass('odd');
+	</script>
+</div>
+	
+
+</body>
+</html>

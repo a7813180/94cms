@@ -1,0 +1,15 @@
+<header>
+  <div class='header'>
+    <h1><a href="/" title="{$webkey}">{$webname}</a></h1>
+    <nav>
+      <ul>
+        <li><a href="{base_url()}" title="">首 页</a></li>
+        {pc:content action="_cate" num="10" order="asc" cid="0"}
+        {loop $data $key $v}
+        <li><a href="{$v['url']}"  {if $v['id'] == $tcid} class="cur"{/if}title="旧版">{$v['name']}</a></li>
+        {/loop}
+        {/pc}
+      </ul>
+    </nav>
+  </div>
+</header>

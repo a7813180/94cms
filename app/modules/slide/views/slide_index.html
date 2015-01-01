@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>友情链接管理</title>
+<link href="<?php echo base_url('public/admin');?>/css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="<?php echo base_url('public/kd');?>/themes/default/default.css" />
+<script charset="utf-8" src="<?php echo base_url('public/kd');?>/kindeditor-min.js"></script>
+<script charset="utf-8" src="<?php echo base_url('public/kd');?>/lang/zh_CN.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/jquery-1.7.2.min.js"></script>
+<script src="<?php echo base_url('public');?>/layer/layer.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/admin_public.js"></script>
+<style type="text/css">
+<!--
+.waibu {
+	color: #FF0000;
+}
+.wu {
+	background-image: url(<?php echo base_url('public/admin/');?>/images/toolbg.gif);
+	font-family: "微软雅黑";
+	line-height: 33px;
+}
+.slide li {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.hot {
+	color: #990000;
+}
+.btn_blue {
+	height: 22px;
+	width: 58px;
+	color: #333333;
+	background-color: #bfc0c1;
+	border: 1px solid #CCCCCC;
+	margin-right: 15px;
+}
+-->
+</style>
+</head>
+<body>
+
+  <div class="place" > <span>位置：</span>
+    <ul class="placeul">
+      <li><a href="<?php echo site_url(APP_ADMIN.'/home/main')?>">后台首页</a></li>
+      <li><a href="#">幻灯片</a></li>
+    </ul>
+  </div>
+  <div class="rightinfo">
+    <div class="tools">
+      <ul class="toolbar">
+        <li><a href="<?php echo $this->module_url('index/0');?>" <?php if($cid == '0'){echo "class='hot'";} ?>  ><span></span>幻灯片A组</a></li>
+        <li><a href="<?php echo $this->module_url('index/1');?>" <?php if($cid === '1'){echo "class='hot'";} ?> ><span></span>幻灯片B组</a></li>
+        <li><a href="<?php echo $this->module_url('index/2');?>" <?php if($cid === '2'){echo "class='hot'";} ?> ><span></span>幻灯片C组</a></li>
+        <li><a href="<?php echo $this->module_url('index/3');?>" <?php if($cid === '3'){echo "class='hot'";} ?>  ><span></span>幻灯片D组</a></li>
+        <li><a href="<?php echo $this->module_url('index/4');?>" <?php if($cid === '4'){echo "class='hot'";} ?>  ><span></span>幻灯片E组</a></li>
+        <li><span><img src="<?php echo base_url('public/admin');?>/images/t02.png" /></span> <a href="<?php echo $this->module_url('add/'.$cid);?>">在本组添加图片</a> </li>
+      </ul>
+    </div>
+    <table class="tablelist" id="app">
+      <thead>
+        <tr>
+          <th width="6%">图片</th>
+          <th width="19%">属性</th>
+        </tr>
+      </thead>
+      <tbody>
+	  
+       <?php foreach($slide as $v):?>
+	   <form action="<?php echo $this->module_url('update');?>" method="post">
+	   <input type="hidden" name="id" value="<?php echo $v['id']?>" />
+        <tr class="trz">
+		  <td class="pic"  style="padding-right:15px;"><img src="<?php if(empty($v['pic'])){ echo base_url('public/nopic.jpg');} else{ echo base_url($v['pic']);}?>" width="400px" height="120px" /></td>
+          <td  style="padding-left:15px;"><ul class="slide">
+              <li>图片地址：
+                <input name="pic" type="text" id="url<?php echo $v['id']?>" class="dfinput" style="width:170px;" value="<?php echo $v['pic']?>"    readonly="readonly" />
+                <input type="button" id="uploadButton<?php echo $v['id']?>"   value="上传缩略图" />
+              </li>
+              <li> 链接地址：
+                <input type="text" name="url"  style="width:320px;"  value="<?php echo $v['url'];?>" class="dfinput"  />
+                空链接则填"#" </li>
+              <li> 标题文字：
+                <input type="text" name="title" style="width:320px;"  value="<?php echo $v['title'];?>" class="dfinput"/>
+              </li>
+              <li> 详细说明：
+                <input type="text" name="content"  style="width:320px;" value="<?php echo $v['content']?>" class="dfinput"/>
+              </li>
+              <li> 图片排序：
+                <input type="text" name="sort" style="width:120px;"   value="<?php echo $v['sort']?>" class="dfinput"/>
+              </li>
+              <li>
+                <input type="submit" value="修改"  class="btn_blue"  / >
+                <input type="button" onClick="window.location.href='<?php echo $this->module_url("del/".$v['id']);?>'" class="btn_blue" value="删除">
+              </li>
+            </ul></td>
+        </tr>
+		</form>
+        <?php endforeach;?>
+		
+      </tbody>
+    </table>
+  </div>
+ 
+<script >
+
+<?php foreach($slide as $v):?>
+KindEditor.ready(function(K) {
+	var uploadbutton = K.uploadbutton({
+		button: K('#uploadButton<?php echo $v['id']?>')[0],
+		fieldName: 'imgFile',
+		url: '<?php echo site_url(APP_ADMIN.'/upload/upimg/');?>',
+		afterUpload: function(data) {
+			if (data.error === 0) {
+				var url = K.formatUrl(data.url, 'absolute');
+				K('#url<?php echo $v['id']?>').val(url);
+				alert('上传成功！ ')
+			} else {
+				alert(data.message)
+			}
+		},
+		afterError: function(str) {
+			alert('上传错误！ ' + str)
+		}
+	});
+	uploadbutton.fileBox.change(function(e) {
+		uploadbutton.submit()
+	})
+}); 
+   <?php endforeach;?>
+
+
+</script>
+</body>
+</html>

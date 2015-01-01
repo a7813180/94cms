@@ -1,0 +1,60 @@
+.QQbox UL {
+	PADDING-BOTTOM: 0px; LIST-STYLE-TYPE: none; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.QQbox LI {
+	PADDING-BOTTOM: 0px; LIST-STYLE-TYPE: none; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.QQbox {
+	FONT-SIZE: 9pt
+}
+.QQbox A {
+	FONT-SIZE: 9pt
+}
+.infobox {
+	FONT-SIZE: 9pt
+}
+.QQbox {
+	Z-INDEX: 99; POSITION: absolute; MARGIN-TOP: 3px; WIDTH: 150px; DISPLAY: block; left: 0px; TOP: 255px
+}
+.QQbox A {
+	COLOR: black; TEXT-DECORATION: none
+}
+.QQbox A:hover {
+	COLOR: black; TEXT-DECORATION: underline
+}
+.QQbox #press {
+	POSITION: absolute; BORDER-BOTTOM-STYLE: none; BORDER-LEFT-STYLE: none;  BORDER-TOP-STYLE: none;  BORDER-RIGHT-STYLE: none; CURSOR: pointer; left: 1px
+}
+.QQbox .Qlist {
+	WIDTH: 150px; background:url(qq_listbg.gif) no-repeat; HEIGHT: 330px; LEFT: 0px
+}
+.QQbox .Qlist .b {
+	WIDTH: 150px; FLOAT: left; HEIGHT: 6px; FONT-SIZE: 1px
+}
+.QQbox .Qlist .infobox {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 5px; LINE-HEIGHT: 14px; MARGIN-TOP: 15px; PADDING-LEFT: 5px; COLOR: #424242; CLEAR: both; FONT-SIZE: 13px; FONT-WEIGHT: 700
+}
+.QQbox .Qlist .infobox_dh {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 5px; LINE-HEIGHT: 12px; PADDING-LEFT: 5px; COLOR: black; CLEAR: both; FONT-SIZE: 12px; FONT-WEIGHT: bold
+}
+.QQbox .Qlist .infobox_ms {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 5px; LINE-HEIGHT: 12px; PADDING-LEFT: 1px; COLOR: black; CLEAR: both; FONT-SIZE: 12px
+}
+.QQbox .Qlist .t {
+	HEIGHT: 34px
+}
+.QQbox .Qlist .b {
+	HEIGHT: 9px; OVERFLOW: hidden
+}
+.QQbox .Qlist .con {
+	PADDING-BOTTOM: 10px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; PADDING-TOP: 52px
+}
+.QQbox .Qlist .con H2 {
+	BORDER-BOTTOM: #3a708d 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #3a708d 1px solid; FONT: bold 12px/22px "ËÎÌו"; HEIGHT: 22px; COLOR: #fff; BORDER-TOP: #3a708d 1px solid; BORDER-RIGHT: #3a708d 1px solid
+}
+.QQbox .Qlist .con UL LI {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 25px; PADDING-TOP: 13px
+}
+.QQbox .Qlist .con UL LI A IMG {
+	MARGIN-RIGHT: 8px
+}

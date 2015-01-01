@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="<?php echo base_url('public/admin');?>/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/jquery-1.7.2.min.js"></script>
+<script charset="utf-8" src="<?php echo base_url('public/kd');?>/kindeditor-min.js"></script>
+<script charset="utf-8" src="<?php echo base_url('public/kd');?>/lang/zh_CN.js"></script>
+<script type="text/javascript">
+	$('#modleid').change(function(){
+
+		setStyleSelect('1');//默认样式选择
+        $("#form_do").submit(function(){
+			var name = $("input[name='name']");
+	 
+
+		});
+
+
+		$("input[name='type']").click(function(){
+              var inputs = $(this).parents('dl').find('dt');
+            var dl = $(this).parents('dl').next();//.find('dt');
+            var nextdls = $("#nextdl").nextAll();
+ 
+ 
+ 
+ 
+ 
+	
+            if($(this).attr('checked')) {
+			
+			    $("#url").text('链接地址');
+    
+                 $("#ts").text('（@加控制器） ');
+                //var inputParent = $(this).parents('.app').find('p>input');    
+                nextdls.hide();
+
+            }else {
+            	   $("#url").text('自定义URL');
+            	   $("#ts").text('（只能包含字母，数字和连字符‘_’） ');
+            	nextdls.show();
+            }
+            
+        });
+
+
+
+        $("select[name='modelid']").change(function(){
+        	
+			$("select[name='modelid'] option").each(function(i,o){
+			if($(this).attr("selected")){
+			 
+				var styleid = $(this).val();
+				setStyleSelect(styleid);
+				
+			}
+			});
+		});
+		
+		
+ 
+ 		function setStyleSelect(id){
+			var template_list = $("select[name='template_list']");
+        	var template_show = $("select[name='template_show']");
+            var template_list_wap = $("select[name='template_list_wap']");
+			var template_show_wap = $("select[name='template_show_wap']");
+			switch (id){
+				<?php foreach($md as $v):?> 			
+				case '<?php echo $v['id']?>':
+				   template_list.val("<?php echo $v['template_list']?>");
+					template_show.val("<?php echo $v['template_show']?>");
+					template_list_wap.val("<?php echo $v['template_list_wap']?>");
+					template_show_wap.val("<?php echo $v['template_show_wap']?>");
+				 	break;				 	
+				 <?php  endforeach?>	
+				
+	 
+			}
+
+		}
+ 
+    });
+</script>
+<script>
+	   var editor;
+	    KindEditor.ready(function(K) {
+		editor = K.create('textarea[name="content"]', {
+        uploadJson : '<?php echo site_url(APP_ADMIN.'/upload/upimg/');?>',
+        fileManagerJson :'<?php echo site_url(APP_ADMIN.'/upload/file/');?>',
+		allowFileManager : false,
+ 
+				 
+				});
+        });
+		
+		 KindEditor.ready(function(K) {
+				var uploadbutton = K.uploadbutton({
+					button : K('#uploadButton')[0],
+			 
+					fieldName : 'imgFile',
+					url : '<?php echo site_url(APP_ADMIN.'/upload/upimg/');?>',
+ 
+					afterUpload : function(data) {
+						if (data.error === 0) {
+							var url = K.formatUrl(data.url, 'absolute');
+                            K('#litpicurl').val(url);
+							alert('上传成功！ ');
+
+						} else {
+							alert(data.message);
+
+						}
+					},
+					afterError : function(str) {
+						alert('上传错误！ ' + str);
+					}
+				});
+				uploadbutton.fileBox.change(function(e) {
+					uploadbutton.submit();
+				});
+
+
+			});
+</script>
+			
+			
+
+
+
+</head>
+<body>
+<form id="form_do" action="<?php echo site_url(APP_ADMIN.'/cate/updata');?>" method="post">
+  <input type="hidden" name="id"  value="<?php echo $_cate['id'];?>" />
+  <div class="place"> <span>位置：</span>
+    <ul class="placeul">
+      <li><a href="<?php echo site_url('admin/home/main')?>">后台首页</a></li>
+      <li><a href="#">编辑分类</a></li>
+    </ul>
+  </div>
+  <div class="formbody">
+    <div class="formtitle"><span>编辑分类</span></div>
+    <ul class="forminfo">
+      <li>
+        <label>分类名称:</label>
+        <input type="text" name="name"  class="dfinput"   value="<?php echo $_cate['name'];?>"   />
+        <i> <?php echo form_error('name'); ?> </i></li>
+      <li>
+        <label>所属栏目:</label>
+        <select name="pid"  class="inputauto" >
+          <option value="0" <?php if($_cate['pid'] == 0){ echo "selected='selected'";}?>>顶级栏目</option>
+          <?php foreach($cate as $v):?>
+          <option   <?php  if($v['id'] == $_cate['pid']){echo "selected='selected'";}?>  value="<?php echo $v['id']?>" ><?php echo $v['html'];?>
+          <?php if($v['pid'] != 0){echo '├─';}?>
+          <?php echo $v['name']?></option>
+          <?php endforeach?>
+        </select>
+      </li>
+      <li>
+        <label>内容模型:</label>
+        <select name="modelid" id="modelid" class="inputauto">
+          <?php foreach($md as $v):?>
+          <option value="<?php echo $v['id']?>"  <?php  if($v['id'] == $_cate['modelid']){echo "selected='selected'";}?> ><?php echo $v['name'];?></option>
+          <?php  endforeach?>
+        </select>
+      </li>
+	  
+   <li>
+        <label>频道封面:</label>
+        <select name="template_index" class="inputauto" >
+		   <option value=""  selected="selected">不启用封面</option>
+          <?php foreach($template_index as $v):?>
+          <option value="<?php echo $v?>" <?php echo set_select('template_index', $v); ?> ><?php echo $v;?></option>
+          <?php  endforeach?>
+        </select>
+		
+		
+ 
+      </li>
+	  
+      <li>
+        <label>列表模板:</label>
+        <select name="template_list" class="inputauto" >
+	
+		<?php
+		IF(!file_exists(TMPATH.$_cate['template_list'])){
+		?>
+		<option value="<?php echo $_cate['template_list']?>"  selected="selected" ><?php echo $_cate['template_list']?></option>
+		<?php }
+		?>
+		 
+          <?php foreach($template_list as $v):?>
+          <option value="<?php echo $v?>"  <?php  if($v == $_cate['template_list']){echo "selected='selected'";}?>  ><?php echo $v;?></option>
+          <?php  endforeach?>
+        </select>
+        <i> <?php echo $_cate['template_list']?></i> 
+		
+
+		
+		</li>
+      <li>
+        <label>内容模板:</label>
+
+	    <select name="template_show"  class="inputauto">
+		
+	  <?php
+		IF(!file_exists(TMPATH.$_cate['template_show'])){
+		?>
+		<option value="<?php echo $_cate['template_show']?>"  selected="selected" ><?php echo $_cate['template_show']?></option>
+		<?php }
+		?>
+		
+		 <option value="<?php echo $_cate['template_show']?>"  ><?php echo $_cate['template_show']?></option>
+          <?php foreach($template_show as $v):?>
+          <option value="<?php echo $v?>"  <?php  if($v == $_cate['template_show']){echo "selected='selected'";}?> ><?php echo $v;?></option>
+          <?php  endforeach?>
+       </select>
+        <i> <?php echo $_cate['template_show']?></i> </li>
+		
+		
+		
+	  
+	   <li>
+        <label>Wap_列表模板:</label>
+        <select name="template_list_wap" class="inputauto" >
+	    <?php
+		IF(!file_exists(TMPATH.$_cate['template_list_wap'])){
+		?>
+		<option value="<?php echo $_cate['template_list_wap']?>"  selected="selected" ><?php echo $_cate['template_list_wap']?></option>
+		<?php }
+		?>
+ 
+          <?php foreach($template_list_wap as $v):?>
+		  
+          <option value="<?php echo $v?>"  <?php  if($v == $_cate['template_list_wap']){echo "selected='selected'";}?>  ><?php echo $v;?></option>
+		  
+          <?php  endforeach?>
+        </select>
+		        <i> <?php echo $_cate['template_list_wap']?></i> </li>
+      </li>
+      <li>
+	  
+        <label>Wap_内容模板:</label>
+        <select name="template_show_wap"  class="inputauto">
+       <?php
+		IF(!file_exists(TMPATH.$_cate['template_show_wap'])){
+		?>
+		<option value="<?php echo $_cate['template_show_wap']?>"  selected="selected" ><?php echo $_cate['template_show_wap']?></option>
+		<?php }
+		?>
+ 
+		
+		
+		
+          <?php foreach($template_show_wap as $v):?>
+          <option value="<?php echo $v?>"  <?php  if($v == $_cate['template_show_wap']){echo "selected='selected'";}?> ><?php echo $v;?></option>
+          <?php  endforeach?>
+        </select>
+      </li>
+ <li>
+        <label>外部链接:</label>
+        <input type="checkbox" name="type"   value="<?php echo $_cate['type'];?>"  <?php   if($_cate['type']==1){ echo "checked";} ?>  class="checkboxauto"  />
+      </li>
+	  
+	  
+ <li>
+        <label>子目录同步设置:</label>
+        <input type="checkbox" name="tongbu_temp"   value="1"    class="checkboxauto"  />
+      </li>
+	   
+	  
+
+	  
+	  
+      <li>
+        <label id="url" >自定义URL:</label>
+        <input type="text" name="ename" class="dfinput"  value="<?php echo $_cate['ename'];?>"  />
+        <i id="ts"> 只能包含字母，数字和连字符（-)</i></li>
+      <li>
+        <label> 排&nbsp;&nbsp;&nbsp;&nbsp;序:</label>
+        <input type="text" value="<?php echo $_cate['sort'];?>"  name="sort"    class="dfinput"  />
+      </li>
+      <p id="nextdl">
+      <li id="nextdl">
+        <label> 状&nbsp;&nbsp;&nbsp;&nbsp;态:</label>
+        <input type="radio" name="status" value="1" class="checkboxauto"  <?php if($_cate['status']==1){ echo "checked='checked' ";} ?> />
+        显示
+        <input type="radio" name="status" class="checkboxauto"   <?php if($_cate['status']==0){ echo "checked='checked' ";} ?>  value="0"/>
+        隐藏 </li>
+      <li>
+        <label>SEO标题</label>
+        <input name="seotitle" type="text" class="dfinput" value="<?php echo $_cate['seotitle'];?>" />
+        <i></i></li>
+      <li>
+        <label>关键字</label>
+        <input name="keywords" type="text" class="dfinput" value="<?php echo $_cate['keywords'];?>" />
+        <i>多个关键字用,隔开</i></li>
+      <li>
+        <label>栏目图片</label>
+            <input name="litpic" type="text" id="litpicurl"  style="width:220px;"  class="dfinput" value="<?php echo $_cate['litpic'];?>" readonly="readonly" />
+        <input type="button" id="uploadButton" value="上传缩略图" />
+		</li>
+	   
+      <li id='xz'>
+        <label>栏目描述</label>
+        <textarea name="description" cols="2" rows="2" class="textinput"><?php echo $_cate['description'];?></textarea>
+      </li>
+    </ul>
+    <ul class="forminfo">
+      <li >
+        <label>&nbsp;</label>
+        <input name="" type="submit" class="btn" value="确认保存"/>
+      </li>
+    </ul>
+  </div>
+</form>
+</body>
+</html>

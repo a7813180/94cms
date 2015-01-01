@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>欢迎登录后台管理系统</title>
+<link href="<?php echo base_url().'public/admin';?>/css/style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="<?php echo base_url().'public/admin';?>/js/jquery-1.7.2.min.js"></script>
+<script language="javascript">
+	$(function(){
+    $('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
+	$(window).resize(function(){  
+    $('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
+    })  
+});  
+</script>
+</head>
+<body style="background-color:#1c77ac; background-image:url("<?php echo base_url().'public/admin';?>/images/light.png); background-repeat:no-repeat; background-position:center top; overflow:hidden;">
+<div id="mainBody">
+  <div id="cloud1" class="cloud"></div>
+  <div id="cloud2" class="cloud"></div>
+</div>
+
+<div class="loginbody"> <span class="systemlogo"></span>
+  <div class="loginbox">
+    <form id="submitForm" action="<?php  echo site_url(APP_ADMIN.'/login/logins');?>" method="post">
+      <ul>
+        <li>
+          <input name="username" type="text" class="loginuser" value="" onclick="JavaScript:this.value=''"/>
+        </li>
+        <li>
+          <input name="password"    type="password" class="loginpwd" value="" onclick="JavaScript:this.value=''"/>
+        </li>
+        <li>
+          <input name="code"   type="text" class="logincode" value="" onclick="JavaScript:this.value=''"  />
+          <img  style="width:120px; height:45px;" onClick="this.src=this.src+'&'+Math.round(Math.random(0)*1000)" src="<?php echo site_url(APP_ADMIN."/login/code?");?>"  title="看不清点我！"  alt="看不清点我"  /> </li>
+        <li>
+          <input type="submit" class="loginbtn"  value="登 录" >
+          <label></label>
+        </li>
+      </ul>
+    </form>
+  </div>
+</div>
+<div class="loginbm"> <a href="http://www.94cms.com">94CMS 技术支持：盐城四海计算机信息科技有限公司</a> </div>
+</body>
+</html>

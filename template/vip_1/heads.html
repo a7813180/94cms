@@ -1,0 +1,18 @@
+ 
+<link href="{PUBLIC}images/css.css" rel="stylesheet" type="text/css" />
+<link href="{PUBLIC}images/css_E.css" rel="stylesheet" type="text/css" />
+
+<div id="heads">
+  <div id="heads_l">YC_sihai</div>
+  <div id="heads_r">
+    <ul>
+      <li><a href="{base_url()}" {if $tcid =='0'} class="hover" {/if} >首页</a></li>
+      {pc:content action="_cate" cid="0" order="asc"}
+      {loop $data $v}
+      <li><a href="{$v['url']}" {if $tcid == $v['id']}class="hover" {else} class="menu_ii" {/if}  >{$v['name']}</a></li>
+      {/loop}
+      {/pc}
+      <li><a href="#">客户登陆</a></li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,206 @@
+<?php ini_set("date.timezone","Asia/Chongqing");?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="<?php echo base_url('public/admin');?>/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/jquery-1.7.2.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url('public/kd');?>/themes/default/default.css" />
+<script charset="utf-8" src="<?php echo base_url('public/kd');?>/kindeditor-min.js"></script>
+<script charset="utf-8" src="<?php echo base_url('public/kd');?>/lang/zh_CN.js"></script>
+<script src="http://g.tbcdn.cn/kissy/k/1.4.2/seed-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/jquery.form.min.js"></script>
+
+<script>
+var editor;
+KindEditor.ready(function(K) {
+	editor = K.create('textarea[name="content"]', {
+		uploadJson: '<?php echo site_url(APP_ADMIN.'/upload/upimg/');?>',
+		fileManagerJson: '<?php echo site_url(APP_ADMIN.'/upload/file/');?>',
+		allowFileManager: false,
+		items: ['source', '|', 'fullscreen', 'undo', 'redo', 'print', 'cut', 'copy', 'paste', 'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript', 'superscript', '|', 'selectall', '-', 'title', 'fontname', 'fontsize', '|', 'textcolor', 'bgcolor', 'bold', 'italic', 'underline', 'strikethrough', 'removeformat', '|', 'image', 'flash', 'media', 'advtable', 'hr', 'link', 'unlink']
+	})
+});
+KindEditor.ready(function(K) {
+	var uploadbutton = K.uploadbutton({
+		button: K('#uploadButton')[0],
+		fieldName: 'imgFile',
+		url: '<?php echo site_url(APP_ADMIN.'/upload/upimg/');?>',
+		afterUpload: function(data) {
+			if (data.error === 0) {
+				var url = K.formatUrl(data.url, 'absolute');
+				K('#url').val(url);
+				alert('上传成功！ ')
+			} else {
+				alert(data.message)
+			}
+		},
+		afterError: function(str) {
+			alert('上传错误！ ' + str)
+		}
+	});
+	uploadbutton.fileBox.change(function(e) {
+		uploadbutton.submit()
+	})
+}); 
+</script>
+<script>KindEditor.ready(function(K){var editor=K.editor({allowFileManager:true});K('#insertfile').click(function(){editor.loadPlugin('insertfile',function(){editor.plugin.fileDialog({fileUrl:K('#url').val(),clickFn:function(url,title){K('#url').val(url);editor.hideDialog()}})})})});
+</script> 
+<script type = "text/javascript" > $(function() {
+	setStyleSelect('1');
+	$("#form_do").submit(function() {
+		var name = $("input[name='name']")
+	});
+	$("input[name='type']").click(function() {
+		var inputs = $(this).parents('dl').find('dt');
+		var dl = $(this).parents('dl').next();
+		var nextdls = $("#nextdl").nextAll();
+		if ($(this).attr('checked')) {
+			$("#url").text('链接地址');
+			$("#ts").text('（@加控制器） ');
+			nextdls.hide()
+		} else {
+			$("#url").text('自定义URL');
+			$("#ts").text('（只能包含字母，数字和连字符‘_’） ');
+			nextdls.show()
+		}
+	});
+	$("select[name='modelid']").change(function() {
+		$("select[name='modelid'] option").each(function(i, o) {
+			if ($(this).attr("selected")) {
+				var styleid = $(this).val();
+				setStyleSelect(styleid)
+			}
+		})
+	})
+}
+}); 
+</script>
+<script>
+KindEditor.ready(function(K){var colorpicker;K('#colorpicker').bind('click',function(e){e.stopPropagation();if(colorpicker){colorpicker.remove();colorpicker=null;return}var colorpickerPos=K('#colorpicker').pos();colorpicker=K.colorpicker({x:colorpickerPos.x,y:colorpickerPos.y+K('#colorpicker').height(),z:19811214,selectedColor:'default',noColor:'无颜色',click:function(color){K('#color').val(color);colorpicker.remove();colorpicker=null}})});K(document).click(function(){if(colorpicker){colorpicker.remove();colorpicker=null}})});</script>
+
+<script>
+
+function loadformtype(type) {
+    $("#content").html('loading...');
+	$.get("<?php echo site_url(APP_ADMIN.'/model/ajaxformtype/?type=');?>"+type, function(data) {
+		$("#content").html(data);
+	});
+
+}
+</script>
+</head>
+<body>
+<form id="form_do" action="<?php echo site_url(APP_ADMIN.'/content/content_updata_s');?>" method="post">
+  <input type="hidden" name="tablename" value="<?php echo $tablename;?>" />
+    <input type="hidden" name="id" value="<?php echo $id;?>" />
+  <div class="place"> <span>位置：</span>
+    <ul class="placeul">
+      <li><a href="<?php echo site_url('admin/home/main')?>">后台首页</a></li>
+      <li><a href="#">内容管理</a></li>
+      <li><?php  $name=$this->cate->name_cid($cid); echo $name['name'];?></li>
+	   <li> 修改内容</li>
+    </ul>
+  </div>
+  <div class="formbody">
+    <ul class="forminfo" style="margin-top:20px;">
+      <li>
+        <label>标&nbsp;&nbsp;题:</label>
+        <input type="text" name="title"  class="dfinput"   value="<?php echo $title;?>"   />
+        <input type="text" id="color"  name="color" value="<?php echo $color;?>" style="width:80px;" class="dfinput"  />
+        <input class="scbtn" type="button" id="colorpicker" value="标题颜色" />
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;副标题:&nbsp;&nbsp;
+        <input type="text" name="shorttitle"  value="<?php echo $shorttitle;?>" class="dfinput"  style="width:200px;"   />
+      <li>
+        <label>内容属性:</label>
+        <input name="flag[]" type="checkbox"  value="1"  <?php if(($flag & '1') =='1' ){echo "checked='checked'";}?>/>
+        推荐
+        <input name="flag[]" type="checkbox" value="2" <?php if(($flag & '2') =='2' ){echo "checked='checked'";}?> />
+        热门
+		<input name="flag[]" type="checkbox" value="4"  <?php if(($flag & '4') =='4' ){echo "checked='checked'";}?>/>
+        幻灯片
+				
+ 
+		
+        </li>
+      <li>
+        <label>关键字:</label>
+        <input name="keywords" type="text" class="dfinput"   value="<?php echo $keywords;?>"  />
+        <i style="padding-right:50px;">多个关键字用,隔开</i> &nbsp;&nbsp; &nbsp;  发布人:&nbsp;&nbsp;
+        <input type="text" name="author" class="dfinput"  value="<?php echo $author;?>"   style="width:200px;" value="Admin"  />
+      </li>
+      <li>
+        <label>缩略图:</label>
+        <input name="litpic" type="text" id="url" class="dfinput" style="width:255px;" value="<?php echo $litpic;?>"    readonly="readonly" />
+        <input type="button" id="uploadButton"   value="上传缩略图" />
+        &nbsp;&nbsp;  所属栏目&nbsp;&nbsp;
+        <select name="cid"  class="inputauto" >
+          <?php foreach($cate as $v):?>
+          <option   <?php if($cid == $v['id']){echo "selected='selected'";}?>  value="<?php echo $v['id']?>" ><?php echo $v['html'];?>
+          <?php if($v['pid'] != 0){echo '├─';}?>
+          <?php echo $v['name']?></option>
+          <?php endforeach?>
+        </select>
+      </li>
+ 
+	  
+ 
+ 
+		<?php  $this->load->helper('fields'); ?>
+		 <?php foreach($field as $v):?>
+		   <li> <label><?php echo $v['label'];?>:</label>
+		      <?php echo get_content_value($v['fieldtype'],$v['field'],$v['setting'],${$v['field']}); ?><i><?php echo $v['tips']; ?></i>
+			</li>
+		 <?php endforeach ?>
+ 
+	  
+
+	  
+	  
+      <li id='xz'>
+        <label>内容描述</label>
+        <textarea name="description"   class="dfinput2"  style="width:793px; height:50px;"  ><?php echo $description;?></textarea>
+      </li>
+      <li id='xz'>
+        <label>详细内容：</label>
+        <textarea name="content"  style=" width:794px; height:310px;" class="textinput"><?php echo $content;?></textarea>
+      </li>
+      <li id='xz'>
+        <label>发布时间：</label>
+        <input type="text" name="publishtime" class="dfinput"  value="<?php echo date('Y-m-d h:i:s',$publishtime);?>" style="width:130px;"   />
+		
+			 下载远程图片： <input name="get_content_img" type="checkbox"  value="true" <?php if(config_item('get_img')){?>  checked="checked"   <? }?>/>
+		 
+		  提取第一张为缩略图： <input name="get_content_img_litpic" type="checkbox"  value="true" <?php if(config_item('get_img')){?>  checked="checked"   <? }?>/>
+		 
+		
+		
+		
+		
+        &nbsp;&nbsp; 点击:&nbsp;&nbsp;&nbsp;&nbsp;
+		
+        <input type="text" name="click" class="dfinput"  value="<?php echo $click;?>" style="width:30px;"   />
+        &nbsp;&nbsp; 排序:&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="sort" class="dfinput"  value="<?php echo $sort;?>" style="width:30px;"   />
+        &nbsp;&nbsp; 自定义模板:&nbsp;&nbsp;&nbsp;&nbsp;
+        <select name="template_show"  class="inputauto">
+          <option value="0"  >----请选择----</option>
+          <?php foreach($template_shows as $v):?>
+          <option value="<?php echo $v;?>"   <?php if($template_show == $v){echo "selected='selected'";}?> ><?php echo $v;?></option>
+          <?php  endforeach?>
+        </select>
+ 
+	  </li>
+    </ul>
+    <ul class="forminfo">
+      <li >
+        <label>&nbsp;</label>
+        <input name="" type="submit" class="btn" value="确认保存"/>
+      </li>
+    </ul>
+  </div>
+</form>
+</body>
+</html>

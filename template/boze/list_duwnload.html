@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="{$webname}" />
+<title>{$catename}-{$webname}</title>
+<meta name="keywords" content="{$catekey}" />
+<meta name="description" content="{$catedes}" />
+<link href="{PUBLIC}style/style.css" rel="stylesheet" />
+<script type="text/javascript" src="{PUBLIC}js/jq1.91.js"></script>
+</head>
+<body>
+{load top.html}
+<div class="channelLine">
+  <div class="wrap">
+    <div class="posi"> {catepos($cid)} </div>
+  </div>
+</div>
+<div class="n_cont">
+  <div class="wrap fix">
+    <div class="l side">
+      <dl class="side_menu">
+        <dt class="Tit2">{cate($tcid,'name')} </dt>
+        {pc:content action="_cate" cid="$tcid" order="asc"}
+        {loop $data $v}
+        <dd><a href='{$v['url']}' {if $cid == $v['id']}class='thisclass' {/if}>{$v['name']}</a></dd>
+        {/loop}
+        {/pc}
+      </dl>
+    </div>
+    <div class="r main">
+      <h2 class="Tit2">{$catename}</h2>
+      <div class="fix">
+        <div class="l main_cont">
+          <form id="theform" name="formsearch" method="post" action="http://demo40.dede58.com//plus/search.php">
+            <div class="sear bor1">
+              <div class="t">检索</div>
+              <select name="searchtype" class="search-option" id="search-option">
+                <option value="titlekeyword" selected='1'>智能模糊搜索</option>
+                <option value="title">仅搜索标题</option>
+              </select>
+              <div class="dib sear_f vt">
+                <input type="text" name="q" id="keywords" class="inp" value="关键词搜索"/>
+                <input type="button" name="toptosearch" id="tosearch" class="btn" value=" " title="搜索" />
+                <script type="text/javascript">
+					 $("#tosearch").click(function(){$("#theform").submit();});
+					 $("#keywords").focus(function(){if($.trim($("#keywords").val())=='关键词搜索'){$("#keywords").val("");}});
+					 $("#keywords").blur(function(){if($.trim($("#keywords").val())==''){$("#keywords").val("关键词搜索");}});
+					 </script>
+              </div>
+            </div>
+            <div class="seque mt20"> </div>
+            <ul class="news_list mt20">
+              {pc:content action="_list" num="7" cid="$cid" order="desc" sort="id"  pagenum="$pagenum" page="5"  field="dowurl"}
+              
+              {loop $data $v}
+              <li class="xwdt"><a href="{$v['url']}" title="{$v['title']}"><b class="t"><b>{$v['title']}-{$v['id']}</b> </b></a>
+                <p class="p"><a href="{dow($v['cid'],$v['id'])}">下载地址</a></p>
+              </li>
+              {/loop}
+            </ul>
+            <div class="page mt20"> {$page}
+              {/pc} </div>
+            <input name="offset" id="offset" type="hidden" value="0" />
+            <input name="orderby" id="orderby" type="hidden" value="" />
+          </form>
+        </div>
+        <div class="r sub">
+          <div class="bor1 sub_block news_tag">
+            <div class="t">热门标签</div>
+            {pc:content action="_tag" sort="id" num="30" order="desc"}
+            {loop $data $key $v} <a href="{$v['url']}" target="_blank" style="margin-right:5px;" >{$v['title']}</a> {/loop}
+            {/pc} </div>
+          <div class="bor1 sub_block">
+            <div class="t">随机新闻</div>
+            <ul class="sub_news">
+              {pc:content action="_arclist" modelid="2" num="10" order="random" sort="id"}
+              {loop $data $v}
+              <li><a href="{$v['url']}">{get_str($v['title'],20)}</a> <span>{date('m-d',$v['publishtime'])} </span> </li>
+              {/loop}
+              {/pc}
+            </ul>
+          </div>
+          <div class="bor1 sub_block">
+            <div class="t">热门新闻</div>
+            <ul class="sub_news">
+              {pc:content action="_arclist" modelid="2" num="10" order="random" sort ="click"}
+              {loop $data $v}
+              <li><a href="{$v['url']}">{get_str($v['title'],20)}</a> <span>{date('m-d',$v['publishtime'])} </span> </li>
+              {/loop}
+              {/pc}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{load foot.html}
+</body>
+</html>

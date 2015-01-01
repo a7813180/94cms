@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<link rel="stylesheet" href="lib/jquery.treeview.css" />
+<link rel="stylesheet" href="lib/red-treeview.css" />
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+	</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body>
+ 
+<div id="main">
+
+<a href=".">Main Demo</a>
+
+<div id="sidetree">
+<div class="treeheader">&nbsp;</div>
+<div id="sidetreecontrol"><a href="?#">释放</a> | <a href="?#">展开</a></div>
+
+<ul id="tree">
+
+	
+	
+	
+	
+	<li><strong><a href="?/economic_development/index.cfm">Doing Business</a></strong>
+
+	<ul>
+		<li><a href="?/economic_development/business_attraction/index.cfm">Business Attraction</a>
+		<ul>
+			<li><a href="?http://www.albertafirst.com/profiles/statspack/20365.html">Airdrie Profile</a></li>
+			<li><a href="?/economic_development/business_attraction/business_case.cfm">Business Case For Airdrie</a></li>
+			<li><a href="?/economic_development/census/index.cfm">Census Data </a></li>
+			<li><a href="?http://www.albertafirst.com/realestate/">Properties and Businesses For Sale</a></li>
+
+			<li><a href="?/taxation/non_residential_comparisons.cfm">Taxation</a></li>
+		</ul>
+		</li>
+		<li><a href="?/economic_development/business_development/index.cfm">Business Development</a>
+		<ul>
+			<li><a href="?/economic_development/business_development/business_associations.cfm">Business Associations</a></li>
+			<li><a href="?/economic_development/business_development/business_resources.cfm">Business Resources</a></li>
+
+			<li><a href="?/economic_development/business_development/business_services.cfm">Business Services</a></li>
+			<li><a href="?/corporate_properties/index.cfm">Corporate Properties</a></li>
+			<li><a href="?/economic_development/business_development/home_businesses.cfm">Home Based Businesses</a></li>
+		</ul>
+		</li>
+		<li><a href="?/directories/business_directory/index.cfm">Business Directory</a></li>
+
+		<li><a href="?/economic_development/business_licenses/index.cfm">Business Licenses</a>
+		<ul>
+			<li><a href="?/economic_development/business_licenses/municipal_licenses_permits.cfm">Municipal Licenses &amp; Permits</a></li>
+			<li><a href="?/economic_development/business_licenses/provincial_licenses_permits.cfm">Provincial Licenses &amp; Permits</a></li>
+			<li><a href="?/economic_development/business_licenses/registry_services.cfm">Registry Services</a></li>
+
+		</ul>
+		</li>
+		<li><a href="?http://bsa.canadabusiness.ca/gol/bsa/site.nsf/en/index.html">How to Start a Business</a></li>
+		<li><a href="?/finance/procurement_services.cfm">Procurement Services</a></li>
+	</ul>
+	</li>
+
+
+
+
+</ul>
+</div>
+
+</div>
+
+</body>
+
+</html>

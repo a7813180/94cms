@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo $title; ;?>-会员中心-<?php echo C('webname');?></title>
+<link href="<?php echo base_url('public/modules/member/index')?>/css/css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<?php $this->load->view('index_top.html')?>
+<div id="content">
+  <div class="wp">
+    <div class="left">
+      <ul>
+          <li><a href="<?php echo site_url('member/home/setprofile');?>"  >个人资料 </a> </li>
+        <li><a href="<?php echo site_url('member/home/tx');?>"  >上传头像</a> </li>
+        <li><a href="<?php echo site_url('member/home/pwd');?>" class="hot">修改密码</a> </li>
+         <li><a href="<?php echo site_url('member/login/logut');?>">安全退出</a> </li>
+      </ul>
+    </div>
+    <div class="right">
+      <div class="zl"  style="padding-left:80px; padding-top:30px;">
+        <form action="<?php echo site_url('member/home/setprofile_s')?>" method="post">
+		 <input type="hidden" name="id" value="<?php echo $u_info['id']; ?>" />
+          <div class="inputs"> 昵称：&nbsp;&nbsp;&nbsp;&nbsp;
+            <input class="in" style="width:300px;" type="text" name="uname" value="<?php echo $u_info['uname']; ?>"  />
+          </div>
+          <div class="inputs">性别：&nbsp;&nbsp;&nbsp;&nbsp;
+            <input name="sex" type="radio" value="男"  <?php if($u_info['sex'] == '男'){ echo 'checked'; } ?>/>
+            男&nbsp;&nbsp;
+            <input name="sex" type="radio" value="女"  <?php if($u_info['sex'] == '女'){ echo 'checked';} ?> />
+            女&nbsp;&nbsp;
+            <input name="sex" type="radio" value="保密"  <?php if($u_info['sex'] == '保密'){ echo 'checked';} ?> />
+            保密 </div> 
+          <div class="inputs"> 邮箱：&nbsp;&nbsp;&nbsp;&nbsp;
+            <input   class="in" style="width:300px;" type="text" name="email" value="<?php echo $u_info['email']; ?>" />
+          </div>
+		  
+          <div class="inputs"> 手机：&nbsp;&nbsp;&nbsp;&nbsp;
+            <input  class="in" style="width:300px;" type="text" name="tel" value="<?php echo $u_info['tel']; ?>" />
+          </div>
+          <div class="inputs">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="submit" value="确定修改"   style="width:310px;"class="sub" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<?php $this->load->view('index_foot.html')?>
+</body>
+</html>

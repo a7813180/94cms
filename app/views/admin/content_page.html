@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="<?php echo base_url('public/admin');?>/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/jquery-1.7.2.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url('public/kd');?>/themes/default/default.css" />
+<script charset="utf-8" src="<?php echo base_url('public/kd');?>/kindeditor-min.js"></script>
+<script charset="utf-8" src="<?php echo base_url('public/kd');?>/lang/zh_CN.js"></script>
+  <script>
+			var editor;
+	 
+			
+			KindEditor.ready(function(K) {
+				editor = K.create('textarea[name="content"]', {
+ 
+				 uploadJson : '<?php echo site_url(APP_ADMIN.'/upload/upimg/');?>',
+                 fileManagerJson :'<?php echo site_url(APP_ADMIN.'/upload/file/');?>',
+			     allowFileManager : false,
+				 items : [ 'source', '|', 'fullscreen', 'undo', 'redo', 'print', 'cut', 'copy', 'paste', 'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright','justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript','superscript', '|', 'selectall', '-','title', 'fontname', 'fontsize', '|', 'textcolor', 'bgcolor', 'bold', 'italic', 'underline', 'strikethrough', 'removeformat', '|', 'image',  'flash', 'media', 'advtable', 'hr',  'link', 'unlink']
+				 
+				});
+        });
+		
+		
+		
+		
+		
+			KindEditor.ready(function(K) {
+				var uploadbutton = K.uploadbutton({
+					button : K('#uploadButton')[0],
+					fieldName : 'imgFile',
+					url : '<?php echo site_url(APP_ADMIN.'/upload/upimg/');?>',
+
+					afterUpload : function(data) {
+						if (data.error === 0) {
+							var url = K.formatUrl(data.url, 'absolute');
+                            K('#url').val(url);
+							alert('上传成功！ ');
+
+						} else {
+							alert(data.message);
+
+						}
+					},
+					afterError : function(str) {
+						alert('上传错误！ ' + str);
+					}
+				});
+				uploadbutton.fileBox.change(function(e) {
+					uploadbutton.submit();
+				});
+
+
+			});
+			</script>
+			
+		<script>
+			KindEditor.ready(function(K) {
+				var editor = K.editor({
+					allowFileManager : true
+				});
+				K('#insertfile').click(function() {
+					editor.loadPlugin('insertfile', function() {
+						editor.plugin.fileDialog({
+							fileUrl : K('#url').val(),
+							clickFn : function(url, title) {
+								K('#url').val(url);
+								editor.hideDialog();
+							}
+						});
+					});
+				});
+			});
+		</script>
+			
+			
+			 
+
+<script type="text/javascript">
+	$(function(){
+
+		setStyleSelect('1');//默认样式选择
+
+		$("#form_do").submit(function(){
+			var name = $("input[name='name']");
+	 
+
+		});
+
+
+		$("input[name='type']").click(function(){
+              var inputs = $(this).parents('dl').find('dt');
+            var dl = $(this).parents('dl').next();//.find('dt');
+            var nextdls = $("#nextdl").nextAll();
+ 
+ 
+ 
+ 
+ 
+	
+            if($(this).attr('checked')) {
+			
+			    $("#url").text('链接地址');
+    
+                 $("#ts").text('（@加控制器） ');
+                //var inputParent = $(this).parents('.app').find('p>input');    
+                nextdls.hide();
+
+            }else {
+            	   $("#url").text('自定义URL');
+            	   $("#ts").text('（只能包含字母，数字和连字符‘_’） ');
+            	nextdls.show();
+            }
+            
+        });
+
+
+
+        $("select[name='modelid']").change(function(){
+        	
+			$("select[name='modelid'] option").each(function(i,o){
+			if($(this).attr("selected")){
+				//$(".city").hide();
+				//$(".city").eq(i).show();
+				var styleid = $(this).val();
+				setStyleSelect(styleid);
+				
+			}
+			});
+		});
+		
+		function setStyleSelect(id){
+			var template_list = $("select[name='template_list']");
+        	var template_show = $("select[name='template_show']");
+			switch (id){
+				<?php foreach($md as $v):?> 			
+				case '<?php echo $v['id']?>':
+					template_list.val("<?php echo $v['template_list']?>");
+					template_show.val("<?php echo $v['template_show']?>");
+				 	break;				 	
+				 <?php  endforeach?>	
+				
+	 
+			}
+
+		}
+
+    });
+</script>
+ 
+</head>
+<body>
+<form id="form_do" action="<?php echo site_url(APP_ADMIN.'/content/page_updata');?>" method="post">
+
+ <input type="hidden" name="id" value="<?php echo $page['id']?>"  />
+
+  <div class="place"> <span>位置：</span>
+    <ul class="placeul">
+      <li><a href="<?php echo site_url('admin/home/main')?>">后台首页</a></li>
+      <li><a href="#">内容管理</a></li>
+	      <li><a href="#"><?php echo $page['name'];?></a></li>
+    </ul>
+  </div>
+  <div class="formbody">
+ 
+    <ul class="forminfo" style="margin-top:10px;">
+	
+      <li>
+        <label>单页名称:</label>
+        <input type="text" name="name"  class="dfinput"   value="<?php echo $page['name']?>"   />
+ 
+      <li>
+	  
+	  
+        <label>SEO标题:</label>
+        <input name="seotitle" type="text" class="dfinput"  value="<?php echo $page['seotitle']?>"  />
+        <i></i></li>
+      <li>
+        <label>关键字:</label>
+        <input name="keywords" type="text" class="dfinput" value="<?php echo $page['keywords']?>"  />
+        <i>多个关键字用,隔开</i></li>
+      <li>
+        <label>栏目图片:</label>
+        <input name="litpic" type="text" id="url" class="dfinput" style="width:255px;" value="<?php echo $page['litpic']?>" readonly="readonly" />
+        <input type="button" id="uploadButton"   value="上传缩略图" />
+      </li>
+		
+ 
+      <li id='xz'>
+        <label>单页描述</label>
+        <textarea name="description"  class="dfinput" ><?php echo $page['description']?></textarea>
+      </li>
+	  
+	  
+      <li id='xz'>
+        <label>详细内容：</label>
+        <textarea name="content"  style=" width:670px; height:320px;" class="textinput"><?php echo $page['content']?></textarea>
+      </li>
+	  
+	  
+	  
+    </ul>
+    <ul class="forminfo">
+      <li >
+        <label>&nbsp;</label>
+        <input name="" type="submit" class="btn" value="确认保存"/>
+      </li>
+    </ul>
+  </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"/>
+<title><?php echo C('webname');?>--注册</title>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/modules/member/index').'/'; ?>css/base.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/modules/member/index').'/'; ?>css/style.css?v=1" />
+<body>
+<div id="main">
+  <div class="regL">
+    <form action="<?php echo site_url('member/login/reg_s')?>" method="post" accept-charset="utf-8" name="frmReg" enctype="application/x-www-form-urlencoded" id="frmReg">
+   
+    <input type="hidden" value="<?php echo $pid;?>" name="pid" />
+   
+      <h1>新用户注册</h1>
+      <ul class="mt30">
+        <li> <span class="label">账户</span>
+          <input type="text" class="nameInput" name="userid" id="userid" value="" maxlength="15" autocomplete="off" />
+          <span id="tipsUsername" class="tip_r" style="display:none;"></span> </li>
+		  
+		  <li> <span class="label">手机</span>
+          <input type="text" class="nameInput" name="tel" id="tel" value="" maxlength="15" autocomplete="off" />
+          <span id="tipsUsername" class="tip_r" style="display:none;"></span> </li>
+		  
+		  
+		  
+        <li> <span class="label">邮箱</span>
+          <input type="text" class="emialInput" name="email" id="email" value="" maxlength="50" autocomplete="off" />
+          <span id="tipsEmail" class="tip_r" style="display:none;"></span> </li>
+        <li> <span class="label">密码</span>
+          <input type="password" class="emialLock"  maxlength="20" name="pwd" id="password" autocomplete="off" />
+          <span id="tipsPassword" class="tip_r" style="display:none;"></span> </li>
+        <li> <span class="label">确认密码</span>
+          <input type="password" class="emialLock" maxlength="20" name="repwd" id="rePassword" autocomplete="off" />
+          <span id="tipsRePassword" class="tip_r" style="display:none;"></span> </li>
+		  
+		  <?php if($reg_code){?>
+          <li> <span class="label">验证码</span>
+          <input class="yamInput" maxlength="4" type="text" value="" name="code" id="regCode" autocomplete="off" />
+		  
+          <img id="regCodeImg" src="<?php echo $this->module_url('code')?>" style="cursor:pointer;" onClick="create_code();"/> <span id="" class="exchange" style="cursor:pointer;" onClick="create_code();">点击图片可刷新验证码</span> <span id="regCodeTips" class="exchange tip_r" style="display:none;"></span> </li>
+		  
+		 <?php }?>
+		 
+		  
+        <li> <span class="clause mt20">
+          <input name="agree" type="checkbox" value="" class="chexBox" checked="checked"/>
+          我已阅读并同意<a href="/helpcenter" target="_blank"><i>《PP助手用户通行证服务条款》</i></a> <span id="" class="tip_r" style="display:none;"></span> </span> </li>
+        <li>
+          <input type="submit" class="btn_reg" id="btnSubmit" value="注 册"/>
+        </li>
+      </ul>
+    </form>
+  </div>
+  <div class="regR"> <a href="<?php site_url('member/login')?>" class="loginTxt"><span>我已经注册现在就登录</span><i></i></a> </div>
+</div>
+<!--登录结束-->
+</body>
+</html>

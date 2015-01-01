@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="{$webname}" />
+<title>{$catename}-{$webname}</title>
+<meta name="keywords" content="{$catekey}" />
+<meta name="description" content="{$catedes}" />
+<link href="{PUBLIC}style/style.css" rel="stylesheet" />
+<script type="text/javascript" src="{PUBLIC}js/jq1.91.js"></script>
+<style type="text/css">
+<!--
+.list_pic {
+ 
+	float: left;
+	height: 250px;
+	width: 230px;
+	margin-top: 8px;
+	margin-right: 8px;
+	margin-bottom: 17px;
+	margin-left: 8px;
+}
+.list_pic img {
+	width: 230px;
+    height: 215px;
+}
+.list_pic span {
+	width: 230px;
+	height: 35px;
+	text-align: center;
+}
+-->
+</style>
+</head>
+<body>
+{load top.html}
+<div class="channelLine">
+  <div class="wrap">
+    <div class="posi"> {catepos($cid)} </div>
+  </div>
+</div>
+<div class="n_cont">
+  <div class="wrap fix">
+    <div class="l side">
+      <dl class="side_menu">
+        <dt class="Tit2">{cate($tcid,'name')} </dt>
+        {pc:content action="_cate" cid="$tcid" order="asc"}
+        {loop $data $v}
+        <dd><a href='{$v['url']}' {if $cid == $v['id']}class='thisclass' {/if}>{$v['name']}</a></dd>
+        {/loop}
+        {/pc}
+      </dl>
+    </div>
+    <div class="r main">
+      <h2 class="Tit2">{$catename}</h2>
+      <ul>
+         {pc:content action="_list" num="6" cid="$cid" order="desc" sort="id"  pagenum="$pagenum" page="5" }
+        {loop $data $v}
+        <li class="list_pic"><a href="{$v['url']}"><img src="{$v['litpic']}"></a><span>{$v['title']}-{$v['id']} </span></li>
+        {/loop}
+       </ul>
+      <div style="clear:both"> </div>
+      {$page}
+      {/pc} </div>
+  </div>
+</div>
+{load foot.html}
+</body>
+</html>

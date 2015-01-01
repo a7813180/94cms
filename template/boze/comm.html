@@ -1,0 +1,38 @@
+<!--评价-->
+<link href="{base_url('public/comm/comm.css')}" rel="stylesheet" />
+<script type="text/javascript" src="<?php echo base_url('public/comm/jquery-1.7.2.min.js')?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/comm/index.js')?>"></script>
+<script type="text/javascript"> 
+var showurl='<?php echo site_url('show/comm/'.$cid.'/'.$id)?>'; 
+var show_url='<?php echo get_url();?>'; 
+
+</script>
+ 
+   <div id="comm">
+     <form action="" method="post" name='biaodan' id='biaodan'>
+      <div id="comm_con"><textarea id="con" name="content"></textarea>
+	  	<p class="wish">评论：（您还可以输入<b>120</b>个字）</p>
+	  </div>
+       <div id="sz"><input id="commname" type="text" name="name" style="width:25%;" value="<?php echo $this->session->userdata('userid'); ?>" />  <span id="tijiao">提交</span>
+	   
+           <script type="text/javascript">
+		  $("#commname").focus(function(){if($.trim($("#commname").val())=='请输入昵称'){$("#commname").val("");}});
+		  $("#commname").blur(function(){if($.trim($("#commname").val())==''){$("#commname").val("请输入昵称");}});
+		  </script>
+	   </div>
+ 
+	   </form>
+	   
+	   {pc:module action="_comm" cid="$cid" sid="$id"}
+	   {loop $data $key $v}
+	   <div class="list_comm" id="LC<?php echo $key+1;?>">
+	     <div class="com_name"><span style="">昵称：{$v['name']}  &nbsp;&nbsp; 评论于：{time_tran($v['time'])} </span>    <i style=""> <a href="#LC<?php echo $key+1;?>"><?php echo $key+1;?>楼</a></i> </div>
+		    <p>{$v['content']} </p> 
+		  </div>
+        {/loop}
+	   <a href="" class="ajsx_page"><<<更多评论>>></a>
+	   {/pc}
+ 
+      </div>
+	  </div>
+	<!--评价-->

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="author" content="{$webname}" />
+<title>{$catename}-{$webname}</title>
+<meta name="keywords" content="{$catekey}" />
+<meta name="description" content="{$catedes}" />
+<link rel="stylesheet" href="{PUBLIC}Public/Css/common.css" />
+<link rel="stylesheet" href="{PUBLIC}Public/Css/bootstrap.css" />
+<link rel="stylesheet" href="{PUBLIC}Public/Css/buttons.css" />
+<link rel="stylesheet" href="{PUBLIC}Public/Css/font-awesome.min.css" />
+<link rel="stylesheet" href="{PUBLIC}Public/FontAwesome/css/font-awesome.min.css" />
+<script type="text/JavaScript" src='{PUBLIC}Public/Js/jquery.js'></script>
+<script type="text/JavaScript" src='{PUBLIC}Public/Js/jquery.lazyload.js'></script>
+<script type="text/JavaScript" src='{PUBLIC}Public/Js/bckToTop.js'></script>
+</head>
+<body>
+{load head.html}
+<div class="pageNavWrap">
+  <div class="pageNav"> <span>文档中心</span> {pc:content action="_cate" cid="$tcid" order="asc"}
+    {loop $data $v} <a href='{$v['url']}' {if $cid == $v['id']}class='cur' {/if}>{$v['name']}</a> {/loop}
+    {/pc} </div>
+</div>
+<div class="mainWrap">
+  <div class="main">
+    <div class="leftBar mT15">
+      <div class="box">
+        <div class="content">
+          <ul class="articleList">
+            {pc:content action="_list" num="8" cid="$cid" order="desc" sort="id"  pagenum="$pagenum" page="5" }
+            {loop $data $v}
+            <li>
+              <div class="info"> <span> </span> <strong><a href="{$v['curl']}">{$v['cname']}</a></strong> </div>
+              <h2><a href="{$v['url']}" class="title">{$v['title']}-{$v['id']}</a></h2>
+              <div class="text"> <img src="{$v['litpic']}  "/>
+                <p>{get_str($v['description'],200)} </p>
+              </div>
+            </li>
+            {/loop}
+          </ul>
+          <div > {$page}
+            {/pc} </div>
+        </div>
+      </div>
+    </div>
+    {load right.html}
+  </div>
+</div>
+{load foot.html}
+</body>
+</html>

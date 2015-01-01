@@ -1,0 +1,53 @@
+<div class="rightBar mT15">
+      <div class="searchbox">
+        <form method="get" action="/Index/Search/index.html">
+          <input type="text" class="input" name="keyword"  value="搜索关键字..." onfocus="if(this.value == '搜索关键字...') this.value = ''" onblur="if(this.value =='') this.value = '搜索关键字...'"/>
+          <input type="submit" class="submit" value="搜索"/>
+          <label>
+          <input type="radio" value="article" name="type" class="radio">
+          </input>
+          <span>文章</span></label>
+          <label>
+          <input type="radio" value="caseshow" name="type" class="radio">
+          </input>
+          <span>案例</span></label>
+        </form>
+      </div>
+      <div class="box"> <img src="{PUBLIC}Public/Images/wx.jpg"/> </div>
+      <div class="box">
+        <div class="title"><strong>热门文章</strong></div>
+        <div class="content">
+          <ul class="newsList">
+            {pc:content action="_arclist" modelid="2" num="5" order="desc" sort="click"}
+            {loop $data $v}
+            <li> <a href="{$v['url']}"> {$v['title']}</a> <span>({$v['click']})</span> </li>
+            {/loop}
+            {/pc}
+          </ul>
+        </div>
+      </div>
+      <div class="box">
+        <div class="title"><strong>最新文章</strong></div>
+        <div class="content">
+          <ul class="newsList">
+            {pc:content action="_arclist"   modelid="2"   sort ="id"  num="5"  order="desc"   }  
+            {loop $data $v}
+            <li> <a href="{$v['url']}">{$v['title']}</a> <span>({$v['click']})</span> </li>
+            {/loop}
+            {/pc}
+          </ul>
+        </div>
+      </div>
+      <div class="box">
+        <div class="title"><strong>随机文章</strong></div>
+        <div class="content">
+          <ul class="newsList">
+            {pc:content action="_arclist" modelid="2" num="5" order="random" sort="id"}
+            {loop $data $v}
+            <li> <a href="{$v['url']}"> {$v['title']}</a> <span>({$v['click']})</span> </li>
+            {/loop}
+            {/pc}
+          </ul>
+        </div>
+      </div>
+    </div>

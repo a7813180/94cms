@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>会员设置</title>
+<link href="<?php echo base_url('public/admin');?>/css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="<?php echo base_url('public/kd');?>/themes/default/default.css" />
+<script charset="utf-8" src="<?php echo base_url('public/kd');?>/kindeditor-min.js"></script>
+<script charset="utf-8" src="<?php echo base_url('public/kd');?>/lang/zh_CN.js"></script>
+</head>
+<body>
+<div class="place" > <span>位置：</span>
+  <ul class="placeul">
+    <li><a href="<?php echo site_url(APP_ADMIN.'/home/main')?>">后台首页</a></li>
+    <li><a href="#">会员设置</a></li>
+  </ul>
+</div>
+<form action="<?php echo $this->module_url('site_s');?>" method="post" >
+  <div class="formbody">
+    <ul class="forminfo">
+      <li>
+        <label>会员模型</label>
+        <select name="is_member"  class="dfinput"  style="padding-left:15px;width:255px;">
+          <option value="1" <?php  if($is_member){echo 'selected="selected"';}?> > 开启</option>
+          <option value="0" <?php if(!$is_member){echo 'selected="selected"';}?>> 关闭</option>
+        </select>
+      </li>
+      <li>
+        <label>登陆状态</label>
+        <select name="in_login"  class="dfinput"  style="padding-left:15px;width:255px;">
+          <option value="1" <?php if($in_login){echo 'selected="selected"';}?> > 允许</option>
+          <option value="0" <?php if(!$in_login){echo 'selected="selected"';}?>> 禁止</option>
+        </select>
+      </li>
+      <li>
+        <label>注册状态</label>
+        <select name="in_reg"  class="dfinput"  style="padding-left:15px;width:255px;">
+          <option value="1" <?php if($in_reg){echo 'selected="selected"';}?> > 允许</option>
+          <option value="0" <?php if(!$in_reg){echo 'selected="selected"';}?> > 禁止</option>
+        </select>
+      </li>
+      <li>
+        <label>登陆验证码</label>
+        <select name="login_code"  class="dfinput"  style="padding-left:15px;width:255px;">
+          <option value="1"  <?php if($login_code){echo 'selected="selected"';}?> > 开启</option>
+          <option value="0"  <?php if(!$login_code){echo 'selected="selected"';}?> > 关闭</option>
+        </select>
+      </li>
+      <li>
+        <label>注册验证码</label>
+        <select name="reg_code"  class="dfinput"  style="padding-left:15px;width:255px;">
+          <option value="1"  <?php if($reg_code){echo 'selected="selected"';}?> > 开启</option>
+          <option value="0"  <?php if(!$reg_code){echo 'selected="selected"';}?>> 关闭</option>
+        </select>
+      </li>
+      <li>
+        <label>昵称重复</label>
+        <select name="in_uname"  class="dfinput"  style="padding-left:15px;width:255px;">
+          <option value="1" <?php if($in_uname){echo 'selected="selected"';}?> > 允许</option>
+          <option value="0" <?php if(!$in_uname){echo 'selected="selected"';}?>  > 禁止</option>
+        </select>
+      </li>
+	  
+       <li>
+        <label>积分兑换比例</label>
+        <input name="jifenbili" class="dfinput" style="width:255px; "  value="<?php echo $jifenbili;?>" />
+      </li>
+	  
+      <li>
+        <label>最低充值金额</label>
+        <input name="in_money" class="dfinput" style="width:255px; "  value="<?php echo $in_money;?>" />
+      </li>
+	  
+	  
+	  
+      <li>
+        <label>昵称禁止字符</label>
+        <textarea name="in_userid" class="dfinput" style="width:255px; height:80px; "><?php echo $in_userid;?></textarea>
+      </li>
+	  
+	  
+
+	  
+	  
+	  
+      <li>
+        <label>&nbsp;</label>
+        <input type="submit" value="保存"  class="btn" />
+      </li>
+    </ul>
+  </div>
+</form>
+
+
+</body>
+</html>

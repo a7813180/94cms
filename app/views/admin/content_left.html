@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" href="<?php echo base_url('/public/admin/mume/lib/')?>/jquery.treeview.css" />
+<link rel="stylesheet" href="<?php echo base_url('/public/admin/mume/lib/')?>/red-treeview.css" />
+<link rel="stylesheet" href="<?php echo base_url('/public/admin/mume/lib/')?>/screen.css" />
+<script src="<?php echo base_url('/public/admin/mume/lib/')?>/jquery.js" type="text/javascript"></script>
+<script src="<?php echo base_url('/public/admin/mume/lib/')?>/jquery.cookie.js" type="text/javascript"></script>
+<script src="<?php echo base_url('/public/admin/mume/lib/')?>/jquery.treeview.js" type="text/javascript"></script>
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				 
+				animated: "medium",
+				control:"#sidetreecontrol",
+		
+				persist: "location"
+			});
+		})
+		
+	</script>
+ 
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+<!--
+body {
+	font-family: "微软雅黑";
+	background-color: #f1fef5;
+}
+h1{
+	font-size: 12px;
+	color: #000000;
+	font-weight: bold;
+	line-height: 35px;
+	margin: 0px;
+	padding: 0px;
+}
+-->
+</style>
+</head>
+<body>
+<div class="treeheader">子分类菜单</div>
+<div id="main">
+
+<h1><?php  $name=$this->cate->name_cid($cid); echo "<a href='".site_url(APP_ADMIN.'/content/content_right/'.$cid)."' target='contentright'>" .$name['name'].'</a>';?></h1>
+
+
+
+<div id="sidetree">
+<ul id="tree">
+<li>
+  
+  <div id="sidetreecontrol"><a href="?#">全部合起</a> | <a href="?#">全部展开</a></div>
+  </strong>
+  <ul>
+    <?php foreach($cate as $v1):?>
+    <li><a href="<?php echo site_url(APP_ADMIN.'/content/content_right/'.$v1['id']);?>" target="contentright" ><?php echo $v1['name'];?></a>
+      <?php if($v1['x']){?>
+      <ul>
+        <?php foreach($v1['x'] as $v2):?>
+        <li><a href="<?php echo site_url(APP_ADMIN.'/content/content_right/'.$v2['id']);?>"  target="contentright"   ><?php echo $v2['name'];?></a>
+          <!--2级-->
+          <?php if($v2['x']){?>
+          <ul>
+            <?php foreach($v2['x'] as $v3):?>
+            <li><a href="<?php echo site_url(APP_ADMIN.'/content/content_right/'.$v3['id']);?>"  target="contentright"   ><?php echo $v3['name'];?></a>
+              <!--3级-->
+              <?php if($v3['x']){?>
+              <ul>
+                <?php foreach($v3['x'] as $v4):?>
+                <li><a href="<?php echo site_url(APP_ADMIN.'/content/content_right/'.$v4['id']);?>"  target="contentright"   ><?php echo $v4['name'];?></a>
+                  <!--4级-->
+                  <?php if($v4['x']){?>
+                  <ul>
+                    <?php foreach($v4['x'] as $v5):?>
+                    <li><a href="<?php echo site_url(APP_ADMIN.'/content/content_right/'.$v5['id']);?>"  target="contentright"   ><?php echo $v5['name'];?></a>
+                      <!--5级-->
+                      <?php if($v5['x']){?>
+                      <ul>
+                        <?php foreach($v5['x'] as $v6):?>
+                        <li><a href="<?php echo site_url(APP_ADMIN.'/content/content_right/'.$v6['id']);?>"  target="contentright"   ><?php echo $v6['name'];?></a>
+                          <!--6级-->
+                          <?php if($v6['x']){?>
+                          <ul>
+                            <?php foreach($v6['x'] as $v7):?>
+                            <li><a href="<?php echo site_url(APP_ADMIN.'/content/content_right/'.$v7['id']);?>"  target="contentright"   ><?php echo $v7['name'];?></a>
+                              <!--7级-->
+                              <?php if($v7['x']){?>
+                              <ul>
+                                <?php foreach($v7['x'] as $v8):?>
+                                <li><a href="<?php echo site_url(APP_ADMIN.'/content/content_right/'.$v8['id']);?>"  target="contentright"   ><?php echo $v8['name'];?></a> </li>
+                                <?php endforeach?>
+                              </ul>
+                              <?php }?>
+                              <!--7级-->
+                            </li>
+                            <?php endforeach?>
+                          </ul>
+                          <?php }?>
+                          <!--6级-->
+                        </li>
+                        <?php endforeach?>
+                      </ul>
+                      <?php }?>
+                      <!--5级-->
+                    </li>
+                    <?php endforeach?>
+                  </ul>
+                  <?php }?>
+                  <!--4级-->
+                </li>
+                <?php endforeach?>
+              </ul>
+              <?php }?>
+              <!--3级-->
+            </li>
+            <?php endforeach?>
+          </ul>
+          <?php }?>
+          <!--2级-->
+        </li>
+        <?php endforeach?>
+      </ul>
+      <?php }?>
+    </li>
+    <?php endforeach?>
+  </ul>
+</div>
+</div>
+</body>
+</html>

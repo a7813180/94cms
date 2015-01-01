@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title>{$catename} -{$webname}</title>
+<meta name="keywords" content="{$catekey}" />
+<meta name="description" content="{$catedes}" />
+<link href="{PUBLIC}style/home/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{PUBLIC}style/home/js/html5.js?v=3.6"></script>
+<script type="text/javascript" src="{PUBLIC}style/js/jquery.min.js?v=1.10.2"></script>
+<script type="text/javascript" src="{PUBLIC}style/home/js/jquery.SuperSlide.js?v=1.2"></script>
+<script type="text/javascript" src="{PUBLIC}style/home/js/jquery.easing.min.js?v=1.3"></script>
+<script type="text/javascript" src="{PUBLIC}style/home/js/main.js?v=1.1"></script>
+<style type="text/css">
+<!--
+#page{margin-top:10px;width:100%;text-align:center;margin-bottom:15px}
+#page a{height:20px;margin-right:5px;margin-left:5px;background-color:#000000;color:#FFFFFF;line-height:20px;font-size:12px;padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px}
+#page span{height:20px;margin-right:5px;margin-left:5px;background-color:#000000;color:#FFFFFF;line-height:20px;font-size:12px;padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px}
+#page .hot{height:20px;margin-right:5px;margin-left:5px;background-color:#b80a0a;color:#FFFFFF;line-height:20px;font-size:12px;padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px}
+-->
+</style>
+</head>
+<body>
+{load head.html}
+<div class="hgrap">&nbsp;</div>
+
+<section class="case_tit">
+	<span class="en">OUR WORK</span><b>.</b>我们的案例
+</section>
+<section id="case_list">
+	<div class="case_list_body">
+	   {pc:content action="_list" num="12" cid="$cid" order="desc" sort="id"  pagenum="$pagenum" page="5" }
+    	<ul class="clearfix">
+		{loop $data $v}
+			<li >
+            	<a target="_blank" href="{$v['url']}">
+            	<div class="case_list_body_pic">
+                	<img src="{$v['litpic']}"   width="219px" height="146px" />
+                </div>
+                <div class="case_list_info">
+                	<p class="cast_list_tit">{$v['title']}</p>
+                    <p class="cast_list_kaifa">开发语言：<br /> PHP+mysql</p>
+                    <p>
+                    	<div class="case_open"></div>
+                    </p>
+                </div>
+                </a>
+            </li>
+ 	{/loop}
+ 
+        </ul>
+    </div>
+</section>
+
+<div id="page">
+
+{$page}
+</div>
+{/pc}
+
+
+{load foot.html}
+
+</body>
+</html>

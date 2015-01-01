@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="<?php echo base_url('public/admin');?>/css/style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="<?php echo base_url('public/admin/');?>/js/jquery.js"></script>
+<script type="text/javascript">
+$(function(){	
+	//顶部导航切换
+	$(".nav li a").click(function(){
+		$(".nav li a.selected").removeClass("selected")
+		$(this).addClass("selected");
+	})	
+})	
+</script>
+
+
+<style type="text/css">
+<!--
+ .topright .zi {
+	font-size: 11px;
+}
+
+ .zi {
+	font-size: 11px;
+}
+ 
+.topright .user b {
+	background-image: none;
+	color: #FF0000;
+	padding-top: 3px;
+	padding-right: 5px;
+	padding-bottom: 3px;
+	padding-left: 5px;
+}
+-->
+</style>
+</head>
+
+<body style="background:url(<?php echo base_url('public/admin/');?>/images/topbg.gif) repeat-x;">
+
+    <div class="topleft">
+    <a href="main.html" target="_parent"><img src="<?php echo base_url('public/admin/');?>/images/logo.png" title="系统首页" /></a>
+    </div>
+        
+ 
+    <div class="topright">    
+    <ul>
+	 <li>	 <a href="<?php echo site_url(APP_ADMIN.'/site/del_cache')?>"  style="font-size:12px;" target="rightFrame" class="zi">清楚缓存</a> </li>
+    <li>	<a href="<?php echo base_url();?>" target="_blank"   class="zi"> 预览前台</a> </li>
+	<li>	<a href="<?php echo base_url(APP_ADMIN."/home/homes");?>" target="rightFrame" class="zi"> 后台首页</a> </li>
+	
+	<li><a href="http://www.94cms.com" target="_blank"   class="zi"> 94cms</a> </li>
+    <li><a href="http://bbs.94cms.com" target="_blank"   class="zi"> 论坛</a> </li>
+    </ul>
+     
+    <div class="user">
+
+	
+    <span><?php echo $this->session->userdata('username');?></span>
+	
+   
+ 
+	
+
+    <b> <a href="<?php echo site_url(APP_ADMIN.'/login/logut')?>" target="_parent" class="zi">退出</a></b>
+    </div>    
+    
+    </div>
+
+ 
+</body>
+</html>

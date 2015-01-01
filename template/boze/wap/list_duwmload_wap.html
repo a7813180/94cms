@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$catename} -{$webname}</title>
+<meta name="keywords" content="{$catekey}" />
+<meta name="description" content="{$catedes}" />
+<meta content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<link rel="stylesheet" type="text/css" href="{PUBLIC}wap/css/indexchannel.css?2014051504"/>
+<script type="text/javascript" src="{PUBLIC}wap/js/min.js"></script>
+<script type="text/javascript" src="{PUBLIC}wap/js/index.js?2014051504"></script>
+<script type="text/javascript" src="{PUBLIC}wap/js/cookie_fixed.js?2014051504"></script>
+<script type="text/javascript" src="{PUBLIC}wap/js/channel.js?2014051504"></script>
+<script type="text/javascript" src="{PUBLIC}wap/js/rMenu.js?2014051504"></script>
+<script language="javascript" type="text/javascript" src="{PUBLIC}wap/js/login.js?2014051504"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<!-----最外层---->
+<div class="outter">
+<div class="wrap">
+<!-- 主体内容 -->
+<div class="lay-left">
+<div class="pos">
+{wapload head.html}
+<div class="f_enav"> {catepos($cid,$wap='true')} </div>
+<div class="f_pinnav" id="f_pinnav_div"> <a id='page_prev' class="f_pinbtnlef" href="javascript:void(0)"><</a>
+  <div id="f_pinnav" style="height:35px; overflow:hidden; position:relative;">
+    <ul id="f_pinnav_lis" style="display:none;">
+      {pc:content action="_cate" cid="$tcid" wap="true"}
+      {loop $data $v}
+      <li><a href="{$v['url']}" class="f_pinnav_cur">{$v['name']}</a></li>
+      {/loop}
+      {/pc}
+    </ul>
+  </div>
+  <a id='page_next' class="f_pinbtnrig" href="javascript:void(0)">></a> </div>
+<div class="f_inews">
+  <ul class="f_inews_lis" id="f_inews_lis_ul">
+    {pc:content action="_list" num="4"  cid="$cid" order="desc" sort="id"  pagenum="$pagenum"  field="dowurl" page="5" wap="true"}
+    {loop $data $v}
+    <li> <a class="f_inewsimg" href="{$v['curl']}"><img src="{$v['litpic']}"/></a>
+      <div class="f_inewscon">
+        <h4><a href="{$v['url']}">{get_str($v['title'],30)}</a></h4>
+		<h5><a href="{$v['dowurl']} ">下载地址 </a></h5>
+        <p class="clears">{get_str($v['description'],50)} <span>{date('Y-m-d H:i:s',$v['publishtime'])}</span></p>
+      </div>
+    </li>
+    {/loop}
+  </ul>
+</div>
+<div class="f_loadimg" id="f_loadimg"> <img src="{PUBLIC}wap/images/loading.gif"/> </div>
+<div class="f_ionload" id="div_getmorenews"> {$page}
+  {/pc} </div>
+<div class="f_enav"> 
+{catepos($cid,$wap='true')} 
+
+ </div>
+{wapload foot.html}
+</body>
+</html>

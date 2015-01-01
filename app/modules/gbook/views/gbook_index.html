@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在线留言管理</title>
+<link href="<?php echo base_url('public/admin');?>/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/jquery-1.7.2.min.js"></script>
+<script src="<?php echo base_url('public');?>/layer/layer.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/admin_public.js"></script>
+<script>
+function edit(url){
+        $.layer({
+        type: 2,
+		shift: 'top', //从上动画弹出
+        border: [0], //不显示边框
+        maxmin: true,
+        title: ['回复', 'border:none; background:#3b95c8; color:#fff;' ],
+        area: ['450', '350'],
+        iframe: {src: url},
+		end: function(index){
+	     window.setTimeout("window.location='<?php echo $this->module_url('');?>'",2000); 
+        }
+    })
+}
+</SCRIPT>
+<script language="javascript"> 
+function tosubmit1() { document.submitform1.action="<?php echo $this->module_url('sort_s/')?>"; document.submitform1.submit(); } 
+function tosubmit2() { 
+var msg = "确定批量删除在线留言吗？删除将不可恢复！请确定！";   
+if (confirm(msg)==true){   
+document.submitform1.action="<?php echo $this->module_url('del_s/')?>"; document.submitform1.submit(); 
+}else{   
+return false;   
+}  
+} 
+
+
+function p_del() {   
+var msg = "请确定是否删除？";   
+if (confirm(msg)==true){   
+return true;
+}else{   
+return false;   
+}  
+
+ 
+}   
+</script>
+<script language="javascript">
+  $(function ($) { 
+	  //点击主菜单下面的子菜单全部选中
+	   $('#selectAll').click(function (){
+	       var inputs = $(this).parents('#app').find('input');
+		   $(this).attr('checked') ? inputs.attr('checked','checked'):
+		   inputs.removeAttr('checked');
+	      });
+       });
+ 
+   
+</script>
+
+<style type="text/css">
+<!--
+.waibu {
+	color: #FF0000;
+}
+.wu {
+	background-image: url(<?php echo base_url('public/admin/');?>/images/toolbg.gif);
+	font-family: "微软雅黑";
+	line-height: 33px;
+}
+-->
+</style>
+ 
+</head>
+<body>
+<form name="submitform1" action="" method="post"  >
+  <div class="place" > <span>位置：</span>
+    <ul class="placeul">
+      <li><a href="<?php echo site_url(APP_ADMIN.'/home/main')?>">后台首页</a></li>
+      <li><a href="#">在线留言</a></li>
+    </ul>
+  </div>
+  <div class="rightinfo">
+    <div class="tools">
+      <ul class="toolbar">
+
+		  <li><span><img src="<?php echo base_url('public/admin');?>/images/t03.png" /></span> <input type="button" name="submit2" class="wu" value="批量删除" onclick="tosubmit2()" > </li>
+		  <li>
+		  <a href="<?php echo site_url('/module/gbook/home');?>" target="_blank"  ><span></span>在线预览 </a>		  </li>
+		  
+      </ul>
+ 
+    </div>
+    <table class="tablelist" id="app">
+      <thead>
+        <tr>
+          <th width="6%"> <input type="checkbox" id="selectAll" class='xzk' level='1'></th>
+          <th width="6%">ID</th>
+		          <th width="33%">标题</th>
+          <th width="10%">留言人</th>
+  <th width="8%">留言IP</th>
+          <th width="13%">留言时间</th>
+          <th width="8%">状态</th>
+          <th width="16%">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($gbook as $v):?>
+        <tr class="trz">
+          <td><input name="del[]"  type="checkbox"   value="<?php echo $v['id']?>"  class='xzk'/>
+          </td>
+          <td><?php echo $v['id'];?> </td>
+       
+          <td><?php echo $v['title']?>
+          </td>
+		     <td><?php echo $v['name'];?> </td>
+			   <td><?php echo $v['ip'];?> </td>
+          <td><?php echo date("Y-m-d H:i:s",$v['time']);?></td>
+          <td> <?php if($v['lock']){?>
+		  <a href="<?php echo $this->module_url('lock/'.$v['id'].'/0');?>"  style="color:#FF0000"> 未审核</a>
+		  <?php }else{?>
+	       <a href="<?php echo $this->module_url('lock/'.$v['id'].'/1');?>"  style="color:#996600"> 审核通过</a>
+		  <?php }?>
+		  </td>
+          <td>
+  
+		   <a href="javascript:submitTo('<?php echo $this->module_url('updata/'.$v['id']);?>','edit')">回复 </a> <a href="<?php echo $this->module_url('del/'.$v['id']);?>" onclick="javascript:return p_del()" >删除 </a> </td>
+        </tr>
+        <?php endforeach ?>
+      </tbody>
+    </table>
+
+    <div class="page">
+	
+	
+	<?php echo $page;?>
+	</div>
+  </div>
+</form>
+	
+<script>
+$('#testMaxmin').on('click',  function(){           
+    $.layer({
+        type: 2,
+		 shift: 'top', //从上动画弹出
+
+        maxmin: true,
+		border: [0], //不显示边框
+        title: ['添加',        'border:none; background:#3b95c8; color:#fff;' ],
+         area: ['500', '300'],
+        iframe: {
+            src: '<?php echo $this->module_url('add/');?>'
+        },
+		 end: function(index){
+	
+		  window.setTimeout("window.location='<?php echo $this->module_url('');?>'",2000); 
+
+		}
+    })
+}); 
+ </script>
+</body>
+</html>

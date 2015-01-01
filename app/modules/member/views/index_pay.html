@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo $title; ;?>-会员中心-<?php echo C('webname');?></title>
+<link href="<?php echo base_url('public/modules/member/index')?>/css/css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<?php $this->load->view('index_top.html')?>
+<div id="content">
+  <div class="wp">
+    <div class="left">
+      <ul>
+ <li><a href="<?php echo site_url('member/home/pay');?>">在线充值</a> </li>
+        <li><a href="<?php echo site_url('member/home/pay_data');?>">充值记录</a> </li>
+        <li><a href="<?php echo site_url('member/home/deposit');?>"  >消费记录</a> </li>
+        <li><a href="<?php echo site_url('member/home/jifen');?>"  class="hot" >积分兑换</a> </li>
+      </ul>
+    </div>
+    <div class="right">
+      <div class="zl"  style="padding-left:80px; padding-top:30px;">
+        <form action="<?php echo site_url('member/home/pay_s')?>" method="post">
+		
+          <input type="hidden" name="mid" value="<?php echo $id; ?>" />
+		  
+          <div class="inputs"> 账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;户：&nbsp;&nbsp;&nbsp;&nbsp;
+            <input class="in" style="width:300px;" type="text" name="userid" value="<?php echo $userid;?>"  readOnly="true" />
+          </div>
+		  
+		  
+         <div class="inputs"> 金&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额：&nbsp;&nbsp;&nbsp;&nbsp;
+            <input class="in" style="width:300px;" type="text" name="money" value=""  /> 元
+          </div>
+		  
+		  
+        <div class="inputs"> 付&nbsp;款&nbsp;方&nbsp;式：&nbsp;&nbsp;&nbsp;
+		
+           <input type="radio" name="pay" value="1"  checked="checked"> &nbsp;支付宝&nbsp;&nbsp;&nbsp;  <input  type="radio"  type="pay" name="pay" value="2" /> &nbsp;网银在线
+		   
+          </div>
+		  
+
+
+          <div class="inputs"> 
+            <input type="submit" value="确定修改"   style="width:310px; margin-left:115px;"class="sub" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<?php $this->load->view('index_foot.html')?>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<div id="top">
+  <div class="wp">
+    <div class="logo">会员中心</div>
+    <div id="nav"> <a href="<?php echo site_url('member/home');?>"> 个人中心</a> 
+	
+	<a href="#">在线投稿</a>
+	
+	 <a href="<?php echo site_url('member/home/pay');?>">财务管理</a> 
+	 <a href="<?php echo site_url('member/home/setprofile' );?>">账号管理</a> 
+ 
+	 <a href="<?php echo site_url('member/home/yaoqing');?>">邀请好友</a> 
+   
+	 </div>
+    <div id="user">
+      <div class="logut"> <a href="<?php echo site_url('member/login/logut');?>">退出</a></div>
+      <div id="tx"><img src="<?php $tx = $this->session->userdata('tx'); echo base_url($tx['2']); ?>"> </div>
+      <div class="user_name"><?php echo $this->session->userdata('userid');?></div>
+    </div>
+  </div>
+</div>
+<div class="clear"> </div>

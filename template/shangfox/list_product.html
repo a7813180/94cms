@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="author" content="{$webname}" />
+<title>{$catename}-{$webname}</title>
+<meta name="keywords" content="{$catekey}" />
+<meta name="description" content="{$catedes}" />
+<link rel="stylesheet" href="{PUBLIC}Public/Css/common.css" />
+<link rel="stylesheet" href="{PUBLIC}Public/Css/bootstrap.css" />
+<link rel="stylesheet" href="{PUBLIC}Public/Css/buttons.css" />
+<link rel="stylesheet" href="{PUBLIC}Public/Css/font-awesome.min.css" />
+<link rel="stylesheet" href="{PUBLIC}Public/FontAwesome/css/font-awesome.min.css" />
+<script type="text/JavaScript" src='{PUBLIC}Public/Js/jquery.js'></script>
+<script type="text/JavaScript" src='{PUBLIC}Public/Js/jquery.lazyload.js'></script>
+<script type="text/JavaScript" src='{PUBLIC}Public/Js/bckToTop.js'></script>
+</head>
+<body>
+{load head.html}
+<div class="pageNavWrap">
+  <div class="pageNav"> <span>案例中心</span> 
+{pc:content action="_cate" cid="$tcid" order="asc"}
+    {loop $data $v} <a href='{$v['url']}' {if $cid == $v['id']}class='cur' {/if}>{$v['name']}</a> {/loop}
+    {/pc} 
+  
+   </div>
+</div>
+<div class="mainWrap">
+  <div class="main" style="min-height:400px;">
+    <ul class="case-list">
+	
+	         {pc:content action="_list" num="11" cid="$cid" order="desc" sort="id"  pagenum="$pagenum" page="5" }
+        {loop $data $v}
+      <li> <a class="seeicon" href="{$v['url']}"></a> <a class="imgback" href="{$v['url']}"></a> <a class="img" href="{$v['url']}"><img src="{$v['litpic']}"/></a> <a class="title" href="{$v['url']}">{$v['title']}</a> </li>
+ 
+             {/loop}
+	 
+	  <li>
+        <div class="ad265">
+          <script type="text/javascript">
+                    /*265*169 创建于 2014-08-03*/
+                    var cpro_id = "u1643377";
+                </script>
+          <script src="/cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+        </div>
+        <a class="title" href="javascript:;">百度赞助广告</a>
+		
+		 </li>
+		
+		
+    </ul>
+    <div >
+	
+  {$page}
+      {/pc}
+	 
+	 </div>
+  </div>
+</div>
+{load foot.html}
+</body>
+</html>

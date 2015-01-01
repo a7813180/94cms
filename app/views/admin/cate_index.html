@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>分类管理</title>
+<link href="<?php echo base_url('public/admin');?>/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php echo base_url('public/admin');?>/js/jquery-1.7.2.min.js"></script>
+<SCRIPT LANGUAGE=javascript>   
+function p_del() {   
+var msg = "删除本分类会删除所有下级分类，请确定是否删除";   
+if (confirm(msg)==true){   
+return true;
+}else{   
+return false;   
+}  
+}   
+</SCRIPT>
+<script language="javascript"> 
+function tosubmit1() { document.submitform1.action="<?php echo site_url(APP_ADMIN.'/cate/p_sort');?>"; document.submitform1.submit(); } 
+function tosubmit2() { 
+var msg = "确定批量删除分类吗？删除将不可恢复！请确定！";   
+if (confirm(msg)==true){   
+document.submitform1.action="<?php echo site_url(APP_ADMIN.'/cate/p_del');?>"; document.submitform1.submit(); 
+}else{   
+return false;   
+}  
+} 
+function tosubmit3() { document.submitform1.action="3.asp"; document.submitform1.submit(); }
+ </script>
+<style type="text/css">
+<!--
+.waibu {
+	color: #FF0000;
+}
+.wu {
+	background-image: url(<?php echo base_url('public/admin/');?>/images/toolbg.gif);
+	font-family: "微软雅黑";
+ 
+}
+-->
+</style>
+<script language="javascript">
+  $(function ($) { 
+	  //点击主菜单下面的子菜单全部选中
+	   $('#selectAll').click(function (){
+	       var inputs = $(this).parents('#app').find('input');
+		   $(this).attr('checked') ? inputs.attr('checked','checked'):
+		   inputs.removeAttr('checked');
+	      });
+       });
+ 
+   
+</script>
+</head>
+<body>
+<form name="submitform1" action="" method="post"  >
+  <div class="place" > <span>位置：</span>
+    <ul class="placeul">
+      <li><a href="<?php echo site_url(APP_ADMIN.'/home/main')?>">后台首页</a></li>
+      <li><a href="#">分类管理</a></li>
+    </ul>
+  </div>
+  <div class="rightinfo">
+    <div class="tools">
+      <ul class="toolbar">
+        <li><a href="<?php echo site_url(APP_ADMIN.'/cate/cate_add');?>"><span><img src="<?php echo base_url('public/admin');?>/images/t01.png" /></span>添加分类</a></li>
+        <li><span><img src="<?php echo base_url('public/admin');?>/images/t02.png" /></span>
+          <input type="button" name="submit1" class="wu" value="更新顺序" onclick="tosubmit1()" >
+        </li>
+        <li><span><img src="<?php echo base_url('public/admin');?>/images/t03.png" /></span>
+          <input type="button" name="submit2" class="wu" value="批量删除" onclick="tosubmit2()" >
+        </li>
+      </ul>
+      <ul class="toolbar1">
+        <li><span><img src="<?php echo base_url('public/admin');?>/images/t04.png" /></span><a href="<?php echo site_url(APP_ADMIN.'/cate/p_addcate');?>">批量添加</a></li>
+      </ul>
+    </div>
+    <table class="tablelist" id="app">
+      <thead>
+        <tr>
+          <th width="4%"> <input type="checkbox" id="selectAll" class='xzk' level='1'></th>
+          <th width="9%">编号<i class="sort"><img src="<?php echo base_url('public/admin');?>/images/px.gif" /></i></th>
+          <th width=" ">名称</th>
+          <th width="15%">模型</th>
+          <th width="15%">状态</th>
+          <th width="15%">排序</th>
+          <th width="15%">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($cate as $v):?>
+        <tr class="trz">
+          <td><input name="del[]"  type="checkbox" value="<?php echo $v['id'];?>"   class='xzk'/>
+          </td>
+          <td><?php echo $v['id'];?></td>
+          <td><?php echo "<a target='_blank'  href='".list_url($v)."'>";?> <?php echo $v['html']; if($v['pid']) {echo "├─"; } echo $v['name']?> <?php echo "</a>";?> </td>
+          <td><?php  if($v['type']){ echo "<span class='waibu'>"."外部链接"."</span>";}else{echo $v['modelname'];} ?></td>
+          <td><?php if($v['status']){?>
+            <a href='<?php echo site_url(APP_ADMIN.'/cate/status/'.$v['id'].'/0');?>'>显示</a>
+            <? }else{?>
+            <a href='<?php echo site_url(APP_ADMIN.'/cate/status/'.$v['id'].'/1');?>'>隐藏</a>
+            <?php } ?>
+          </td>
+          <td><input type="text" name="id_<?php echo $v['id'];?>" value="<?php echo $v['sort'];?>" class="inputsort" />
+          </td>
+          <td><a href="<?php echo site_url(APP_ADMIN.'/cate/cate_add/'.$v['id']);?>" class="edit">添加下级栏目</a> &nbsp; <a href="<?php echo site_url(APP_ADMIN.'/cate/cate_updata/'.$v['id']);?>" class="edit">编辑</a> &nbsp; <a href="<?php echo site_url(APP_ADMIN.'/cate/delete/'.$v['id']);?>" onclick="javascript:return p_del()"   >删除</a> </td>
+        </tr>
+        <?php endforeach ?>
+      </tbody>
+    </table>
+  </div>
+</form>
+</body>
+</html>

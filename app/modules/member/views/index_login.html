@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"/>
+<title>PP通行证--登录</title>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/modules/member'); ?>/index/css/base.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/modules/member'); ?>/index/css/login.css" />
+<script type="text/javascript" src="<?php echo base_url('public/modules/member'); ?>/index/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public/modules/member'); ?>/index/js/common.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public/modules/member'); ?>/index/js/sha256.js"></script>
+<script type="text/javascript">
+    $(document).ready(ppZone.loginPage.init);
+    function create_code(){
+        $('#regCodeImg').attr('src', '<?php echo $this->module_url('code').'?';?>'+Math.random());
+    }
+</script>
+<!--文本框，开始-->
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#username").bind("focus keydown",function(){
+		$(this).removeClass("userNameTips");
+		})
+		
+	$("#username").bind("focusout",function(){
+		if($(this).val()=="")
+		{
+		$(this).addClass("userNameTips");
+		}
+		})
+		
+		
+	$("#password").bind("focus",function(){
+		$(this).removeClass("passwordTips");
+		})
+		
+	$("#password").bind("focusout",function(){
+		if($(this).val()=="")
+		{
+		$(this).addClass("passwordTips");
+		}
+		})
+})
+</script>
+<!--文本框，结束-->
+</head>
+<body>
+<div id="hearder">
+  <div class="wrap">
+    <div class="logo mt30"><a href="<?php echo site_url();?>"><img src="<?php echo base_url('public/modules/member'); ?>/index/images/logo.jpg"></a></div>
+	
+    <div class="nav"> <a target="_blank" href="<?php echo site_url();?>">首页</a> </div>
+	
+  </div>
+</div>
+<div class="wraper">
+  <div class="wrap">
+    <div class="loginBox"> <span class="mask"></span>
+      <div class="loginTit">
+        <h1>登录</h1>
+        <a href="<?php echo site_url('member/login/reg')?>" class="reg">注册</a> </div>
+      <form action="<?php echo site_url('member/login/login_s')?>" method="post" accept-charset="utf-8" id="frmLogin" name="frm_login">
+        <ul>
+          <li class="clearfix bgUserName"><span></span>
+            <input type="text" id="userid" name="userid" maxlength="100" class="userName userNameTips" autocomplete="off" />
+          </li>
+          <li class="clearfix bgPassWord"><span></span>
+            <input  type="password" id="password" name="pwd" maxlength="100" class="password passwordTips" autocomplete="off" />
+          </li>
+		  
+		  <?php
+		  
+		  if($login_code){
+		  ?>
+          <li> <span class="tag_yzm">验证码</span>
+            <input name="code" type="text" class="yzmInput" autocomplete="off" />
+            <img id="regCodeImg" src="<?php echo $this->module_url('code')?>" onClick="create_code();"/> <span  class="exchange"><a href="javascript:create_code();" >看不清<b>换一张</b></a></span> </li>
+			
+			<?php } ?>
+			
+          <li class="grayTxt">
+	 
+            <input id="autoLogin" name="autoLogin" type="checkbox" value="" class="chexBox" />
+            自动登录（公共电脑不建议使用）<a href="https://user/forget_pw">忘记密码？</a> </li>
+          <li>
+            <div id="loginTips" class="tips" style="display:none;"><span></span>您的账号名或密码错误，请重新输入！</div>
+          </li>
+          <li>
+            <input type="submit" class="btn_login" id="btnSubmit" value="登 录" />
+          </li>
+          <li><a class="btn_reg" href='https://user/regist'>立即注册</a></li>
+        </ul>
+      </form>
+    </div>
+  </div>
+</div>
+<!--登录结束-->
+<div id="footer">
+  <p>Copyright  2009 -2014 Aihe Internet Technology Co., Ltd. All rights reserved.广州爱禾网络技术有限公司 版权所有 </p>
+  <p>粤ICP备14003765号-2    粤网文[2014]0416-116号 <a href="http://182.131.21.137/ccnt-apply/admin/business/preview/business-preview!lookUrlRFID.action?main_id=73E087E798A84C28AB6179270FC518E5" target="_blank"><img src="<?php echo base_url('public/modules/member'); ?>/index/images/wen_icon.PNG" width="26" height="26"></a></p>
+</div>
+
+
+</body>
+</html>

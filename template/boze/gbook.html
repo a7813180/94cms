@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="{$webname}" />
+<title>在线留言-{$webname}</title>
+<link href="{PUBLIC}style/style.css" rel="stylesheet" />
+<script type="text/javascript" src="{PUBLIC}js/jq1.91.js"></script>
+<style type="text/css">
+ 
+.co {
+	width: 100%;
+	border: 1px solid #CCCCCC;
+	margin-top: 15px;
+	padding: 10px;
+}
+ 
+.x {
+	height: 35px;
+	margin-bottom: 15px;
+	line-height: 35px;
+	font-size: 14px;
+	color: #333333;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #666666;
+}
+.x input {
+	border: 1px solid #999999;
+	height: 25px;
+	width: 250px;
+}
+.co textarea {
+	border: 1px solid #999999;
+	height: 80px;
+	width: 380px;
+}
+.co .sub {
+	background-color: #CCCCCC;
+	height: 30px;
+	width: 150px;
+	line-height: 30px;
+	color: #FFFFFF;
+	text-decoration: none;
+	margin-left: 38px;
+	margin-top: 16px;
+	margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+{load top.html}
+<div class="channelLine">
+  <div class="wrap">
+    <div class="posi">   </div>
+  </div>
+</div>
+<div class="n_cont">
+  <div class="wrap fix">
+  
+    <div class="l side">
+      <dl class="side_menu">
+        <dt class="Tit2">导航菜单 </dt>
+        {pc:content action="_cate" cid="$tcid" order="asc"}
+        {loop $data $v}
+        <dd><a href='{$v['url']}' {if $cid == $v['id']}class='thisclass' {/if}>{$v['name']}</a></dd>
+        {/loop}
+        {/pc}
+      </dl>
+    </div>
+    <div class="r main">
+
+
+ <table   width="780" height="100" border="0" align="center" cellpadding="0" cellspacing="0" class="datalist"  id="1">
+  <tr>
+    <th colspan="4" scope="row" style="background-color: #777;">在线留言</th>
+  </tr>
+  <?php foreach($gbook as $v): ?>
+  <tr>
+    <td width="317">主题:<?php echo $v['title']?></td>
+    <td width="158">姓名:<?php echo $v['name']?></td>
+    <td width="159">时间：<?php echo date('Y-m-d H:i:s',$v['time'])?></td>
+    <td width="147">IP：<?php echo $v['ip']?></td>
+  </tr>
+  <tr>
+    <td colspan="4">留言内容： <?php echo $v['content']?>
+      <?php if($v['admin_content']){?>
+      <div class="hf"> 管理员回复:<?php echo $v['admin_content']?> </div>
+      <?php }?>
+    </td>
+  </tr>
+  <?php endforeach;?>
+  <?php echo $page;?>
+</table>
+		
+<div class="co">
+  <form action="<?php echo $this->module_url('gbook_s');?>" method="post">
+    <div class="x"> 主题：
+      <input type="text" name="title"  />
+    </div>
+    <div class="x"> 姓名：
+      <input type="text" name="name"  />
+    </div>
+    <div class="x"> 电话：
+      <input type="text" name="tel"  />
+    </div>
+    <div class="x"> 传真：
+      <input type="text" name="chuanzhen"  />
+    </div>
+    <div > 内容：
+	
+      <textarea name="content"></textarea>
+ <div > </div>
+    <input type="submit"  class="sub" value="提交" />
+  </form>
+</div>
+
+		
+	</div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+{load foot.html}
+</body>
+</html>

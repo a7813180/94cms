@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo $title; ;?>-会员中心-<?php echo C('webname');?></title>
+<link href="<?php echo base_url('public/modules/member/index')?>/css/css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<?php $this->load->view('index_top.html')?>
+<div id="content">
+  <div class="wp">
+    <div class="left">
+      <ul>
+        <li><a href="<?php echo site_url('member/home/pay');?>">在线充值</a> </li>
+        <li><a href="<?php echo site_url('member/home/pay_data');?>">充值记录</a> </li>
+        <li><a href="<?php echo site_url('member/home/deposit');?>"  >消费记录</a> </li>
+        <li><a href="<?php echo site_url('member/home/jifen');?>"  class="hot" >积分兑换</a> </li>
+      </ul>
+    </div>
+    <div class="right">
+      <div class="zl"  style="padding-left:80px; padding-top:30px;">
+        <form action="<?php echo site_url('member/home/jifen_s')?>" method="post">
+          <input type="hidden" name="id" value="<?php echo $id; ?>" />
+          <div class="inputs"> 余&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额：&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-size: 10px;"> <span style="color:#FF0000 ;font-size: 14px;"><?php echo $money?></span>元, <span style="color:#FF0000"> <?php echo $jifen;?> </span>点 ,可兑换 <span style="color:#FF0000"> <?php echo $money * $bili;?> </span>积分. </span> </div>
+          <div class="inputs"> 支&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出：&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name="money"  value=""  style="width:131px;"/>
+            <span style="font-size: 10px;"> 元,兑换积分 </span> </div>
+          <div class="inputs"> <span style="font-size: 12px; padding-left:110px; margin-top:50px;"> ⊙积分兑换比例： 1:<?php echo $bili;?></span> </div>
+          <div class="inputs">
+            <input type="submit" value="确定兑换"   style="width:190px; margin-left:115px;"class="sub" />
+            <br />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<?php $this->load->view('index_foot.html')?>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{C('webname')}</title>
+<meta name="keywords" content="{C('webkey')}"/>
+<meta name="description" content="{C('webdes')}"/>
+<meta content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<link rel="stylesheet" type="text/css" href="{PUBLIC}wap/css/indexchannel.css?2014051504"/>
+<script type="text/javascript" src="{PUBLIC}wap/js/min.js"></script>
+<script type="text/javascript" src="{PUBLIC}wap/js/cookie_fixed.js?2014051504"></script>
+<script type="text/javascript" src="{PUBLIC}wap/js/index.js?2014051504"></script>
+<script type="text/javascript" src="{PUBLIC}wap/js/scroll.js?2014051504"></script>
+<script type="text/javascript" src="{PUBLIC}wap/js/rMenu.js?2014051504"></script>
+<script language="javascript" type="text/javascript" src="{PUBLIC}wap/js/login.js?2014051504"></script>
+<script type="text/javascript">
+/**
+ * 全局变量
+ */
+var _global_var={
+	_curpage:2, //当前页码+1	
+	_picdomain:"http//img10.fblife.com/", //图片域名
+	_wapdomain:"./", //wap域名
+	_staticdomain:"../static.fblife.com/", //静态资源域名
+	_channelid:0, //频道id
+	_default_headpic:function(){return _global_var._staticdomain+'/static/wapnews/{PUBLIC}wap/images/tag.png';}
+};
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	//wap首页焦点图片滚动
+	if(document.getElementById("slide_01")){
+		var slide_01 = new ScrollPic();
+		slide_01.scrollContId   = "slide_01"; //内容容器ID
+		slide_01.dotListId      = "slide_01_dot";//点列表ID
+		slide_01.dotOnClassName = "f_ifocus_cur";
+		slide_01.arrLeftId      = "sl_left"; //左箭头ID
+		slide_01.arrRightId     = "sl_right";//右箭头ID
+		slide_01.frameWidth     = 520;
+		slide_01.pageWidth      = 520;
+		slide_01.upright        = false;
+		slide_01.speed          = 10;
+		slide_01.space          = 30; 
+		slide_01.initialize(); //初始化
+	}
+});
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<!-----最外层---->
+<div class="outter">
+<div class="wrap">
+<!-- 主体内容 -->
+<div class="lay-left">
+<div class="pos">
+{wapload head.html}
+<div class="m320 f_ifocus">
+  <div id="slide_01" class="f_ifocus_lis">
+    <div class="f_ifocus_con"> <a href="news/show_112688.html"><img src="{PUBLIC}wap/images/sj001.jpg"/></a>
+      <p><a href="news/show_112688.html">带屁股的小钢炮 试驾进口奥迪A3 40TFSI</a></p>
+    </div>
+	
+	
+	
+    <div class="f_ifocus_con"> <a href="../www.fb.cn/daloorv"><img src="{PUBLIC}wap/images/sj002.jpg"/></a>
+      <p><a href="../www.fb.cn/daloorv">大陆房车</a></p>
+    </div>
+    <div class="f_ifocus_con"> <a href="news/show_90393.html"><img src="{PUBLIC}wap/images/sj003.jpg"/></a>
+      <p><a href="news/show_90393.html">合纵连横 话说发动机纵横时代（历史篇）</a></p>
+    </div>
+    <div class="f_ifocus_con"> <a href="news/show_113021.html"><img src="{PUBLIC}wap/images/sj002.jpg"/></a>
+      <p><a href="news/show_113021.html">对比试驾：路虎极光vs奔驰GLA</a></p>
+    </div>
+  </div>
+  <div id="slide_01_dot" class="f_ifocus_btn"> </div>
+</div>
+<div class="f_inews">
+  <ul class="f_inews_lis" id="f_inews_lis_ul">
+  
+	       {pc:content action="_arclist" modelid="3" wap="TRUE"}
+		   {loop $data $v}
+		   <li> <a class="f_inewsimg" href="{$v['url']}"><img src="{$v[litpic]}"/></a>
+			  <div class="f_inewscon">
+				<h4><a href="{$v['url']}">{$v[title]} </a></h4>
+				<p class="clears">{$v['description']}    <span>{date('Y-m-d H:i:s',$v['publishtime'])} </span></p>
+			  </div>
+			</li>
+		    {/loop}
+			{/pc}
+	
+	
+	
+	
+  </ul>
+</div>
+<div class="f_loadimg" id="f_loadimg"> <img src="{PUBLIC}wap/images/loading.gif"/> </div>
+<div class="f_ionload" id="div_getmorenews"> <span style="color:red;font-size:14px;display:none;" id="span_timeout">加载超时</span> <a href="javascript:void(0)" id="a_getmorenews">点击加载更多</a> </div>
+{wapload foot.html}
+</body>
+</html>

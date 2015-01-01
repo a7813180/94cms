@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo C('webname');?>-会员中心</title>
+<link href="<?php echo base_url('public/modules/member/index')?>/css/css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<?php $this->load->view('index_top.html')?>
+<div id="content">
+  <div class="wp">
+    <div class="left">
+      <ul>
+        <li><a href="<?php echo site_url('member/home');?>" >个人中心</a> </li>
+        <li><a href="<?php echo site_url('member/home/pay');?>">在线充值</a> </li>
+        <li><a href="<?php echo site_url('member/home/pay_data');?>">充值记录</a> </li>
+        <li><a href="<?php echo site_url('member/home/setprofile');?>" >个人资料 </a> </li>
+        <li><a href="<?php echo site_url('member/home/pwd');?>"  >修改密码 </a> </li>
+        <li><a href="<?php echo site_url('member/home/yaoqing');?>"  class="hot" >邀请好友</a> </li>
+        <li><a href="<?php echo site_url('member/login/logut');?>">安全退出</a> </li>
+      </ul>
+    </div>
+    <div class="right">
+      <div class="zl">
+        <div class="r_top">
+          <div class="r_tx"> <img src="<?php $tx = $this->session->userdata('tx'); echo base_url($tx['0']); ?>" style="width:120px; height:120px;"> </div>
+          <div class="r_username"> 你好:&nbsp;<?php echo $userid; ?>
+            <div style="height:20px;"> </div>
+            余额:&nbsp;<span style="font-size: 24px;; color:#FF0000"><?php echo $money;?></span>元 <a href="<?php echo site_url().'member/home/pay';?>">账户充值 </a> &nbsp;&nbsp; &nbsp;&nbsp;  积分:&nbsp; <span style="font-size: 20px;; color:#FF0000"> <?php echo $jifen; ?></span> <a href="<?php echo site_url().'member/home/jifen';?>">积分兑换</a>
+            <div style="height:20px;"> </div>
+            <?php if(getipinfo()!= getipinfo($upip)){?>
+            <div class="hongse"> 上次登陆时间:&nbsp;<?php echo date('Y-m-d h:i:s',$uptime)?>&nbsp;&nbsp;&nbsp;&nbsp; 上次登陆:&nbsp;
+              <?php $ipinfo = getipinfo($upip); echo $ipinfo;?>
+            </div>
+            <?php }else{?>
+            上次登陆时间:&nbsp;<?php echo date('Y-m-d h:i:s',$uptime)?>&nbsp;&nbsp;&nbsp;&nbsp; 登陆地区:&nbsp;
+            <?php $ipinfo = getipinfo($upip); echo $ipinfo;?>
+            <?php }?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<?php $this->load->view('index_foot.html')?>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加模型</title>
+<link href="<?php echo base_url('public/admin');?>/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+
+
+<form name="" action="<?php echo site_url(APP_ADMIN.'/model/add');?>" method="post">
+	
+  
+    <ul class="forminfo" style="padding-top:25px;">
+    <li><label>模型名称</label><input name="name"   type="text" class="dfinput"  style="width:150px"/><i>标题不能超过30个字符</i></li>
+    <li><label>附 加 表</label><input name="tablename"  type="text" class="dfinput" style="width:150px" /><i>(表名小写，去掉默认表前缀) </i></li>
+	
+ <li><label>封面模板：</label>
+	
+ <select name="template_index" class="inputauto">
+ 
+ <?php foreach($template_index as $v):?>
+ <option value="<?php echo $v?>" ;}?><?php echo $v?></option>
+ <? endforeach?>
+
+ </select>
+
+</li>
+	
+	
+	
+    <li><label>列表模板：</label>
+	
+ <select name="template_list" class="inputauto">
+ 
+ <?php foreach($template_list as $v):?>
+ <option value="<?php echo $v?>" ;}?><?php echo $v?></option>
+ <? endforeach?>
+
+ </select>
+
+</li>
+
+    <li><label>内容模板： </label>
+	
+ 
+	 <select name="template_show" class="inputauto">
+ <?php foreach($template_show as $v):?>
+ <option value="<?php echo $v?>" ?><?php echo $v?></option>
+ <? endforeach?>
+ 
+ 
+ </select>
+
+	</li>
+	
+	
+<li><label>wap_列表模板：</label>
+	
+ <select name="template_list_wap" class="inputauto">
+ 
+ <?php foreach($template_list_wap as $v):?>
+ <option value="<?php echo $v?>" ;}?><?php echo $v?></option>
+ <? endforeach?>
+
+ </select>
+
+</li>
+
+
+ <li><label>wap_内容模板： </label>
+	
+ <select name="template_show_wap" class="inputauto">
+ <?php foreach($template_show_wap as $v):?>
+ <option value="<?php echo $v?>" ?><?php echo $v?></option>
+ <? endforeach?>
+ 
+ 
+ </select>
+
+	</li>
+		
+	
+	
+	
+	
+	
+	
+	<li><label>顺     序： </label> <input name="sort"  style="width:150px"  value="99" class="dfinput"  /></li>
+	<li><label>状     态：  </label>
+	
+ <select name="status" class="inputauto">
+ <option value="1" ?> 开启</option>
+  <option value="0"?> 关闭</option>
+ </select>
+	
+	</li>
+	
+	
+	
+	
+	
+    <li><label>描      述： </label><textarea name="description"  style="width:325px; height:30px;"  class="textinput"></textarea></li>
+	
+	
+	
+    <li><label>&nbsp;</label><input name=""  type="submit" class="btn" value="确认保存"/></li>
+    </ul>
+    
+    
+
+
+</form>
+
+
+</body>
+</html>

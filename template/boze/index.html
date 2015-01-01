@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="{$webname}" />
+<title>{$webname}</title>
+<meta name="description" content="{$webdes}" />
+<meta name="keywords" content="{$webkey}" />
+<link href="{PUBLIC}style/style.css" rel="stylesheet" />
+<script type="text/javascript" src="{PUBLIC}js/jq1.91.js"></script>
+<script type="text/javascript" src="{PUBLIC}js/index_proscroll.js"></script>
+<script type="text/javascript" src="{PUBLIC}js/FloatAds.js"></script>
+<script type="text/javascript" src="{PUBLIC}js/common.js"></script>
+</head>
+<body class="index">
+{load top.html}
+<div class="slide banner" data-slide='{"action":"click","fn":"banner_ext","time":"8000"}'> {pc:module action="_slide" cid="0"}
+  {loop $data $v}
+  <div class="ban_c album"><a href="{$v['url']}" target="_blank" title="{$v['title']}"><img src="{$v['pic']}" alt="{$v['title']}" /></a> </div>
+  {/loop}
+  {/pc} </div>
+<div class="wrap bann_ext">
+  <ul class="l frontCover">
+  </ul>
+  <div class="l bann_ext_bord">
+    <div class="fix">
+      <h2>热门新闻</h2>
+      <div class="l newsUp index_gg">
+        <div class="l key"> <a class="btn pre_" title="上一条"></a> <a class="btn nex_" title="下一条"></a> </div>
+        <ul class="mybdshare">
+          {pc:content action="_arclist" num="10" order="desc" sort ="click"  modelid="2" }
+          {loop $data $v}
+          <li><a href="{$v['url']}" target="_blank" title="{$v['title']}">{$v['title']}</a><span>{time_tran($v['publishtime'])}</span></li>
+          {/loop}
+          {/pc}
+        </ul>
+      </div>
+    </div>
+    <div class="bann_ext_list"> </div>
+  </div>
+</div>
+</div>
+<div class="wrap fix i_box_wrap mt10">
+  <div class="i_box2">
+    <h2 class="Tit1"><a href="{cate('5','url')}"  title="新闻中心">新闻中心</a></h2>
+    <div class="i_box2_spe"> {pc:content action="_arclist" num="4" order="desc" modelid="2" limit="0"  }
+      {loop $data $v}
+      <li><a href="{$v['url']}" target="_blank">{$v['title']}</a></li>
+      {/loop}
+      {/pc} </div>
+    <ul class="i_box2_news">
+      {pc:content action="_arclist" num="6" order="desc" modelid="2" limit="4"  }
+      {loop $data $v}
+      <li><a href="{$v['url']}" target="_blank">{$v['title']}</a></li>
+      {/loop}
+      {/pc}
+    </ul>
+  </div>
+  <div class="i_box4">
+    <h2 class="Tit1"><a href="{cate('1','url')}"  title="视频中心">{cate('1','name')}</a></h2>
+    <div class="fix"> {get_str(cate('1','content'),320)} </div>
+  </div>
+  <div class="i_box3">
+    <h2 class="Tit1"><a href="#"  title="服务与配件">服务与配件</a></h2>
+    <div class="slide i_box3_slide" data-slide='{"auto":false}'> {pc:module action="_slide" cid="1"}
+      {loop $data $v}
+      <div class="ban_c"> <a href="{$v['url']}" target="_blank" title="{$v['title']}"><img src="{$v['pic']}" alt="{$v['title']}" /></a></div>
+      {/loop}
+      {/pc} </div>
+    <div class="i_box3_form mt10"> <span>客户服务部专线：</span><br>
+      电话：{C('webtel')} 传真：{C('webfax')} <br>
+      <span>营销部专线：</span><br>
+      {C('webphone')}<br>
+      地址:{C('webaddress')} <br>
+    </div>
+  </div>
+</div>
+<div class="wrap mt20">
+  <h2 class="Tit1">产品推荐</h2>
+  <div class="blk_18"> <a class="RightBotton" hidefocus="true" onmousedown="ISL_GoDown_1()" onmouseup="ISL_StopDown_1()" onmouseout="ISL_StopDown_1()" href="javascript:void(0);" target="_self"></a>
+    <div class="pcont" id="ISL_Cont_1">
+      <div class="ScrCont">
+        <div id="List1_1"> {pc:content action="_arclist"     litpic="true"    modelid="3"     num="10"  order="desc"  limit="0"  }  
+          {loop $data $v}
+          <div class="pl">
+            <div><a href="{$v['url']}" ><img src="{$v['litpic']}" width="220" height="134" /></a> <a href="{$v['url']}"  ><span>{$v['title']}</span></a></div>
+          </div>
+          {/loop}
+          {/pc} </div>
+        <div id="List2_1"></div>
+      </div>
+    </div>
+    <a class="LeftBotton" hidefocus="true" onmousedown="ISL_GoUp_1()" onmouseup="ISL_StopUp_1()" onmouseout="ISL_StopUp_1()" href="javascript:void(0);" target="_self"></a> </div>
+  <script type="text/javascript">
+        picrun_ini()
+        </script>
+</div>
+</div>
+<div style="clear:both"> </div>
+<div id="link"  style="width:1000px; margin-right:auto; margin-left:auto;">
+  <h3>友情链接</h3>
+  <br />
+  {pc:module action="_link"}
+  {loop $data $v}
+  <!--img src="{$v['pic']}"-->
+  <a href="{$v['url']}" target="_blank" class="l4"> {$v['title']}</a> {/loop}
+  {/pc} </div>
+{load foot.html}
+<div style="display:none;"> </div>
+</body>
+</html>

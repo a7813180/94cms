@@ -1,0 +1,67 @@
+<!--弹出层-->
+
+<section id="backgroundmark"> &nbsp; </section>
+<!--QQ在线客服-->
+<div class="QQ_s" id="QQ_s">
+  <div class="QQ_y"> <img src="{PUBLIC}style/home/images/QQ_S__03.png" width="135" height="102"> </div>
+  <div class="QQ_x"> <a href="tencent://message/?uin=271790775" class="qq_i">胡经理</a> <a href="tencent://message/?uin=1258083440" class="qq_i">黄小姐</a> <a href="tencent://message/?uin=710106282" class="qq_i">邓小姐</a> <a href="tencent://message/?uin=247949007" class="qq_i">张小姐</a> </div>
+</div>
+<section id="danchu"> <span class="cc">
+  <div class="danchuclose"></div>
+  <a id="danchuclose" href="javascript:;"></a></span>
+  <div class="weibo" id="sinaweibo" style="display:none">
+    <div class="ecode"> <img src="{PUBLIC}style/home/images/accessimg.jpg" width="300" height="300"> </div>
+    <div class="ecodeexpress">
+      <p class="weibo_font">随时随地，关注我们吧！<br>
+        官方微博</p>
+      <p class="weibo_font_en">e<b>.</b>weibo<b>.</b>com/Carvso2013</p>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="weibo" id="conpanycode" style="display:none">
+    <div class="ecode"> <img src="{PUBLIC}style/home/images/qrcode_for_gh_cf5ec2f3e657_.jpg" width="300" height="300"> </div>
+    <div class="ecodeexpress">
+      <p class="weibo_font" style="font-size:30px">任何咨询，随时聊聊吧！<br>
+        公众微信</p>
+      <p class="weibo_font_en">微信号<b>.</b>karvso</p>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="weibo" id="conpanyweixin" style="display:none">
+    <div class="ecode"> <img src="images/weixinc_12.jpg" width="300" height="300"> </div>
+    <div class="ecodeexpress">
+      <p class="weibo_font">随时随地，<br>
+        跟我们聊聊吧！</p>
+      <p class="weibo_font_en"><span style="font-size:30px;font-family:宋体">微信号</span><b>.</b>Carvso</p>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="400phone" id="400phone" style="display:none">
+    <div class="phonepic"> <img src="{PUBLIC}style/home/images/400phone_03.jpg" width="313" height="394"> </div>
+    <div class="ecodeexpress">
+      <p class="weibo_font" style="font-size:40px">欢迎致电给我们！</p>
+      <p class="weibo_font_en weibo_font_phone"><span style="font-size:30px;font-family:宋体;letter-spacing:2px">联系电话</span><br/>
+        020-23886565</p>
+    </div>
+    <div class="clear"></div>
+  </div>
+</section>
+<!--弹出层-->
+<header>
+  <div class="inner clearfix">
+    <nav>
+      <ul>
+        <li><a href="{base_url()}"  {if $tcid =='0'} class="on"{/if} >home<b>.</b><span>首页</span></a></li>
+        {pc:content action="_cate" num="10" order="asc" cid="0"}
+        {loop $data $v}
+        {if $v['id']!='5'}
+        <li><a href="{$v['url']}" {if $v['id']==$cid} class="on" {/if}>{$v['ename']}<b>.</b><span>{$v['name']}</span></a></li>
+        {/if}
+        {/loop}
+        {/pc}
+        <li class="ii"><a href="javascript:;" class="icon c3" rel="400phone"></a></li>
+      </ul>
+    </nav>
+    <div class="logo"> <a href="/"><img src="{PUBLIC}style/home/images/logo.gif" alt="{$webname}" /></a> </div>
+  </div>
+</header>

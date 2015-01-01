@@ -1,0 +1,243 @@
+{load heads.html}            模板之间载入
+
+{PUBLIC}                        模板素材路径
+
+{php }                           中间输入php原生代码
+
+{catepos($cid)}              //当前位置 全站通用
+
+define("_94CMS_BUG", 1); // 调式模式    首页index.php 设置
+
+在 index.php 设置CodeIgniter的 ENVIRONMENT 常量为 'production' 将会关闭这些错误(报告)。在开发模式下，推荐设为 'development'
+
+COFING 配置 $db['default']['cachedir'] = 'chche';       mysql  缓存目录
+
+网站系统设置
+
+系统函数
+
+get_str 截取中文字数函数   
+  
+time_tran 让时间按照多少小时 或者 多少天 小时
+
+
+
+
+//当前位置 全站通用
+
+{catepos($cid)}   电脑     {catepos($cid,$wap='true')} 手机都用    
+
+全站调用
+
+{$webname}  //网站标题
+
+{$webkey}    //网站关键字
+
+{$webdes}     //网站描述
+
+{cate('cid','name')}      这个函数 第一个参数为 栏目id 第2个为自定义字段 可以为name  或者url
+
+
+
+导航调用
+无限极分类
+如果手机都用请加 字段 wap ="true"
+{pc:content action="_cate" cid="0" num="10" order="asc" wap="true"}	 					 
+{loop $data $key $v}
+<a href='{$v['url']}'> {$v['name']} {$key}</a>
+{if is_array($v['x'])}
+{loop $v['x'] $v}  
+<li><a href='{$v['url']}'>{$v['name']}</a></li>
+{/loop}
+{/if}
+{/loop}
+{/pc}
+
+
+
+
+侧边分类：
+{pc:content action="cate" cateid="$cid" num="10" order="asc"}
+{loop $data $v}
+ <li><a href='{$v['url']}'  rel='dropmenu1' {if $cid=$v['id']}echo class='thisclass'{/if}>{$v['name']}</a></li>
+ {/loop}
+{/pc}
+
+
+
+幻灯片调用
+
+ {pc:module action="_slide" cid="0"}
+  {loop $data $v}
+  <div class="ban_c album"><a href="{$v['url']}" target="_blank" title="{$v['title']}"><img src="{base_url($v['pic'])}" alt="{$v['title']}" /></a>
+  </div>
+  {/loop}
+  {/pc}
+
+
+
+
+友情链接调用
+
+{pc:module action="_link"}
+{loop $data $v}
+<img src="{$v['pic']}">
+<a href="{$v['url']}" target="_blank" class="l4"> {$v['title']}</a>
+{/loop}
+{/pc}
+
+
+
+全局文章列表调用
+
+{pc:content action="_arclist" flag='h'  keyword=""  litpic="true"  cid="$cid"  modelid="2"   sort ="click"  num="10"  order="desc"  limit="0"  field="diy"  wap="TRUE"}  
+{loop $data $v}
+<li><a href="/changjianwenti/138.html" title="网站打开慢的原因知识大全">网站打开慢的原因知识大全</a></li>
+{/loop}
+ {/pc}
+
+flag='h'            //文章属性
+keyword=""      //相关关键词
+cid="$cid"          //文章分类    可以不写   根据栏目调用 有 $tid  和$cid   和固定  栏目 ID
+modelid="2"      //模型分类    可以不写    写上这个 可以不写 cid  调用整个模型里面的数据 
+num="10"         //调用数目    可以不写
+order="desc"     //排序          desc 倒序   asc 正序     random 随机      ---可以不写
+limit="0"            //多少条开始调用
+field="diy"          //自定义字段  会调用附表
+litpic="true"        //调用有缩略图的文章
+sort ="click"       //按照点击排序   sort  ="publishtime"    //按照发布时间排序   sort="id"  //按照文章id排序  
+wap="TRUE"        //如果手机都用的加这个参数
+
+循环调用
+{$v[id]}                                                      //ID  
+{$v[title]}                                                   //文章标题
+{date('Y-m-d H:i:s',$v['publishtime'])}         //时间   使用date函数自定义时间格式
+{$v[shorttitle]}                                           //副标题
+{$v[color]}                                                 //字体颜色 
+{$v[author]}                                              //作者
+{$v[keywords]}                                          //关键字
+{$v[litpic]}                                                 //图片
+{$v[description]}                                       //简介
+{$v[updatetime]}                                      //更新时间
+{$v[click]}                                                 //点击
+{$v[cname]}                                               //所属分类名称
+{$v[curl]}                                                   //属分类链接
+{$v[content]}                                            //文章所有内容
+{dow($v['cid'],$v['id'])}                              //下载地址
+
+
+
+《-------列表调用---------》
+{$cid}              //本分类id
+{$catename}  //列表标题
+{$catekey}     / / 关键词 
+{$catedes}     //描述
+{$cateurl}     //本分类url
+
+{pc:content action="_list" cid="$cid" num="2" order="asc" pagenum="$pagenum" page="1" field="diy" wap="TRUE"}
+{loop $data $key $v}
+
+{/loop}
+{$page}                                                     分页
+{/pc}
+
+
+底层模板 分为： 
+cid  调用那个分类  
+num  显示多少条   
+order  排序   asc 和 desc     
+pagenum  如果分页这个是必须   
+page  是分页样式（1到4）  
+field 如果有自定义字段请输入 自定义的字段
+wap="TRUE"        //如果手机都用的加这个参数
+
+循环调用
+{$v[id]}                                                      //ID  
+{$v[title]}                                                   //文章标题
+{date('Y-m-d H:i:s',$v['publishtime'])}         //时间   使用date函数自定义时间格式
+{$v[shorttitle]}                                           //副标题
+{$v[color]}                                                 //字体颜色 
+{$v[author]}                                              //作者
+{$v[keywords]}                                          //关键字
+{$v[litpic]}                                                 //图片
+{$v[description]}                                       //简介
+{$v[updatetime]}                                      //更新时间
+{$v[click]}                                                 //点击
+{$v[cname]}                                               //所属分类名称
+{$v[curl]}                                                   //属分类链接
+{$v[content]}                                            //文章所有内容
+{dow($v['cid'],$v['id'])}                              //下载地址
+
+
+
+
+
+单篇调用
+{$catename}           //列表标题
+{$catekey}              // 关键词 
+{$catedes}              //描述
+
+{$page[id]}             //ID
+{$page[name]}       //名称
+{$page[ename]}     //别名
+{$page[litpic]}        //图片
+{$page[seotitle]}    //seo 标题
+{$page[content]}    //内容
+ 
+
+
+
+
+内容页调用
+{$cid}              //本文章属分类id
+{$catename}   //本文章分类标题
+{$cateurl}       //本文章属分类url
+
+{$id}                     //文章id
+{$title}                  //标题
+{$keywords}          //关键词
+{$description}         //描述
+
+{$shorttitle}            //副标题
+{$color}                 //标题颜色
+{$author}               //作者
+{$litpic}                  //缩略图
+{$publishtime}       //发布时间
+{$updatetime}       //修改时间
+{click}                  //点击
+{$content}               //内容
+{$url}          //本文网址
+{dow($v['cid'],$v['id'])}                              //下载地址
+
+
+
+
+{$tag}     TAG
+自定义字段 {$自定义}
+
+{$prev}      //上一篇
+{$next}     //下一篇
+
+//多图调用
+{loop string2array($listimg) $v}
+<img src="<?php echo base_url()?>{$v}">
+{/loop}
+					
+
+
+
+// tag 调用
+   {pc:content action="_tag"  type="2"  sort="id" order="desc"}
+    {loop $data $v}
+   <a href="{$v['url']}" class="tagc1">{$v['title']}</a>
+    {/loop}
+    {/pc}
+
+
+type  //需要调用的模型    1 到4 和 自定义模型
+sort  //以什么字段排序    id  和 num
+排序 // 正序 倒序    asc  和 desc
+
+
+
+

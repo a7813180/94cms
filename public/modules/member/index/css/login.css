@@ -1,0 +1,51 @@
+@charset "utf-8";
+body{background: #f4f4f4 url(../images/bg_loginBg.jpg) repeat-x left 110px; font-size: 12px;}
+.mt30{ margin-top: 30px;}
+#hearder{ width: 100%; height: 110px; background: #fff;}
+.wraper{ background:url(../images/bg_login.jpg) no-repeat center top;}
+.wrap{width: 1120px;margin: 0 auto; overflow: hidden;}
+.logo{ width: 157px; height: 50px; float: left;}
+.nav{ line-height: 110px; float: right; color: #666;}
+.nav a{color: #666; padding: 0 5px;}
+.nav a:hover{color:#00A0E9; text-decoration:underline;}
+#main{ width: 1120px; height: 430px;}
+.loginBox{ width: 337px;float: right; margin: 54px 43px 0 0;  position: relative; padding: 5px;}
+.loginBox .loginTit{width: 312px; height: 50px; background: #000; line-height: 50px; padding-left: 25px;}
+.loginBox h1{ color: #fff; font-size: 22px;font-family: '微软雅黑'; float: left;}
+.loginBox .loginTit .reg{background: url(../images/ico.png) no-repeat -72px -65px; float: right; padding-right: 40px; color: #999;}
+.loginBox .loginTit .reg{_background: url(../images/ico.gif) no-repeat -72px -65px; float: right; padding-right: 40px; color: #999;}
+.loginBox .loginTit a.reg:hover{ color:#00A0E9; text-decoration:underline;}
+.loginBox .mask{ width: 347px; height: 485px; *height:460px; filter: alpha(opacity=40);opacity: 0.4;-moz-opacity: .4;
+background: #e5e2e2;position: absolute; left: 0; top: 0; z-index: -1;border-radius: 5px;}
+.loginBox ul{ background: #fff; width: 283px; padding: 30px 27px 30px 27px;}
+.loginBox ul li{ line-height: 30px; color: #999;width: 100%;}
+.loginBox ul li.bgPassWord{margin-bottom:12px;}
+.loginBox .userName{ float:left; width: 238px; height: 16px; padding:12px 0 5px; border:0; margin-bottom: 5px;}
+.loginBox .userNameTips{ background-image: url(../images/ico2.png); background-repeat: no-repeat; background-position: -155px -499px; }
+.loginBox .password{ float:left; width: 238px; height: 16px; padding:12px 0 5px;  border:0; margin-bottom: 5px;}
+.loginBox .passwordTips{ background-image: url(../images/ico2.png); background-repeat: no-repeat; background-position: -155px -569px; }
+.loginBox .yzmInput{ width: 50px; height: 17px; padding: 7px 0 6px 5px; border: 1px solid #e7e7e7; float: left; margin-right: 5px; position: relative; top: 12px; }
+.loginBox .tag_yzm{ width: 45px; height: 30px; line-height: 30px; display: block; float: left; position: relative; top: 12px; }
+.loginBox .exchange{float: left; margin-left: 3px;}
+.loginBox .exchange a{ color: #666666; cursor: pointer; line-height: 180%; padding-left: 5px; }
+.loginBox .exchange a b { color: #00a0e9; display: block; font-size: 14px; }
+.loginBox img{height: 31px;float: left; cursor: pointer; height: 45px; vertical-align: text-bottom; }
+.loginBox .btn_login{width: 283px; height: 47px; line-height: 47px; text-align: center; text-shadow: #8c1617 0 1px 0;color: #fff; font-size: 20px; border: 0 none;font-family: '微软雅黑'; filter:alpha(opacity=100 finishopacity=100 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=#e64648,endcolorstr=#df3234,gradientType=0);	
+    -ms-filter:alpha(opacity=100 finishopacity=100 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=#e64648,endcolorstr=#df3234,gradientType=0); background: #df3234; background:-webkit-gradient(linear, 0 0, 0 bottom, from(#e64648), to(rgba(223, 50, 52, 1)));
+	background:-moz-linear-gradient(top, #e64648, rgba(223, 50, 52, 1));cursor: pointer;}
+.loginBox .btn_reg{width: 283px; height: 47px; line-height: 45px; text-align: center; color: #999; font-size: 20px; border: 0 none; font-size: 18px;font-family: '微软雅黑'; border: 1px solid #f5f5f5; margin-top: 6px;filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=#f9f9f9,endcolorstr=#ffffff,gradientType=0);	
+    -ms-filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=#f9f9f9,endcolorstr=#ffffff,gradientType=0); background: #f9f9f9; background:-webkit-gradient(linear, 0 0, 0 bottom, from(#ffffff), to(rgba(249, 249, 249, 1)));
+	background:-moz-linear-gradient(top, #ffffff, rgba(249, 249, 249, 1)); cursor: pointer;text-shadow: #e7e7e7 0 1px 0;}
+.loginBox .btn_reg:hover{ color:#00A0E9; text-decoration:underline; }
+.loginBox .grayTxt{ color: #666; padding:10px 0;clear: both;}
+.loginBox .grayTxt a{ color: #00a0e9; padding-left: 18px; text-decoration: underline;}
+.loginBox .chexBox{vertical-align: text-bottom;margin: 0px 5px 0 0;}
+#footer{ text-align: center; height: 65px; margin-top: 85px; line-height: 25px; color: #787878; padding-top: 20px;}
+#loginTips{ color: #ff7602; padding-left: 17px; background: url(../images/error_msg.gif) left center no-repeat; } 
+
+/*---------Joel Add------------*/
+.bgUserName, .bgPassWord{ border: 1px solid #e7e7e7; }
+.bgUserName span{ display: block; background: url(../images/ico.png) no-repeat 5px -499px; width: 35px; height: 38px; float: left; }
+.bgPassWord span{ display: block; background: url(../images/ico.png) no-repeat 4px -569px; width: 35px; height: 38px; float: left; }
+
+.bgUserName { margin-bottom: 5px; }

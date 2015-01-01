@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>会员信息</title>
+<link href="<?php echo base_url('public/admin');?>/css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="<?php echo base_url('public/kd');?>/themes/default/default.css" />
+<script charset="utf-8" src="<?php echo base_url('public/kd');?>/kindeditor-min.js"></script>
+<script charset="utf-8" src="<?php echo base_url('public/kd');?>/lang/zh_CN.js"></script>
+</head>
+<body>
+<div class="place" > <span>位置：</span>
+  <ul class="placeul">
+    <li><a href="<?php echo site_url(APP_ADMIN.'/home/main')?>">后台首页</a></li>
+    <li><a href="#">会员信息</a></li>
+  </ul>
+</div>
+<form action="<?php echo $this->module_url('updata_s');?>" method="post" >
+  <div class="formbody">
+    <ul class="forminfo">
+      <li>
+        <label>账户</label>
+        <input name="userid" type="text" class="dfinput"   value="<?php echo $member['userid'];?>"  style="width:255px;"/>
+      </li>
+      <li>
+        <label>昵称</label>
+        <input name='uname' type="text" class='dfinput' value="<?php echo $member['uname'];?>" style="width:255px;">
+      </li>
+ 
+      <li>
+        <label>性别</label>
+        <select name='sex' class="dfinput"  style="width:255px;">
+          <option <?php echo $member['sex'];?> value="男"> 男</option>
+          <option value="女"> 女</option>
+          <option value="保密">保密</option>
+        </select>
+      </li>
+      <li>
+        <label>类型</label>
+        <select name="mtype"  class="dfinput"  style="width:255px;">
+          <option value="个人"> 个人</option>
+          <option value="企业"> 企业</option>
+          <option value="淘宝客户">淘宝用户</option>
+          <option value="本地客户">本地客户</option>
+          <option value="大客户">大客户</option>
+        </select>
+      </li>
+      <li>
+        <label>等级</label>
+        <input name='rank' type="text" class='dfinput' value="<?php echo $member['rank'];?>" style="width:255px;">
+      </li>
+      <li>
+        <label>余额</label>
+        <input name='money' type="text" class='dfinput' value="<?php echo $member['money'];?>" style="width:255px;">
+      </li>
+      <li>
+        <label>邮箱</label>
+        <input name='emai' type="text" class='dfinput' value="<?php echo $member['email'];?>" style="width:255px;">
+      </li>
+      <li>
+        <label>手机</label>
+        <input name='tel' type="text" class='dfinput' value="<?php echo $member['tel'];?>" style="width:255px;">
+      </li>
+      <li>
+        <label>注册时间</label>
+        <input name='jointime' type="text" class='dfinput' value="<?php echo $member['jointime'];?>" style="width:255px;">
+      </li>
+      <li>
+        <label>注册ip</label>
+        <input name='joinip' type="text" class='dfinput' value="<?php echo $member['joinip'];?>" style="width:255px;">
+      </li>
+      <li>
+        <label>上次登陆时间</label>
+        <input name='logintime' type="text" class='dfinput' value="<?php echo $member['loginip'];?>" style="width:255px;">
+      </li>
+      <li>
+        <label>上次登IP</label>
+        <input name='loginip' type="text" class='dfinput' value="<?php echo $member['loginip'];?>" style="width:255px;">
+      </li>
+      <li>
+        <label>禁止登陆</label>
+        <select name="look"  class="dfinput"  style="width:255px;">
+          <option value="0"> 否</option>
+          <option value="1"> 是</option>
+        </select>
+      </li>
+      <li>
+        <label>邮箱验证</label>
+        <select name="checkmail"  class="dfinput"  style="width:255px;">
+          <option value="-1"> 未验证</option>
+          <option value="1"> 通过验证</option>
+        </select>
+      </li>
+      <li>
+        <label>备注</label>
+        <textarea name="minfo" class="dfinput" style="width:255px; height:80px;"><?php echo $member['minfo'];?></textarea>
+      </li>
+      <li>
+        <label>&nbsp;</label>
+        <input type="submit" value="保存"  class="btn" />
+      </li>
+    </ul>
+  </div>
+</form>
+<div style="display:none">
+  <script >
+
+KindEditor.ready(function(K) {
+	var uploadbutton = K.uploadbutton({
+		button: K('#uploadButton')[0],
+		fieldName: 'imgFile',
+		url: '<?php echo site_url(APP_ADMIN.'/upload/upimg/');?>',
+		afterUpload: function(data) {
+			if (data.error === 0) {
+				var url = K.formatUrl(data.url, 'absolute');
+				K('#url').val(url);
+				alert('上传成功！ ')
+			} else {
+				alert(data.message)
+			}
+		},
+		afterError: function(str) {
+			alert('上传错误！ ' + str)
+		}
+	});
+	uploadbutton.fileBox.change(function(e) {
+		uploadbutton.submit()
+	})
+}); 
+
+</script>
+</div>
+</body>
+</html>

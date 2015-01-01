@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo $title; ;?>-会员中心-<?php echo C('webname');?></title>
+<link href="<?php echo base_url('public/modules/member/index')?>/css/css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php echo base_url('public/modules/member/index')?>/scripts/swfobject.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public/modules/member/index')?>/scripts/fullAvatarEditor.js"></script>
+</head>
+<body>
+<?php $this->load->view('index_top.html')?>
+<div id="content">
+  <div class="wp">
+    <div class="left">
+      <ul>
+             <li><a href="<?php echo site_url('member/home/setprofile');?>"  >个人资料 </a> </li>
+        <li><a href="<?php echo site_url('member/home/tx');?>"  >上传头像</a> </li>
+        <li><a href="<?php echo site_url('member/home/pwd');?>" class="hot">修改密码</a> </li>
+         <li><a href="<?php echo site_url('member/login/logut');?>">安全退出</a> </li>
+      </ul>
+    </div>
+    <div class="right">
+      <div>
+        <p id="swfContainer"> 本组件需要安装Flash Player后才可使用，请从<a href="http://www.adobe.com/go/getflashplayer">这里</a>下载安装。 </p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<?php $this->load->view('index_foot.html')?>
+<script type="text/javascript">
+               swfobject.addDomLoadEvent(function () {
+               var swf = new fullAvatarEditor("swfContainer", {
+					    id: 'swf',
+						upload_url: '<?php echo site_url('member/home/uptx/')?>',
+						src_upload:2,
+                }, function (msg) {
+						switch(msg.code)
+						{
+							case 1 :  ;break;
+							case 2 : ;break;
+							case 3 :
+								if(msg.type == 0)
+								{
+									alert("摄像头已准备就绪且用户已允许使用。");
+								}
+								else if(msg.type == 1)
+								{
+									alert("摄像头已准备就绪但用户未允许使用！");
+								}
+								else
+								{
+									alert("摄像头被占用！");
+								}
+							break;
+							case 5 : 
+								if(msg.type == 0)
+								{
+								 window.setTimeout("window.location='<?php echo site_url()."member/home/tx";?>'",2000); 
+
+								}
+							 
+								
+							break;
+						}
+					}
+				);
+				document.getElementById("upload").onclick=function(){
+					swf.call("upload");
+				};
+            });
+		 
+        </script>
+</body>
+</html>
